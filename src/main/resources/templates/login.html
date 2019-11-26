@@ -4,25 +4,101 @@
 
     <title>Login</title>
     <meta charset="utf-8">
-    <link href="stylesheet.css" rel="stylesheet"/>
+
+<style>
+
+    body{
+        background-color: #fbfffb;
+        font-family: "Helvetica";
+        font-size: 18px;
+    }
+
+    .login-box{
+        background-color: white;
+        border-radius: 4px;
+        -webkit-box-shadow: 10px 10px 33px 0px rgba(0,0,0,0.75);
+        -moz-box-shadow: 10px 10px 33px 0px rgba(0,0,0,0.75);
+        box-shadow: 10px 10px 33px 0px rgba(0,0,0,0.75);
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        width: 500px;
+        height: 400px;
+        text-align: center;
+
+        }
+    .header-box{
+        padding-left: 50%;
+        margin-left: -325px;
+    }
+    img{
+        width: 650px;
+    }
+    #email-p{
+        padding-top: 60px;
+    }
+    #login-btn{
+        margin-top: 30px;
+        width: 400px;
+        height: 50px;
+        border: none;
+        background-color: #4d5c9a;
+        color: white;
+        font-size: 20px;
+    }
+    input{
+        width: 400px;
+        text-align: left;
+        border: none;
+        height: 30px;
+        font-size: 20px;
+    }
+    .input-box{
+        padding-top: 75px;
+        margin-left: 50px;
+        text-align: left;
+    }
+
+
+
+</style>
+
 </head>
+
+
+
 <body>
+<div class="header-box">
+
+    <img src="https://affald-genbrug.dk/wp-content/uploads/2019/10/D%C3%B8dsbo-Hj%C3%A6lpen.png?fbclid=IwAR023WBxvvV23keLoryC4z8cWV82Ypbd-U-jCiJh0OgGy0Qn8DcdEeku6tY" height="126" width="614"/></head>
+
+</div>
+
+
+
+
+
 <div class="login-box">
+
     <form th:action="@{/login}" method="POST" class="form-signin">
+
     <div class="input-box">
-        <p>Email</p>
-        <input id="email" name="email" type="text" th:placeholder="Email">
-    </div>
-    <div class="input-box">
-        <p>Password</p>
-        <input id="password" name="password" type="password" th:placeholder="Password">
+        <input id="email" name="email" type="text" placeholder="Email">
     </div>
 
-    <button type="submit" value="Login">Login</button>
+    <div class="input-box">
+        <input id="password" name="password" type="password" placeholder="Password">
+    </div>
+
+    <button type="submit" id="login-btn" value="Login">Login</button>
 
         <div align="center" th:if="${param.error}">
             <p style="font-size: 20px; color: #FF1C19;">Email eller Password er forkert.</p>
         </div>
+
     </form>
 </div>
 
