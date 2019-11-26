@@ -1,6 +1,5 @@
 package com.system.controller;
 
-
 import com.system.model.User;
 import com.system.service.UserServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.validation.Valid;
-
 
 @Controller
 public class AuthenticationController {
@@ -20,6 +17,7 @@ public class AuthenticationController {
     @Autowired
     UserServiceImp userServiceImp;
 
+//Login path
     @RequestMapping( value = {"/login", "", "/"}, method = RequestMethod.GET)
     public ModelAndView login(){
         ModelAndView modelAndView = new ModelAndView();
@@ -27,7 +25,7 @@ public class AuthenticationController {
         return modelAndView;
     }
 
-
+//Register user: Get form
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView register() {
         ModelAndView modelAndView = new ModelAndView();
@@ -37,6 +35,7 @@ public class AuthenticationController {
         return modelAndView;
     }
 
+//Register user: Post form
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ModelAndView registerUser(@Valid User user, BindingResult bindingResult, ModelMap modelMap){
         ModelAndView modelAndView = new ModelAndView();
