@@ -8,11 +8,11 @@
         <version>2.2.1.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>system</groupId>
-    <artifactId>demo</artifactId>
+    <groupId>com</groupId>
+    <artifactId>system</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>demo</name>
-    <description>Demo project for Spring Boot</description>
+    <name>AdminSystem</name>
+    <description>Project for dødsbohjælpen</description>
 
     <properties>
         <java.version>1.8</java.version>
@@ -55,11 +55,6 @@
                     <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-test</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
