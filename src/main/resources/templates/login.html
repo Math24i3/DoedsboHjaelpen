@@ -32,13 +32,12 @@
         }
     .header-box{
         padding-left: 50%;
-        margin-left: -325px;
+        margin-left: -200px;
+        padding-top: 25px;
     }
-    img{
-        width: 650px;
-    }
-    #email-p{
-        padding-top: 60px;
+    img {
+        width: 400px;
+        height: 95px;
     }
     #login-btn{
         margin-top: 30px;
@@ -48,6 +47,8 @@
         background-color: #4d5c9a;
         color: white;
         font-size: 20px;
+        transition-duration: 0.5s;
+        border-radius: 3px;
     }
     input{
         width: 400px;
@@ -55,11 +56,20 @@
         border: none;
         height: 30px;
         font-size: 20px;
+        border-bottom: 0.5px solid #4d5c9a;;
     }
     .input-box{
-        padding-top: 75px;
+        padding-top: 40px;
         margin-left: 50px;
         text-align: left;
+    }
+    h2{
+        color: #4d5c9a;
+    }
+    #login-btn:hover{
+        background-color: #8795ee;
+        transition-duration: 0.5s;
+        color: #dddddd;
     }
 
 
@@ -83,6 +93,8 @@
 
 <div class="login-box">
 
+    <h2>LOGIN</h2>
+
     <form th:action="@{/login}" method="POST" class="form-signin">
 
     <div class="input-box">
@@ -91,6 +103,7 @@
 
     <div class="input-box">
         <input id="password" name="password" type="password" placeholder="Password">
+
     </div>
 
     <button type="submit" id="login-btn" value="Login">Login</button>
