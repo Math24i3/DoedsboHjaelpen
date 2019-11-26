@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>opslagstavle</title>
+    <title>ansatte</title>
     <link rel="stylesheet" type="text/css" href="../static/stylesheet.css">
 
 
@@ -17,14 +17,14 @@
 
 
     <div class="header-nav-bar">
-        <a  type="submit" class="btn-active" name="opgave-oversigt" style="border-top-left-radius: 4px; border-bottom-left-radius: 4px" th:href="@{'/home'}">Opgaveoversigt</a>
+        <a name="opgave-oversigt" style="border-top-left-radius: 4px; border-bottom-left-radius: 4px" th:href="@{'/home'}">Opgaveoversigt</a>
 
-        <a  name="opslagstavle" th:href="@{'/bulletin'}">Opslagstavle</a>
+        <a class="btn-active" name="opslagstavle" th:href="@{'/bulletin'}">Opslagstavle</a>
 
-        <a  type="submit" name="ansatte" th:href="@{'/employees'}">Ansatte</a>
+        <a  name="ansatte" th:href="@{'/employees'}">Ansatte</a>
 
         <form method="post" th:action="@{/logout}">
-            <button type="submit" class= "logout-btn" name="log-ud" >Log ud</button>
+            <button class= "logout-btn" name="log-ud" >Log ud</button>
         </form>
 
     </div>
