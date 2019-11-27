@@ -1,7 +1,9 @@
 package com.system.controller;
 
 
+import com.system.model.Assignment;
 import com.system.model.User;
+import com.system.service.AssignmentImp;
 import com.system.service.UserServiceImp;
 import com.system.tools.TimeMessageGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +21,12 @@ public class HomeController {
     @Autowired
     UserServiceImp userServiceImp;
 
-
+    @Autowired
+    AssignmentImp assignmentImp;
 
 
 @RequestMapping( value = {"/home"}, method = RequestMethod.GET)
-    public ModelAndView home (Model model, Authentication authentication){
+    public ModelAndView home (Model model, Authentication authentication, Assignment assignment){
     User user = userServiceImp.currentUser(authentication.getName());
     TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
 
@@ -31,6 +34,9 @@ public class HomeController {
     model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.setViewName("home");
+
+    //En test for at se om man kan lave opgaver
+    assignmentImp.createAssignment(assignment, "test", 2, "testby", 2300, "3 tv", "2015-11-11" , "Lejlighed" );
     return modelAndView;
 }
 
