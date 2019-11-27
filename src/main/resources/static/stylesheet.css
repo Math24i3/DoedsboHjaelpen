@@ -1,5 +1,6 @@
 body{
     font-family: Helvetica;
+    overflow:hidden;
 }
 
 img{
@@ -8,6 +9,10 @@ img{
     height: 60px;
     padding-left: 40px;
     padding-top: 20px;
+}
+
+.header-box{
+    min-width: 1100px;
 }
 
 .header-nav-bar{
@@ -20,6 +25,7 @@ img{
     -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+
 }
 .header-nav-bar a {
     font-size: 18px;
@@ -108,12 +114,15 @@ a #left-btn{
     -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+    opacity: 0.8;
+    position: relative;
+    min-width: 1100px;
 }
 .username-container span{
     font-family: Tahoma;
     font-size: 20px;
     font-weight: 900;
-    color: #2e5e93;
+    color: #2c5083;
     display: inline-block;
     vertical-align: middle;
     line-height: normal;
