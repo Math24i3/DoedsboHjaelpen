@@ -51,4 +51,11 @@ public class HomeController {
         modelAndView.setViewName("Employees");
         return modelAndView;
     }
+
+    @RequestMapping (value = {"/assignmentFormPage"}, method = RequestMethod.GET)
+    public ModelAndView assignmentFormPage(){
+    ModelAndView modelAndView = new ModelAndView();
+    modelAndView.setViewName("AssignmentFormPage");
+    return modelAndView;
+    }
 }
