@@ -2,8 +2,10 @@ package com.system.controller;
 
 
 import com.system.model.Assignment;
+import com.system.model.Notice;
 import com.system.model.User;
 import com.system.service.AssignmentImp;
+import com.system.service.NoticeServiceImp;
 import com.system.service.UserServiceImp;
 import com.system.tools.TimeMessageGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +26,12 @@ public class HomeController {
     @Autowired
     AssignmentImp assignmentImp;
 
+    @Autowired
+    NoticeServiceImp noticeServiceImp;
+
 
 @RequestMapping( value = {"/home"}, method = RequestMethod.GET)
-    public ModelAndView home (Model model, Authentication authentication, Assignment assignment){
+    public ModelAndView home (Model model, Authentication authentication){
     User user = userServiceImp.currentUser(authentication.getName());
     TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
 
@@ -35,6 +40,9 @@ public class HomeController {
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.setViewName("home");
 
+
+    noticeServiceImp.createNotice(user, "2019-12-12", "Hej");
+
     return modelAndView;
 }
 
@@ -42,6 +50,12 @@ public class HomeController {
     public ModelAndView bulletinBoard (){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("bulletin");
+
+        for (Notice n: noticeServiceImp.fetchAll()
+             ) {
+            System.out.println(n.getMessage());
+
+        }
         return modelAndView;
     }
 
@@ -59,5 +73,5 @@ public class HomeController {
     return modelAndView;
     }
 
-    @Req
+
 }
