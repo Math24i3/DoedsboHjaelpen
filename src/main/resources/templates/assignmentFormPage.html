@@ -7,6 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <meta charset="utf-8"/>
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/resources/demos/style.css">
@@ -20,6 +21,11 @@
     <div class="row col-lg-4 col-lg-offset-4" style="margin-top: 40px; background-color: #fff; padding: 20px; border: solid 1px #ddd;">
         <form autocomplete="off" action="#" th:action="@{/assignmentFormPage}" th:object="${'assignment'}" method="post" class="form-signin" role="form">
             <h3 class="form-signin-heading">Opret opgave</h3>
+            <div class="form-group">
+                <div class="">
+                    <input type="text" name="description" placeholder="Beskrivelse" class="form-control" />
+                </div>
+            </div>
             <div class="form-group">
                 <div class="">
                     <input type="text" name="street_name" placeholder="Gade" class="form-control" />
@@ -48,6 +54,101 @@
             <div class="form-group">
                 <div class="">
                     <input type="date" id="date" name="assignment_date" placeholder="Dato" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="checkbox" name="stove"/> Komfur<br>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="checkbox" name="frigde"/> Køleskab/Fryser<br>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="checkbox" name="washingMachine"> Vaskinemaskine<br>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="checkbox" name="dishWasher"> Opvaskemaskine<br>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="checkbox" name="carpets"/> Tæpper<br>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="checkbox" name="carpetTape"/> Tæppetape<br>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="checkbox" name="boltsAndScrews"/> Søm og skruer<br>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="checkbox" name="curtains"/> Gardiner<br>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="checkbox" name="curtainrod"/> Gardinstænger<br>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="checkbox" name="blinds"/> Persienner<br>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="checkbox" name="carpets"/> Tæpper<br>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="checkbox" name="lamps"/> Lamper<br>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="checkbox" name="paintings"/> Malerier<br>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="checkbox" name="documents"/> Dokumenter<br>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="checkbox" name="keys"/> Nøgler<br>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="checkbox" name="cellarAndLoft"/> Kælder/Loftrum<br>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="checkbox" name="cleaningService"/> Tilkøb af hovedrengøring<br>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="checkbox" name="accessibilityTools"/> Hjælpemidler gemmers<br>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="checkbox" name="returnKeys"/> Aflever nøgler tilbage<br>
                 </div>
             </div>
 
