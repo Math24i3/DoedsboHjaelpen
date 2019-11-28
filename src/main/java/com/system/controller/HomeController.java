@@ -58,4 +58,6 @@ public class HomeController {
     modelAndView.setViewName("assignmentFormPage");
     return modelAndView;
     }
+
+    @Req
 }
