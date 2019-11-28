@@ -35,8 +35,6 @@ public class HomeController {
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.setViewName("home");
 
-    //En test for at se om man kan lave opgaver
-    assignmentImp.createAssignment(assignment, "test", 2, "testby", 2300, "3 tv", "2015-11-11" , "Lejlighed" );
     return modelAndView;
 }
 
