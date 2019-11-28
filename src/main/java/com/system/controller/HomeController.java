@@ -4,6 +4,7 @@ package com.system.controller;
 import com.system.model.Assignment;
 import com.system.model.Notice;
 import com.system.model.User;
+import com.system.repository.PropertyTypeRepository;
 import com.system.service.AssignmentImp;
 import com.system.service.NoticeServiceImp;
 import com.system.service.UserServiceImp;
@@ -31,6 +32,9 @@ public class HomeController {
 
     @Autowired
     NoticeServiceImp noticeServiceImp;
+
+    @Autowired
+    PropertyTypeRepository propertyTypeRepository;
 
 
 @RequestMapping( value = {"/home"}, method = RequestMethod.GET)
@@ -79,8 +83,8 @@ public class HomeController {
     //Create post method for assignment
     @RequestMapping (value = "/save", method = RequestMethod.POST)
     public ModelAndView postAssignmentFormPage(@ModelAttribute("assignment") Assignment assignment, HttpServletRequest httpServletRequest){
-        assignmentImp.createAssignment(assignment.getPropertyTypes(),assignment.getDescription(),assignment.getStreetName(),
-                assignment.getStreetNumber(),assignment.getCity(),assignment.getZip(),assignment.getFloor(),assignment.getAssignmentDate(),
+        assignmentImp.createAssignment(assignment,assignment.getDescription(),assignment.getStreetName(),
+                assignment.getStreetNumber(),assignment.getCity(),assignment.getZip(),assignment.getFloor(),assignment.getAssignmentDate(),propertyTypeRepository.findByType(),
                 assignment.isStove(),assignment.isFridge(), assignment.isWashingMachine(), assignment.isDishWasher(), assignment.isCarpets(),assignment.isCarpetTape(),
                 assignment.isBoltsAndScrews(),assignment.isCurtains(), assignment.isCurtainrod(),assignment.isBlinds(), assignment.isLamps(), assignment.isPaintings(),
                 assignment.isDocuments(), assignment.isKeys(),assignment.isCellarAndLoft(),

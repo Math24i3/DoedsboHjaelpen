@@ -142,8 +142,8 @@ public class Assignment {
         this.floor = floor;
     }
 
-    public Date getAssignmentDate() {
-        return assignmentDate;
+    public String getAssignmentDate() {
+        return assignmentDate.toString();
     }
 
     public void setAssignmentDate(String str) {
