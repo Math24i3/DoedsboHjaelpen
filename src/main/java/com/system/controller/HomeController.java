@@ -10,6 +10,7 @@ import com.system.service.NoticeServiceImp;
 import com.system.service.UserServiceImp;
 import com.system.tools.TimeMessageGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.security.core.Authentication;
 
@@ -17,7 +18,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -82,13 +85,12 @@ public class HomeController {
 
     //Create post method for assignment
     @RequestMapping (value = "/save", method = RequestMethod.POST)
-    public ModelAndView postAssignmentFormPage(@ModelAttribute("assignment") Assignment assignment, HttpServletRequest httpServletRequest){
-        assignmentImp.createAssignment(assignment,assignment.getDescription(),assignment.getStreetName(),
-                assignment.getStreetNumber(),assignment.getCity(),assignment.getZip(),assignment.getFloor(),assignment.getAssignmentDate(),propertyTypeRepository.findByType(),
-                assignment.isStove(),assignment.isFridge(), assignment.isWashingMachine(), assignment.isDishWasher(), assignment.isCarpets(),assignment.isCarpetTape(),
-                assignment.isBoltsAndScrews(),assignment.isCurtains(), assignment.isCurtainrod(),assignment.isBlinds(), assignment.isLamps(), assignment.isPaintings(),
-                assignment.isDocuments(), assignment.isKeys(),assignment.isCellarAndLoft(),
-                assignment.isCleaningService(),assignment.isAccessibilityTools(), assignment.isReturnKeys());
+    public ModelAndView postAssignmentFormPage(@ModelAttribute("assignment") Assignment assignment){
+    assignmentImp.createAssignment(assignment.getAssignmentDate(), assignment.getCity(),
+            assignment.getDescription(), assignment.getZip(), assignment.getStreetNumber(),
+            assignment.getStreetName(), assignment.getType());
+
+
         return new ModelAndView("redirect:/home");
     }
 

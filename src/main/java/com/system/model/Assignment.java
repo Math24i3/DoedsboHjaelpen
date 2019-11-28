@@ -35,6 +35,8 @@ public class Assignment {
     @Column(name = "assignment_date")
     private Date assignmentDate;
 
+    private String type;
+
     @Column(name = "stove")
     private boolean stove;
 
@@ -90,9 +92,19 @@ public class Assignment {
     private boolean returnKeys;
 
 
+
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "assignments_property", joinColumns = @JoinColumn(name = "idassignments"), inverseJoinColumns = @JoinColumn(name = "idproperty_type"))
     private Set<PropertyType> propertyTypes;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public int getId() {
         return id;
