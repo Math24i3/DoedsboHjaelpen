@@ -19,7 +19,7 @@ public class TimeMessageGenerator {
     try {
         if(dateFormat.parse(dateFormat.format(date)).after(dateFormat.parse("00:00")) && dateFormat.parse(dateFormat.format(date)).before(dateFormat.parse("10:00")))
         {
-            message = "godmorgen,";
+            message = "Godmorgen,";
         }else if (dateFormat.parse(dateFormat.format(date)).after(dateFormat.parse("10:01")) && dateFormat.parse(dateFormat.format(date)).before(dateFormat.parse("12:00"))){
             message = "God formiddag,";
         }else if(dateFormat.parse(dateFormat.format(date)).after(dateFormat.parse("12:01")) && dateFormat.parse(dateFormat.format(date)).before(dateFormat.parse("17:00"))){
