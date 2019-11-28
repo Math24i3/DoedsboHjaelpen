@@ -13,9 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.security.core.Authentication;
 
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class HomeController {
@@ -71,6 +74,18 @@ public class HomeController {
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.setViewName("assignmentFormPage");
     return modelAndView;
+    }
+
+    //Create post method for assignment
+    @RequestMapping (value = "/save", method = RequestMethod.POST)
+    public ModelAndView postAssignmentFormPage(@ModelAttribute("assignment") Assignment assignment, HttpServletRequest httpServletRequest){
+        assignmentImp.createAssignment(assignment.getPropertyTypes(),assignment.getDescription(),assignment.getStreetName(),
+                assignment.getStreetNumber(),assignment.getCity(),assignment.getZip(),assignment.getFloor(),assignment.getAssignmentDate(),
+                assignment.isStove(),assignment.isFridge(), assignment.isWashingMachine(), assignment.isDishWasher(), assignment.isCarpets(),assignment.isCarpetTape(),
+                assignment.isBoltsAndScrews(),assignment.isCurtains(), assignment.isCurtainrod(),assignment.isBlinds(), assignment.isLamps(), assignment.isPaintings(),
+                assignment.isDocuments(), assignment.isKeys(),assignment.isCellarAndLoft(),
+                assignment.isCleaningService(),assignment.isAccessibilityTools(), assignment.isReturnKeys());
+        return new ModelAndView("redirect:/home");
     }
 
 
