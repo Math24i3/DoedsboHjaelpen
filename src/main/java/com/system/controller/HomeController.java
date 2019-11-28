@@ -55,7 +55,7 @@ public class HomeController {
     @RequestMapping (value = {"/assignmentFormPage"}, method = RequestMethod.GET)
     public ModelAndView assignmentFormPage(){
     ModelAndView modelAndView = new ModelAndView();
-    modelAndView.setViewName("AssignmentFormPage");
+    modelAndView.setViewName("assignmentFormPage");
     return modelAndView;
     }
 }
