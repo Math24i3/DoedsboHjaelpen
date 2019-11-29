@@ -44,10 +44,11 @@ public class HomeController {
     public ModelAndView home (Model model, Authentication authentication){
     User user = userServiceImp.currentUser(authentication.getName());
     TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
-
     model.addAttribute("user", user.getName());
     model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
     ModelAndView modelAndView = new ModelAndView();
+
+
     modelAndView.setViewName("home");
 
 
@@ -86,9 +87,7 @@ public class HomeController {
     //Create post method for assignment
     @RequestMapping (value = "/save", method = RequestMethod.POST)
     public ModelAndView postAssignmentFormPage(@ModelAttribute("assignment") Assignment assignment){
-    assignmentImp.createAssignment(assignment.getAssignmentDate(), assignment.getCity(),
-            assignment.getDescription(), assignment.getZip(), assignment.getStreetNumber(),
-            assignment.getStreetName(), assignment.getType());
+
 
 
         return new ModelAndView("redirect:/home");
