@@ -51,8 +51,9 @@ public class HomeController {
 
     modelAndView.setViewName("home");
 
+    assignmentImp.createAssignment("blabla", "backersvej", 176, "kbh",
+            2300, "3 tv", "2015-11-11", true, "Hus");
 
-    noticeServiceImp.createNotice(user, "2019-12-12", "Hej");
 
     return modelAndView;
 }
