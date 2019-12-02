@@ -52,7 +52,7 @@ public class HomeController {
     modelAndView.setViewName("home");
 
     assignmentImp.createAssignment("blabla", "backersvej", 176, "kbh",
-            2300, "3 tv", "2015-11-11", true, "Hus");
+            2300, "3 tv", "2015-11-11", 1, "Hus");
 
 
     return modelAndView;

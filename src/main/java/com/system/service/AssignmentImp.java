@@ -26,14 +26,14 @@ public class AssignmentImp {
 
     @Autowired
     AssignmentTasksRepository assignmentTasksRepository;
-
+/*
     public void createAssignment(String description, String streetName, int streetNumber, String city,
-                                 int zip, String floor, String date, boolean stove, boolean fridge,
-                                 boolean washingMashine, boolean dishWasher, boolean carpets,
-                                 boolean carpetTape, boolean boltsAndScrews, boolean curtains,
-                                 boolean curtainrod, boolean blinds, boolean lamps, boolean paintings,
-                                 boolean documents, boolean keys, boolean cellarAndLoft, boolean cleaningService,
-                                 boolean accessibilityTools, boolean returnKeys, String type){
+                                 int zip, String floor, String date, int stove, int fridge,
+                                 int washingMashine, int dishWasher, int carpets,
+                                 int carpetTape, int boltsAndScrews, int curtains,
+                                 int curtainrod, int blinds, int lamps, int paintings,
+                                 int documents, int keys, int cellarAndLoft, int cleaningService,
+                                 int accessibilityTools, int returnKeys, String type){
 
         PropertyType propertyType = propertyTypeRepository.findByType(type);
         AssignmentTasks assignmentTasks = new AssignmentTasks(stove, fridge, washingMashine, dishWasher, carpets, carpetTape, boltsAndScrews,
@@ -44,9 +44,9 @@ public class AssignmentImp {
 
         assignmentRepository.save(assignment);
     }
-
+*/
     public void createAssignment(String description, String streetName, int streetNumber, String city,
-                                 int zip, String floor, String date, boolean stove, String type){
+                                 int zip, String floor, String date, int stove, String type){
 
         PropertyType propertyType = propertyTypeRepository.findByType(type);
         AssignmentTasks assignmentTasks = new AssignmentTasks(stove);

@@ -8,8 +8,6 @@ import java.util.Set;
 @Table(name = "assignments")
 public class Assignment {
 
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idassignments")
@@ -36,12 +34,12 @@ public class Assignment {
     @Column(name = "assignment_date")
     private Date assignmentDate;
 
+
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_assignment_task", referencedColumnName = "idassignment_tasks")
     private AssignmentTasks assignmentTasks;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "assignments_property", joinColumns = @JoinColumn(name = "idassignments"), inverseJoinColumns = @JoinColumn(name = "idproperty_type"))
+   @ManyToMany(cascade = CascadeType.ALL)
+   @JoinTable(name = "assignments_property", joinColumns = @JoinColumn(name = "idassignments"), inverseJoinColumns = @JoinColumn(name = "idproperty_type"))
     private Set<PropertyType> propertyTypes;
 
     public Assignment(String description, String streetName, int streetNumber, String city, int zip, String floor, String assignmentDate, AssignmentTasks assignmentTasks, Set<PropertyType> propertyTypes) {
