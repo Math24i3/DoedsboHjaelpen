@@ -105,11 +105,8 @@ public class HomeController {
         return modelAndView;
     }
 
-       @RequestMapping (value = "/saveAssignment", method = RequestMethod.POST)
-    public ModelAndView postAssignmentFormPage(@ModelAttribute("assignment_Date") String date, @ModelAttribute Assignment assignment, @ModelAttribute("property") String property, HttpServletRequest httpServletRequest){
-           System.out.println(date);
-           System.out.println(property);
-           System.out.println("Stover" + assignment.getStove());
+    @RequestMapping (value = "/saveAssignment", method = RequestMethod.POST)
+    public ModelAndView postAssignmentFormPage(@ModelAttribute("assignment_Date") String date, @ModelAttribute Assignment assignment, @ModelAttribute("property") String property){
             assignmentImp.createAssignment(assignment, property, date);
             return new ModelAndView("redirect:/home");
         }
