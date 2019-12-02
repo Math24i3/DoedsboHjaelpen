@@ -73,7 +73,7 @@ public class Assignment {
     @Column (name = "documents")
     private Integer documents;
 
-    @Column (name = "keys")
+    @Column (name = "keys_customer")
     private Integer keys;
 
     @Column (name = "cellar_and_loft")
@@ -85,8 +85,9 @@ public class Assignment {
     @Column(name = "accessibility_tools")
     private Integer accessibility_tools;
 
-    @Column (name = "return_keys")
+    @Column (name = "return_key")
     private Integer return_keys;
+
 
 
 
@@ -108,7 +109,8 @@ public class Assignment {
                       int dish_washer, int carpets, int carpet_tape,
                       int bolts_and_screws, int curtains, int curtainrod,
                       int blinds, int lamps, int paintings, int documents,
-                      int keys, int cellar_and_loft, int cleaning_service, int accessibility_tools, int return_keys) {
+                      int keys, int cellar_and_loft, int cleaning_service,
+                      int accessibility_tools, int return_keys) {
         this.description = description;
         this.street_name = street_name;
         this.street_number = street_number;
@@ -130,11 +132,13 @@ public class Assignment {
         this.lamps = lamps;
         this.paintings = paintings;
         this.documents = documents;
-        this.keys = keys;
         this.cellar_and_loft = cellar_and_loft;
         this.cleaning_service = cleaning_service;
         this.accessibility_tools = accessibility_tools;
         this.return_keys = return_keys;
+        this.keys = keys;
+
+
     }
 
     public Integer getId() {
