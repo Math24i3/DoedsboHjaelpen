@@ -3,6 +3,7 @@ package com.system.controller;
 
 import com.system.model.Assignment;
 import com.system.model.Notice;
+import com.system.model.PropertyType;
 import com.system.model.User;
 import com.system.service.AssignmentImp;
 import com.system.service.NoticeServiceImp;
@@ -34,57 +35,67 @@ public class HomeController {
     NoticeServiceImp noticeServiceImp;
 
 
-@RequestMapping( value = {"/home"}, method = RequestMethod.GET)
-    public ModelAndView home (Model model, Authentication authentication){
-    User user = userServiceImp.currentUser(authentication.getName());
-    TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
+    @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
+    public ModelAndView home(Model model, Authentication authentication) {
+        User user = userServiceImp.currentUser(authentication.getName());
+        TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
 
-    noticeServiceImp.createNotice(user,"1998-08-11", "kæmpe pik" );
+        noticeServiceImp.createNotice(user, "1998-08-11", "kæmpe pik");
 
-    model.addAttribute("user", user.getName());
-    model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
-    ModelAndView modelAndView = new ModelAndView();
-    modelAndView.setViewName("home");
+        model.addAttribute("user", user.getName());
+        model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("home");
 
-    return modelAndView;
-}
+        return modelAndView;
+    }
 //alper
 
-    @RequestMapping( value = {"/bulletin"}, method = RequestMethod.GET)
-    public ModelAndView bulletinBoard (){
+    @RequestMapping(value = {"/bulletin"}, method = RequestMethod.GET)
+    public ModelAndView bulletinBoard() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("bulletin");
         return modelAndView;
     }
 
-    @RequestMapping( value = {"/employees"}, method = RequestMethod.GET)
-    public ModelAndView employees (){
+    @RequestMapping(value = {"/employees"}, method = RequestMethod.GET)
+    public ModelAndView employees() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("Employees");
         return modelAndView;
     }
 
-    @RequestMapping (value = {"/assignmentFormPage"}, method = RequestMethod.GET)
-    public ModelAndView assignmentFormPage(){
-    ModelAndView modelAndView = new ModelAndView();
-    modelAndView.setViewName("assignmentFormPage");
-    return modelAndView;
+    @RequestMapping(value = {"/assignmentFormPage"}, method = RequestMethod.GET)
+    public ModelAndView assignmentFormPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("assignmentFormPage");
+        return modelAndView;
     }
 
 
+    @RequestMapping(value = {"/noticeFormPage"}, method = RequestMethod.GET)
+    public ModelAndView noticeFormpage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("noticeFormPage");
+        return modelAndView;
+    }
 
-    @RequestMapping (value = {"/noticeFormPage"}, method = RequestMethod.GET)
-    public ModelAndView noticeFormpage(){
-    ModelAndView modelAndView = new ModelAndView();
-    modelAndView.setViewName("noticeFormPage");
-    return modelAndView;
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public ModelAndView postNoticeFormPage(@ModelAttribute("notice") Notice notice, @ModelAttribute("user") User user1, Authentication authentication, HttpServletRequest httpServletRequest) {
+        User user = userServiceImp.currentUser(authentication.getName());
+        noticeServiceImp.createNotice(user, "1998-08-98", "kæmpe pik");
+        return new ModelAndView("redirect:/home");
     }
 
     @RequestMapping (value = "/save", method = RequestMethod.POST)
-    public ModelAndView postNoticeFormPage (@ModelAttribute("notice") Notice notice, @ModelAttribute("user") User user1, Authentication authentication, HttpServletRequest httpServletRequest){
-    User user = userServiceImp.currentUser(authentication.getName());
-    noticeServiceImp.createNotice(user,"1998-08-98", "kæmpe pik" );
-    return new ModelAndView("redirect:/home");
-    }
+    public ModelAndView postAssignmentFormPage(@ModelAttribute("Assignment") Assignment assignment, @ModelAttribute("propertyType") PropertyType propertyType, HttpServletRequest httpServletRequest){
 
+            assignmentImp.createAssignment(assignment.getDescription(),assignment.getStreetName(),assignment.getStreetNumber(),assignment.getCity(),assignment.getZip(),
+                    assignment.getFloor(),assignment.getAssignmentDate(),assignment.getStove(),assignment.getFridge(),assignment.getWashingMachine(),assignment.getDishWasher(),assignment.getCarpets(),assignment.getCarpetTape(),
+                    assignment.getBoltsAndScrews(),assignment.getCurtains(),assignment.getCurtainrod(),assignment.getBlinds(),assignment.getLamps(),assignment.getPaintings(),assignment.getDocuments(),assignment.getKeys(),assignment.getCellarAndLoft(),
+                    assignment.getCleaningService(),assignment.getAccessibilityTools(),assignment.getReturnKeys(),propertyType.getType());
+            return new ModelAndView("redirect:/home");
+        }
 }
+
+
