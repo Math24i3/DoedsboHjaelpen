@@ -2,6 +2,7 @@ package com.system.controller;
 
 
 import com.system.model.Assignment;
+import com.system.model.PropertyType;
 import com.system.model.User;
 import com.system.service.AssignmentImp;
 import com.system.service.UserServiceImp;
@@ -64,12 +65,12 @@ public class HomeController {
     }
 
     @RequestMapping (value = "/save", method = RequestMethod.POST)
-    public ModelAndView postAssignmentFormPage(@ModelAttribute("assignment") Assignment assignment, HttpServletRequest httpServletRequest){
+    public ModelAndView postAssignmentFormPage(@ModelAttribute("assignment") Assignment assignment, @ModelAttribute("propertyType")PropertyType propertyType, HttpServletRequest httpServletRequest){
 
         assignmentImp.createAssignment(assignment.getDescription(),assignment.getStreetName(),assignment.getStreetNumber(),assignment.getCity(),assignment.getZip(),
-                assignment.getFloor(),assignment.getAssignmentDate(),assignment.getStove(),assignment.getWashingMachine(),assignment.getDishWasher(),assignment.getCarpets(),assignment.getCarpetTape(),
+                assignment.getFloor(),assignment.getAssignmentDate(),assignment.getStove(),assignment.getFridge(),assignment.getWashingMachine(),assignment.getDishWasher(),assignment.getCarpets(),assignment.getCarpetTape(),
                 assignment.getBoltsAndScrews(),assignment.getCurtains(),assignment.getCurtainrod(),assignment.getBlinds(),assignment.getLamps(),assignment.getPaintings(),assignment.getDocuments(),assignment.getKeys(),assignment.getCellarAndLoft(),
-                assignment.getCleaningService(),assignment.getAccessibilityTools(),assignment.getReturnKeys(),);
+                assignment.getCleaningService(),assignment.getAccessibilityTools(),assignment.getReturnKeys(),propertyType.getType());
         return new ModelAndView("redirect:/home");
     }
 }
