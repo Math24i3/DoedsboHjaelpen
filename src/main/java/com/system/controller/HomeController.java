@@ -5,6 +5,7 @@ import com.system.model.Assignment;
 import com.system.model.Notice;
 import com.system.model.PropertyType;
 import com.system.model.User;
+import com.system.repository.PropertyTypeRepository;
 import com.system.service.AssignmentImp;
 import com.system.service.NoticeServiceImp;
 import com.system.service.UserServiceImp;
@@ -20,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Arrays;
+import java.util.HashSet;
 
 @Controller
 public class HomeController {
@@ -33,15 +36,20 @@ public class HomeController {
     @Autowired
     NoticeServiceImp noticeServiceImp;
 
+    @Autowired
+    PropertyTypeRepository propertyTypeRepository;
+
 
     @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
     public ModelAndView home(Model model, Authentication authentication) {
         User user = userServiceImp.currentUser(authentication.getName());
+        PropertyType propertyType = propertyTypeRepository.findByType("Hus");
+        Assignment assignment = new Assignment("dfd", "df",
+                2, "dfd", 2, "sdfs",
+                "2015-11-11", new HashSet<PropertyType>(Arrays.asList(propertyType)));
         TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
 
-        assignmentImp.createAssignment("Test", "Test", 23, "Kbh", 2300, "3tv", "2019-11-11", 1,
-                1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 1, 1
-        , 1, 1, 1, 1, 1, "Hus");
+        assignmentImp.createAssignment(assignment);
 
     model.addAttribute("user", user.getName());
     model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
@@ -98,10 +106,10 @@ public class HomeController {
        @RequestMapping (value = "/saveAssignment", method = RequestMethod.POST)
     public ModelAndView postAssignmentFormPage(@ModelAttribute("Assignment") Assignment assignment, @ModelAttribute("propertyType") PropertyType propertyType, HttpServletRequest httpServletRequest){
 
-            assignmentImp.createAssignment(assignment.getDescription(),assignment.getStreet_name(),assignment.getStreet_number(),assignment.getCity(),assignment.getZip(),
-                    assignment.getFloor(),assignment.getAssignment_date(),assignment.getStove(),assignment.getFridge(),assignment.getWashing_machine(),assignment.getDish_washer(),assignment.getCarpets(),assignment.getCarpet_tape(),
-                    assignment.getBolts_and_screws(),assignment.getCurtains(),assignment.getCurtainrod(),assignment.getBlinds(),assignment.getLamps(),assignment.getPaintings(),assignment.getDocuments(),assignment.getKeys(),assignment.getCellar_and_loft(),
-                    assignment.getCleaning_service(),assignment.getAccessibility_tools(),assignment.getReturn_keys(),propertyType.getType());
+           // assignmentImp.createAssignment(assignment.getDescription(),assignment.getStreet_name(),assignment.getStreet_number(),assignment.getCity(),assignment.getZip(),
+             //       assignment.getFloor(),assignment.getAssignment_date(),assignment.getStove(),assignment.getFridge(),assignment.getWashing_machine(),assignment.getDish_washer(),assignment.getCarpets(),assignment.getCarpet_tape(),
+             //      assignment.getBolts_and_screws(),assignment.getCurtains(),assignment.getCurtainrod(),assignment.getBlinds(),assignment.getLamps(),assignment.getPaintings(),assignment.getDocuments(),assignment.getKeys(),assignment.getCellar_and_loft(),
+               //     assignment.getCleaning_service(),assignment.getAccessibility_tools(),assignment.getReturn_keys(),propertyType.getType());
 
             return new ModelAndView("redirect:/home");
         }
