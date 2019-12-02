@@ -37,6 +37,7 @@ public class HomeController {
 
     return modelAndView;
 }
+//alper
 
     @RequestMapping( value = {"/bulletin"}, method = RequestMethod.GET)
     public ModelAndView bulletinBoard (){
