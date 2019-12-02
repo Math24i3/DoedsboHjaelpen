@@ -11,82 +11,81 @@ public class Assignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idassignments")
-    private int id;
+    private Integer id;
 
-    @Column(name = "description")
+
     private String description;
 
-    @Column(name = "street_name")
-    private String streetName;
+    private String street_name;
 
     @Column(name = "street_number")
-    private int streetNumber;
+    private Integer street_number;
 
     @Column(name = "city")
     private String city;
 
     @Column(name = "zip")
-    private int zip;
+    private Integer zip;
 
     @Column(name = "floor")
     private String floor;
 
     @Column(name = "assignment_date")
-    private Date assignmentDate;
+    private Date assignment_date;
 
     @Column(name = "stove" )
-    private int stove;
+    private Integer stove;
 
     @Column(name = "fridge")
-    private int fridge;
+    private Integer fridge;
 
-    @Column (name = "washingMachine")
-    private int washingMachine;
+    @Column (name = "washing_mashine")
+    private Integer washing_machine;
 
-    @Column (name = "dishWasher")
-    private int dishWasher;
+    @Column (name = "dish_washer")
+    private Integer dish_washer;
 
     @Column(name = "carpets")
-    private int carpets;
+    private Integer carpets;
 
-    @Column (name = "carpetTape")
-    private int carpetTape;
+    @Column (name = "carpet_tape")
+    private Integer carpet_tape;
 
-    @Column (name = "boltsAndScrews")
-    private int boltsAndScrews;
+    @Column (name = "bolts_and_screws")
+    private Integer bolts_and_screws;
 
     @Column (name = "curtains")
-    private int curtains;
+    private Integer curtains;
 
     @Column(name = "curtainrod")
-    private int curtainrod;
+    private Integer curtainrod;
 
     @Column (name = "blinds")
-    private int blinds;
+    private Integer blinds;
 
     @Column (name = "lamps")
-    private int lamps;
+    private Integer lamps;
 
     @Column (name = "paintings")
-    private int paintings;
+    private Integer paintings;
 
     @Column (name = "documents")
-    private int documents;
+    private Integer documents;
 
     @Column (name = "keys")
-    private int keys;
+    private Integer keys;
 
-    @Column (name = "cellarAndLoft")
-    private int cellarAndLoft;
+    @Column (name = "cellar_and_loft")
+    private Integer cellar_and_loft;
 
-    @Column (name = "cleaningService")
-    private int cleaningService;
+    @Column (name = "cleaning_service")
+    private Integer cleaning_service;
 
-    @Column(name = "accessibilityTools")
-    private int accessibilityTools;
+    @Column(name = "accessibility_tools")
+    private Integer accessibility_tools;
 
-    @Column (name = "returnKeys")
-    private int returnKeys;
+    @Column (name = "return_keys")
+    private Integer return_keys;
 
 
    @ManyToMany(cascade = CascadeType.ALL)
@@ -96,29 +95,28 @@ public class Assignment {
     public Assignment() {
     }
 
-    public Assignment(String description, String streetName,
-                      int streetNumber, String city, int zip,
-                      String floor, String assignmentDate, int stove,
-                      int fridge, int washingMachine, int dishWasher,
-                      int carpets, int carpetTape, int boltsAndScrews,
-                      int curtains, int curtainrod, int blinds,
-                      int lamps, int paintings, int documents,
-                      int keys, int cellarAndLoft, int cleaningService,
-                      int accessibilityTools, int returnKeys, Set<PropertyType> propertyTypes) {
+    public Assignment(String description, String street_name, Integer street_number,
+                      String city, Integer zip, String floor, String assignment_date,
+                      Integer stove, Integer fridge, Integer washing_machine,
+                      Integer dish_washer, Integer carpets, Integer carpet_tape,
+                      Integer bolts_and_screws, Integer curtains, Integer curtainrod,
+                      Integer blinds, Integer lamps, Integer paintings, Integer documents,
+                      Integer keys, Integer cellar_and_loft, Integer cleaning_service,
+                      Integer accessibility_tools, Integer return_keys, Set<PropertyType> propertyTypes) {
         this.description = description;
-        this.streetName = streetName;
-        this.streetNumber = streetNumber;
+        this.street_name = street_name;
+        this.street_number = street_number;
         this.city = city;
         this.zip = zip;
         this.floor = floor;
-        this.assignmentDate = Date.valueOf(assignmentDate);
+        this.assignment_date = Date.valueOf(assignment_date);
         this.stove = stove;
         this.fridge = fridge;
-        this.washingMachine = washingMachine;
-        this.dishWasher = dishWasher;
+        this.washing_machine = washing_machine;
+        this.dish_washer = dish_washer;
         this.carpets = carpets;
-        this.carpetTape = carpetTape;
-        this.boltsAndScrews = boltsAndScrews;
+        this.carpet_tape = carpet_tape;
+        this.bolts_and_screws = bolts_and_screws;
         this.curtains = curtains;
         this.curtainrod = curtainrod;
         this.blinds = blinds;
@@ -126,35 +124,43 @@ public class Assignment {
         this.paintings = paintings;
         this.documents = documents;
         this.keys = keys;
-        this.cellarAndLoft = cellarAndLoft;
-        this.cleaningService = cleaningService;
-        this.accessibilityTools = accessibilityTools;
-        this.returnKeys = returnKeys;
+        this.cellar_and_loft = cellar_and_loft;
+        this.cleaning_service = cleaning_service;
+        this.accessibility_tools = accessibility_tools;
+        this.return_keys = return_keys;
         this.propertyTypes = propertyTypes;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public String getStreetName() {
-        return streetName;
+    public String getDescription() {
+        return description;
     }
 
-    public void setStreetName(String streetName) {
-        this.streetName = streetName;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public int getStreetNumber() {
-        return streetNumber;
+    public String getStreet_name() {
+        return street_name;
     }
 
-    public void setStreetNumber(int streetNumber) {
-        this.streetNumber = streetNumber;
+    public void setStreet_name(String street_name) {
+        this.street_name = street_name;
+    }
+
+    public Integer getStreet_number() {
+        return street_number;
+    }
+
+    public void setStreet_number(Integer street_number) {
+        this.street_number = street_number;
     }
 
     public String getCity() {
@@ -165,11 +171,11 @@ public class Assignment {
         this.city = city;
     }
 
-    public int getZip() {
+    public Integer getZip() {
         return zip;
     }
 
-    public void setZip(int zip) {
+    public void setZip(Integer zip) {
         this.zip = zip;
     }
 
@@ -181,12 +187,156 @@ public class Assignment {
         this.floor = floor;
     }
 
-    public String getAssignmentDate() {
-        return assignmentDate.toString();
+    public String getAssignment_date() {
+        return String.valueOf(assignment_date);
     }
 
-    public void setAssignmentDate(String str) {
-        this.assignmentDate = Date.valueOf(str);
+    public void setAssignment_date(String assignment_date) {
+        this.assignment_date = Date.valueOf(assignment_date);
+    }
+
+    public Integer getStove() {
+        return stove;
+    }
+
+    public void setStove(Integer stove) {
+        this.stove = stove;
+    }
+
+    public Integer getFridge() {
+        return fridge;
+    }
+
+    public void setFridge(Integer fridge) {
+        this.fridge = fridge;
+    }
+
+    public Integer getWashing_machine() {
+        return washing_machine;
+    }
+
+    public void setWashing_machine(Integer washing_machine) {
+        this.washing_machine = washing_machine;
+    }
+
+    public Integer getDish_washer() {
+        return dish_washer;
+    }
+
+    public void setDish_washer(Integer dish_washer) {
+        this.dish_washer = dish_washer;
+    }
+
+    public Integer getCarpets() {
+        return carpets;
+    }
+
+    public void setCarpets(Integer carpets) {
+        this.carpets = carpets;
+    }
+
+    public Integer getCarpet_tape() {
+        return carpet_tape;
+    }
+
+    public void setCarpet_tape(Integer carpet_tape) {
+        this.carpet_tape = carpet_tape;
+    }
+
+    public Integer getBolts_and_screws() {
+        return bolts_and_screws;
+    }
+
+    public void setBolts_and_screws(Integer bolts_and_screws) {
+        this.bolts_and_screws = bolts_and_screws;
+    }
+
+    public Integer getCurtains() {
+        return curtains;
+    }
+
+    public void setCurtains(Integer curtains) {
+        this.curtains = curtains;
+    }
+
+    public Integer getCurtainrod() {
+        return curtainrod;
+    }
+
+    public void setCurtainrod(Integer curtainrod) {
+        this.curtainrod = curtainrod;
+    }
+
+    public Integer getBlinds() {
+        return blinds;
+    }
+
+    public void setBlinds(Integer blinds) {
+        this.blinds = blinds;
+    }
+
+    public Integer getLamps() {
+        return lamps;
+    }
+
+    public void setLamps(Integer lamps) {
+        this.lamps = lamps;
+    }
+
+    public Integer getPaintings() {
+        return paintings;
+    }
+
+    public void setPaintings(Integer paintings) {
+        this.paintings = paintings;
+    }
+
+    public Integer getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(Integer documents) {
+        this.documents = documents;
+    }
+
+    public Integer getKeys() {
+        return keys;
+    }
+
+    public void setKeys(Integer keys) {
+        this.keys = keys;
+    }
+
+    public Integer getCellar_and_loft() {
+        return cellar_and_loft;
+    }
+
+    public void setCellar_and_loft(Integer cellar_and_loft) {
+        this.cellar_and_loft = cellar_and_loft;
+    }
+
+    public Integer getCleaning_service() {
+        return cleaning_service;
+    }
+
+    public void setCleaning_service(Integer cleaning_service) {
+        this.cleaning_service = cleaning_service;
+    }
+
+    public Integer getAccessibility_tools() {
+        return accessibility_tools;
+    }
+
+    public void setAccessibility_tools(Integer accessibility_tools) {
+        this.accessibility_tools = accessibility_tools;
+    }
+
+    public Integer getReturn_keys() {
+        return return_keys;
+    }
+
+    public void setReturn_keys(Integer return_keys) {
+        this.return_keys = return_keys;
     }
 
     public Set<PropertyType> getPropertyTypes() {
@@ -195,161 +345,5 @@ public class Assignment {
 
     public void setPropertyTypes(Set<PropertyType> propertyTypes) {
         this.propertyTypes = propertyTypes;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setAssignmentDate(Date assignmentDate) {
-        this.assignmentDate = assignmentDate;
-    }
-
-    public int getStove() {
-        return stove;
-    }
-
-    public void setStove(int stove) {
-        this.stove = stove;
-    }
-
-    public int getFridge() {
-        return fridge;
-    }
-
-    public void setFridge(int fridge) {
-        this.fridge = fridge;
-    }
-
-    public int getWashingMachine() {
-        return washingMachine;
-    }
-
-    public void setWashingMachine(int washingMachine) {
-        this.washingMachine = washingMachine;
-    }
-
-    public int getDishWasher() {
-        return dishWasher;
-    }
-
-    public void setDishWasher(int dishWasher) {
-        this.dishWasher = dishWasher;
-    }
-
-    public int getCarpets() {
-        return carpets;
-    }
-
-    public void setCarpets(int carpets) {
-        this.carpets = carpets;
-    }
-
-    public int getCarpetTape() {
-        return carpetTape;
-    }
-
-    public void setCarpetTape(int carpetTape) {
-        this.carpetTape = carpetTape;
-    }
-
-    public int getBoltsAndScrews() {
-        return boltsAndScrews;
-    }
-
-    public void setBoltsAndScrews(int boltsAndScrews) {
-        this.boltsAndScrews = boltsAndScrews;
-    }
-
-    public int getCurtains() {
-        return curtains;
-    }
-
-    public void setCurtains(int curtains) {
-        this.curtains = curtains;
-    }
-
-    public int getCurtainrod() {
-        return curtainrod;
-    }
-
-    public void setCurtainrod(int curtainrod) {
-        this.curtainrod = curtainrod;
-    }
-
-    public int getBlinds() {
-        return blinds;
-    }
-
-    public void setBlinds(int blinds) {
-        this.blinds = blinds;
-    }
-
-    public int getLamps() {
-        return lamps;
-    }
-
-    public void setLamps(int lamps) {
-        this.lamps = lamps;
-    }
-
-    public int getPaintings() {
-        return paintings;
-    }
-
-    public void setPaintings(int paintings) {
-        this.paintings = paintings;
-    }
-
-    public int getDocuments() {
-        return documents;
-    }
-
-    public void setDocuments(int documents) {
-        this.documents = documents;
-    }
-
-    public int getKeys() {
-        return keys;
-    }
-
-    public void setKeys(int keys) {
-        this.keys = keys;
-    }
-
-    public int getCellarAndLoft() {
-        return cellarAndLoft;
-    }
-
-    public void setCellarAndLoft(int cellarAndLoft) {
-        this.cellarAndLoft = cellarAndLoft;
-    }
-
-    public int getCleaningService() {
-        return cleaningService;
-    }
-
-    public void setCleaningService(int cleaningService) {
-        this.cleaningService = cleaningService;
-    }
-
-    public int getAccessibilityTools() {
-        return accessibilityTools;
-    }
-
-    public void setAccessibilityTools(int accessibilityTools) {
-        this.accessibilityTools = accessibilityTools;
-    }
-
-    public int getReturnKeys() {
-        return returnKeys;
-    }
-
-    public void setReturnKeys(int returnKeys) {
-        this.returnKeys = returnKeys;
     }
 }

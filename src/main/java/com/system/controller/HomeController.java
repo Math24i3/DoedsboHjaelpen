@@ -39,25 +39,16 @@ public class HomeController {
         User user = userServiceImp.currentUser(authentication.getName());
         TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
 
-        model.addAttribute("user", user.getName());
-        model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("home");
+        assignmentImp.createAssignment("Test", "Test", 23, "Kbh", 2300, "3tv", "2019-11-11", 1,
+                1, 1, 1, 1, 1, 1, 1 ,1, 1, 1, 1, 1
+        , 1, 1, 1, 1, 1, "Hus");
+
+    model.addAttribute("user", user.getName());
+    model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
+    ModelAndView modelAndView = new ModelAndView();
+    modelAndView.setViewName("home");
 
         return modelAndView;
-    }
-
-        @RequestMapping(value = {"/homeEmployee"}, method = RequestMethod.GET)
-        public ModelAndView homeEmployee(Model model, Authentication authentication) {
-            User user = userServiceImp.currentUser(authentication.getName());
-            TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
-
-            model.addAttribute("user", user.getName());
-            model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
-            ModelAndView modelAndView = new ModelAndView();
-            modelAndView.setViewName("homeEmployee");
-
-            return modelAndView;
     }
 
     @RequestMapping(value = {"/bulletinEmployee"}, method = RequestMethod.GET)
@@ -107,10 +98,10 @@ public class HomeController {
        @RequestMapping (value = "/saveAssignment", method = RequestMethod.POST)
     public ModelAndView postAssignmentFormPage(@ModelAttribute("Assignment") Assignment assignment, @ModelAttribute("propertyType") PropertyType propertyType, HttpServletRequest httpServletRequest){
 
-            assignmentImp.createAssignment(assignment.getDescription(),assignment.getStreetName(),assignment.getStreetNumber(),assignment.getCity(),assignment.getZip(),
-                    assignment.getFloor(),assignment.getAssignmentDate(),assignment.getStove(),assignment.getFridge(),assignment.getWashingMachine(),assignment.getDishWasher(),assignment.getCarpets(),assignment.getCarpetTape(),
-                    assignment.getBoltsAndScrews(),assignment.getCurtains(),assignment.getCurtainrod(),assignment.getBlinds(),assignment.getLamps(),assignment.getPaintings(),assignment.getDocuments(),assignment.getKeys(),assignment.getCellarAndLoft(),
-                    assignment.getCleaningService(),assignment.getAccessibilityTools(),assignment.getReturnKeys(),propertyType.getType());
+            assignmentImp.createAssignment(assignment.getDescription(),assignment.getStreet_name(),assignment.getStreet_number(),assignment.getCity(),assignment.getZip(),
+                    assignment.getFloor(),assignment.getAssignment_date(),assignment.getStove(),assignment.getFridge(),assignment.getWashing_machine(),assignment.getDish_washer(),assignment.getCarpets(),assignment.getCarpet_tape(),
+                    assignment.getBolts_and_screws(),assignment.getCurtains(),assignment.getCurtainrod(),assignment.getBlinds(),assignment.getLamps(),assignment.getPaintings(),assignment.getDocuments(),assignment.getKeys(),assignment.getCellar_and_loft(),
+                    assignment.getCleaning_service(),assignment.getAccessibility_tools(),assignment.getReturn_keys(),propertyType.getType());
 
             return new ModelAndView("redirect:/home");
         }
