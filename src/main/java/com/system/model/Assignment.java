@@ -135,6 +135,154 @@ public class Assignment {
         this.keys = keys;
     }
 
+    public void setAssignment_date(Date assignment_date) {
+        this.assignment_date = assignment_date;
+    }
+
+    public Integer getStove() {
+        return stove;
+    }
+
+    public void setStove(Integer stove) {
+        this.stove = stove;
+    }
+
+    public Integer getFridge() {
+        return fridge;
+    }
+
+    public void setFridge(Integer fridge) {
+        this.fridge = fridge;
+    }
+
+    public Integer getWashing_machine() {
+        return washing_machine;
+    }
+
+    public void setWashing_machine(Integer washing_machine) {
+        this.washing_machine = washing_machine;
+    }
+
+    public Integer getDish_washer() {
+        return dish_washer;
+    }
+
+    public void setDish_washer(Integer dish_washer) {
+        this.dish_washer = dish_washer;
+    }
+
+    public Integer getCarpets() {
+        return carpets;
+    }
+
+    public void setCarpets(Integer carpets) {
+        this.carpets = carpets;
+    }
+
+    public Integer getCarpet_tape() {
+        return carpet_tape;
+    }
+
+    public void setCarpet_tape(Integer carpet_tape) {
+        this.carpet_tape = carpet_tape;
+    }
+
+    public Integer getBolts_and_screws() {
+        return bolts_and_screws;
+    }
+
+    public void setBolts_and_screws(Integer bolts_and_screws) {
+        this.bolts_and_screws = bolts_and_screws;
+    }
+
+    public Integer getCurtains() {
+        return curtains;
+    }
+
+    public void setCurtains(Integer curtains) {
+        this.curtains = curtains;
+    }
+
+    public Integer getCurtainrod() {
+        return curtainrod;
+    }
+
+    public void setCurtainrod(Integer curtainrod) {
+        this.curtainrod = curtainrod;
+    }
+
+    public Integer getBlinds() {
+        return blinds;
+    }
+
+    public void setBlinds(Integer blinds) {
+        this.blinds = blinds;
+    }
+
+    public Integer getLamps() {
+        return lamps;
+    }
+
+    public void setLamps(Integer lamps) {
+        this.lamps = lamps;
+    }
+
+    public Integer getPaintings() {
+        return paintings;
+    }
+
+    public void setPaintings(Integer paintings) {
+        this.paintings = paintings;
+    }
+
+    public Integer getDocuments() {
+        return documents;
+    }
+
+    public void setDocuments(Integer documents) {
+        this.documents = documents;
+    }
+
+    public Integer getKeys() {
+        return keys;
+    }
+
+    public void setKeys(Integer keys) {
+        this.keys = keys;
+    }
+
+    public Integer getCellar_and_loft() {
+        return cellar_and_loft;
+    }
+
+    public void setCellar_and_loft(Integer cellar_and_loft) {
+        this.cellar_and_loft = cellar_and_loft;
+    }
+
+    public Integer getCleaning_service() {
+        return cleaning_service;
+    }
+
+    public void setCleaning_service(Integer cleaning_service) {
+        this.cleaning_service = cleaning_service;
+    }
+
+    public Integer getAccessibility_tools() {
+        return accessibility_tools;
+    }
+
+    public void setAccessibility_tools(Integer accessibility_tools) {
+        this.accessibility_tools = accessibility_tools;
+    }
+
+    public Integer getReturn_keys() {
+        return return_keys;
+    }
+
+    public void setReturn_keys(Integer return_keys) {
+        this.return_keys = return_keys;
+    }
+
     public Integer getId() {
         return id;
     }

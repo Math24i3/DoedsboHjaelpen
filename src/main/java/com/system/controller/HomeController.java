@@ -8,6 +8,7 @@ import com.system.model.User;
 import com.system.repository.PropertyTypeRepository;
 import com.system.service.AssignmentImp;
 import com.system.service.NoticeServiceImp;
+import com.system.service.PropertyTypeImp;
 import com.system.service.UserServiceImp;
 import com.system.tools.TimeMessageGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 @Controller
 public class HomeController {
@@ -39,20 +41,13 @@ public class HomeController {
     @Autowired
     PropertyTypeRepository propertyTypeRepository;
 
+    @Autowired
+    PropertyTypeImp propertyTypeImp;
+
 
     @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
     public ModelAndView home(Model model, Authentication authentication) {
         User user = userServiceImp.currentUser(authentication.getName());
-        PropertyType propertyType = propertyTypeRepository.findByType("Hus");
-        Assignment assignment = new Assignment("dfd", "df",
-                2, "dfd", 2, "sdfs",
-                "2015-11-11", 1,
-                1, 1, 1, 1, 1,
-                1, 1, 1, 1, 1, 1,
-                1, 1, 1, 1, 1, 1);
-
-        //assignmentImp.createAssignment(assignment, "Lejlighed");
-
         TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
 
 
@@ -94,7 +89,9 @@ public class HomeController {
     }
 
     @RequestMapping(value = {"/assignmentFormPage"}, method = RequestMethod.GET)
-    public ModelAndView assignmentFormPage() {
+    public ModelAndView assignmentFormPage(Model model) {
+        List<PropertyType> propertyTypes = propertyTypeImp.fetchAll();
+        model.addAttribute("propertyTypes", propertyTypes);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("assignmentFormPage");
         return modelAndView;
@@ -111,6 +108,8 @@ public class HomeController {
        @RequestMapping (value = "/saveAssignment", method = RequestMethod.POST)
     public ModelAndView postAssignmentFormPage(@ModelAttribute("assignment_Date") String date, @ModelAttribute Assignment assignment, @ModelAttribute("property") String property, HttpServletRequest httpServletRequest){
            System.out.println(date);
+           System.out.println(property);
+           System.out.println("Stover" + assignment.getStove());
             assignmentImp.createAssignment(assignment, property, date);
             return new ModelAndView("redirect:/home");
         }

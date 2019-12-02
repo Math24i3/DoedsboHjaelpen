@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">>
 <head>
     <title>Registration Form</title>
     <!-- link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" /-->
@@ -58,11 +58,11 @@
             </div>
 
             <div class="drpdwn-field" th:object="${propertyType}">
-                <select class="form-control" id="room_number" name="room_number">
+                <select class="form-control" id="id" name="property">
                     <option disabled>Vælg type bolig</option>
                     <option th:each="propertyType : ${propertyTypes}"
-                            th:value="${pro}"
-                            th:text="'Værelse: ' +${room.room_number}+'/ Type: '+${room.room_type}+ '/ Pris: '+${room.price}">
+                            th:value="${propertyType.type}"
+                            th:text="'Type: ' +${propertyType.type}">
 
                     </option>
                 </select>
@@ -75,92 +75,92 @@
             </div>
             <div class="form-group">
                 <div class="">
-                    <input type="checkbox" name="fridge"/> Køleskab/Fryser<br>
+                    <input type="checkbox" name="fridge" th:default="0" value="1"/> Køleskab/Fryser<br>
                 </div>
             </div>
             <div class="form-group">
                 <div class="">
-                    <input type="checkbox" name="washingMachine"> Vaskinemaskine<br>
+                    <input type="checkbox" name="washingMachine" th:default="0" value="1"> Vaskinemaskine<br>
                 </div>
             </div>
             <div class="form-group">
                 <div class="">
-                    <input type="checkbox" name="dishWasher"> Opvaskemaskine<br>
+                    <input type="checkbox" name="dishWasher" th:default="0" value="1"> Opvaskemaskine<br>
                 </div>
             </div>
             <div class="form-group">
                 <div class="">
-                    <input type="checkbox" name="carpets"/> Tæpper<br>
+                    <input type="checkbox" name="carpets" th:default="0" value="1"/> Tæpper<br>
                 </div>
             </div>
             <div class="form-group">
                 <div class="">
-                    <input type="checkbox" name="carpetTape"/> Tæppetape<br>
+                    <input type="checkbox" name="carpetTape" th:default="0" value="1"/> Tæppetape<br>
                 </div>
             </div>
             <div class="form-group">
                 <div class="">
-                    <input type="checkbox" name="boltsAndScrews"/> Søm og skruer<br>
+                    <input type="checkbox" name="boltsAndScrews" th:default="0" value="1"/> Søm og skruer<br>
                 </div>
             </div>
             <div class="form-group">
                 <div class="">
-                    <input type="checkbox" name="curtains"/> Gardiner<br>
+                    <input type="checkbox" name="curtains" th:default="0" value="1"/> Gardiner<br>
                 </div>
             </div>
             <div class="form-group">
                 <div class="">
-                    <input type="checkbox" name="curtainrod"/> Gardinstænger<br>
+                    <input type="checkbox" name="curtainrod" th:default="0" value="1"/> Gardinstænger<br>
                 </div>
             </div>
             <div class="form-group">
                 <div class="">
-                    <input type="checkbox" name="blinds"/> Persienner<br>
+                    <input type="checkbox" name="blinds" th:default="0" value="1"/> Persienner<br>
                 </div>
             </div>
             <div class="form-group">
                 <div class="">
-                    <input type="checkbox" name="carpets"/> Tæpper<br>
+                    <input type="checkbox" name="carpets" th:default="0" value="1"/> Tæpper<br>
                 </div>
             </div>
             <div class="form-group">
                 <div class="">
-                    <input type="checkbox" name="lamps"/> Lamper<br>
+                    <input type="checkbox" name="lamps" th:default="0" value="1"/> Lamper<br>
                 </div>
             </div>
             <div class="form-group">
                 <div class="">
-                    <input type="checkbox" name="paintings"/> Malerier<br>
+                    <input type="checkbox" name="paintings" th:default="0" value="1"/> Malerier<br>
                 </div>
             </div>
             <div class="form-group">
                 <div class="">
-                    <input type="checkbox" name="documents"/> Dokumenter<br>
+                    <input type="checkbox" name="documents" th:default="0" value="1"/> Dokumenter<br>
                 </div>
             </div>
             <div class="form-group">
                 <div class="">
-                    <input type="checkbox" name="keys"/> Nøgler<br>
+                    <input type="checkbox" name="keys" th:default="0" value="1"/> Nøgler<br>
                 </div>
             </div>
             <div class="form-group">
                 <div class="">
-                    <input type="checkbox" name="cellarAndLoft"/> Kælder/Loftrum<br>
+                    <input type="checkbox" name="cellarAndLoft" th:default="0" value="1"/> Kælder/Loftrum<br>
                 </div>
             </div>
             <div class="form-group">
                 <div class="">
-                    <input type="checkbox" name="cleaningService"/> Tilkøb af hovedrengøring<br>
+                    <input type="checkbox" name="cleaningService" th:default="0" value="1"/> Tilkøb af hovedrengøring<br>
                 </div>
             </div>
             <div class="form-group">
                 <div class="">
-                    <input type="checkbox" name="accessibilityTools"/> Hjælpemidler gemmes<br>
+                    <input type="checkbox" name="accessibilityTools" th:default="0" value="1"/> Hjælpemidler gemmes<br>
                 </div>
             </div>
             <div class="form-group">
                 <div class="">
-                    <input type="checkbox" name="returnKeys"/> Aflever nøgler tilbage<br>
+                    <input type="checkbox" name="returnKeys" th:default="0" value="1"/> Aflever nøgler tilbage<br>
                 </div>
             </div>
 
