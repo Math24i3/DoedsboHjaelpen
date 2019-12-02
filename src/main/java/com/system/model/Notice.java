@@ -23,7 +23,6 @@ public class Notice {
     @Column(name = "message")
     private String message;
 
-
     public int getId() {
         return id;
     }

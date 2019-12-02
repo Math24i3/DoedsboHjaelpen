@@ -40,12 +40,10 @@ public class HomeController {
         User user = userServiceImp.currentUser(authentication.getName());
         TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
 
-        noticeServiceImp.createNotice(user, "1998-08-11", "kæmpe pik");
-
-        model.addAttribute("user", user.getName());
-        model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("home");
+    model.addAttribute("user", user.getName());
+    model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
+    ModelAndView modelAndView = new ModelAndView();
+    modelAndView.setViewName("home");
 
         return modelAndView;
     }
@@ -80,14 +78,7 @@ public class HomeController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/saveNotice", method = RequestMethod.POST)
-    public ModelAndView postNoticeFormPage(@ModelAttribute("notice") Notice notice, @ModelAttribute("user") User user1, Authentication authentication, HttpServletRequest httpServletRequest) {
-        User user = userServiceImp.currentUser(authentication.getName());
-        noticeServiceImp.createNotice(user, "1998-08-98", "kæmpe pik");
-        return new ModelAndView("redirect:/home");
-    }
-
-    @RequestMapping (value = "/saveAssignment", method = RequestMethod.POST)
+       @RequestMapping (value = "/saveAssignment", method = RequestMethod.POST)
     public ModelAndView postAssignmentFormPage(@ModelAttribute("Assignment") Assignment assignment, @ModelAttribute("propertyType") PropertyType propertyType, HttpServletRequest httpServletRequest){
 
             assignmentImp.createAssignment(assignment.getDescription(),assignment.getStreetName(),assignment.getStreetNumber(),assignment.getCity(),assignment.getZip(),
@@ -98,5 +89,12 @@ public class HomeController {
             return new ModelAndView("redirect:/home");
         }
 }
+    @RequestMapping (value = "/noticeFormPage", method = RequestMethod.POST)
+    public ModelAndView postNoticeFormPage (@ModelAttribute("notice") Notice notice, @ModelAttribute("user") User user1, Authentication authentication, HttpServletRequest httpServletRequest){
+    User user = userServiceImp.currentUser(authentication.getName());
 
+    noticeServiceImp.createNotice(user, String.valueOf(notice.getDate()), notice.getMessage());
+    return new ModelAndView("redirect:/home");
+    }
 
+}
