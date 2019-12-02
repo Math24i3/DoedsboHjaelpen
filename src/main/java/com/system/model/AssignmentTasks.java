@@ -71,7 +71,8 @@ public class AssignmentTasks {
     private int returnKeys;
 */
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idassignments")
     Assignment assignment;
 
 

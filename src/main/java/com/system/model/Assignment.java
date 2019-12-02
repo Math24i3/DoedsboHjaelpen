@@ -35,8 +35,8 @@ public class Assignment {
     private Date assignmentDate;
 
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinTable(name = "assignment_task", joinColumns = @JoinColumn(name = "idassignments"))
+    @OneToOne(mappedBy = "idassignments", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY, optional = false)
     private AssignmentTasks assignmentTasks;
 
    @ManyToMany(cascade = CascadeType.ALL)
