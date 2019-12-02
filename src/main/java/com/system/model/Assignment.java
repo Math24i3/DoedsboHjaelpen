@@ -13,7 +13,7 @@ public class Assignment {
     @Column(name = "idassignments")
     private int id;
 
-    @Column(name = "description" )
+    @Column(name = "description")
     private String description;
 
     @Column(name = "street_name")
@@ -34,9 +34,8 @@ public class Assignment {
     @Column(name = "assignment_date")
     private Date assignmentDate;
 
-    @Column(name = "stove")
+    @Column(name = "stove" )
     private int stove;
-
 
     @Column(name = "fridge")
     private int fridge;
@@ -93,6 +92,9 @@ public class Assignment {
    @ManyToMany(cascade = CascadeType.ALL)
    @JoinTable(name = "assignments_property", joinColumns = @JoinColumn(name = "idassignments"), inverseJoinColumns = @JoinColumn(name = "idproperty_type"))
     private Set<PropertyType> propertyTypes;
+
+    public Assignment() {
+    }
 
     public Assignment(String description, String streetName,
                       int streetNumber, String city, int zip,

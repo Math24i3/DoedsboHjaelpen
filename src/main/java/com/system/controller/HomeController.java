@@ -39,7 +39,7 @@ public class HomeController {
     User user = userServiceImp.currentUser(authentication.getName());
     TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
 
-    noticeServiceImp.createNotice(user,"1998-08-98", "kæmpe pik" );
+    noticeServiceImp.createNotice(user,"1998-08-11", "kæmpe pik" );
 
     model.addAttribute("user", user.getName());
     model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
