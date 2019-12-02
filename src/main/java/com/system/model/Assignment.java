@@ -34,6 +34,61 @@ public class Assignment {
     @Column(name = "assignment_date")
     private Date assignment_date;
 
+    @Column(name = "stove" )
+    private Integer stove;
+
+    @Column(name = "fridge")
+    private Integer fridge;
+
+    @Column (name = "washing_mashine")
+    private Integer washing_machine;
+
+    @Column (name = "dish_washer")
+    private Integer dish_washer;
+
+    @Column(name = "carpets")
+    private Integer carpets;
+
+    @Column (name = "carpet_tape")
+    private Integer carpet_tape;
+
+    @Column (name = "bolts_and_screws")
+    private Integer bolts_and_screws;
+
+    @Column (name = "curtains")
+    private Integer curtains;
+
+    @Column(name = "curtainrod")
+    private Integer curtainrod;
+
+    @Column (name = "blinds")
+    private Integer blinds;
+
+    @Column (name = "lamp")
+    private Integer lamps;
+
+    @Column (name = "paintings")
+    private Integer paintings;
+
+    @Column (name = "documents")
+    private Integer documents;
+
+    @Column (name = "keys")
+    private Integer keys;
+
+    @Column (name = "cellar_and_loft")
+    private Integer cellar_and_loft;
+
+    @Column (name = "cleaning_service")
+    private Integer cleaning_service;
+
+    @Column(name = "accessibility_tools")
+    private Integer accessibility_tools;
+
+    @Column (name = "return_keys")
+    private Integer return_keys;
+
+
 
 
 
@@ -45,7 +100,15 @@ public class Assignment {
     }
 
 
-    public Assignment(String description, String street_name, Integer street_number, String city, Integer zip, String floor, String assignment_date, Set<PropertyType> propertyTypes ) {
+    public Assignment(String description, String street_name,
+                      Integer street_number, String city,
+                      Integer zip, String floor, String assignment_date,
+                      Set<PropertyType> propertyTypes,
+                      int stove, int fridge, int washing_machine,
+                      int dish_washer, int carpets, int carpet_tape,
+                      int bolts_and_screws, int curtains, int curtainrod,
+                      int blinds, int lamps, int paintings, int documents,
+                      int keys, int cellar_and_loft, int cleaning_service, int accessibility_tools, int return_keys) {
         this.description = description;
         this.street_name = street_name;
         this.street_number = street_number;
@@ -54,6 +117,24 @@ public class Assignment {
         this.floor = floor;
         this.assignment_date = Date.valueOf(assignment_date);
         this.propertyTypes = propertyTypes;
+        this.stove = stove;
+        this.fridge = fridge;
+        this.washing_machine = washing_machine;
+        this.dish_washer = dish_washer;
+        this.carpets = carpets;
+        this.carpet_tape = carpet_tape;
+        this.bolts_and_screws = bolts_and_screws;
+        this.curtains = curtains;
+        this.curtainrod = curtainrod;
+        this.blinds = blinds;
+        this.lamps = lamps;
+        this.paintings = paintings;
+        this.documents = documents;
+        this.keys = keys;
+        this.cellar_and_loft = cellar_and_loft;
+        this.cleaning_service = cleaning_service;
+        this.accessibility_tools = accessibility_tools;
+        this.return_keys = return_keys;
     }
 
     public Integer getId() {
