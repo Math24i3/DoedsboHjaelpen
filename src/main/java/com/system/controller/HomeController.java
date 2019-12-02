@@ -65,7 +65,7 @@ public class HomeController {
     }
 
     @RequestMapping (value = "/save", method = RequestMethod.POST)
-    public ModelAndView postAssignmentFormPage(@ModelAttribute("assignment") Assignment assignment, @ModelAttribute("propertyType")PropertyType propertyType, HttpServletRequest httpServletRequest){
+    public ModelAndView postAssignmentFormPage(@ModelAttribute("Assignment") Assignment assignment, @ModelAttribute("propertyType")PropertyType propertyType, HttpServletRequest httpServletRequest){
 
         assignmentImp.createAssignment(assignment.getDescription(),assignment.getStreetName(),assignment.getStreetNumber(),assignment.getCity(),assignment.getZip(),
                 assignment.getFloor(),assignment.getAssignmentDate(),assignment.getStove(),assignment.getFridge(),assignment.getWashingMachine(),assignment.getDishWasher(),assignment.getCarpets(),assignment.getCarpetTape(),
