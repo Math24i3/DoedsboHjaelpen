@@ -18,7 +18,6 @@ public class AssignmentTasks {
     private int stove;
 
 
-    /*
     @Column(name = "fridge")
     private int fridge;
 
