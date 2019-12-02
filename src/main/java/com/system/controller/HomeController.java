@@ -40,12 +40,25 @@ public class HomeController {
         User user = userServiceImp.currentUser(authentication.getName());
         TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
 
-    model.addAttribute("user", user.getName());
-    model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
-    ModelAndView modelAndView = new ModelAndView();
-    modelAndView.setViewName("home");
+        model.addAttribute("user", user.getName());
+        model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("home");
 
         return modelAndView;
+    }
+
+        @RequestMapping(value = {"/homeEmployee"}, method = RequestMethod.GET)
+        public ModelAndView homeEmployee(Model model, Authentication authentication) {
+            User user = userServiceImp.currentUser(authentication.getName());
+            TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
+
+            model.addAttribute("user", user.getName());
+            model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
+            ModelAndView modelAndView = new ModelAndView();
+            modelAndView.setViewName("homeEmployee");
+
+            return modelAndView;
     }
 //alper
 
@@ -88,7 +101,7 @@ public class HomeController {
 
             return new ModelAndView("redirect:/home");
         }
-}
+
     @RequestMapping (value = "/noticeFormPage", method = RequestMethod.POST)
     public ModelAndView postNoticeFormPage (@ModelAttribute("notice") Notice notice, @ModelAttribute("user") User user1, Authentication authentication, HttpServletRequest httpServletRequest){
     User user = userServiceImp.currentUser(authentication.getName());
