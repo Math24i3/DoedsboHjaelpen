@@ -80,14 +80,14 @@ public class HomeController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/saveNotice", method = RequestMethod.POST)
     public ModelAndView postNoticeFormPage(@ModelAttribute("notice") Notice notice, @ModelAttribute("user") User user1, Authentication authentication, HttpServletRequest httpServletRequest) {
         User user = userServiceImp.currentUser(authentication.getName());
         noticeServiceImp.createNotice(user, "1998-08-98", "kæmpe pik");
         return new ModelAndView("redirect:/home");
     }
 
-    @RequestMapping (value = "/save", method = RequestMethod.POST)
+    @RequestMapping (value = "/saveAssignment", method = RequestMethod.POST)
     public ModelAndView postAssignmentFormPage(@ModelAttribute("Assignment") Assignment assignment, @ModelAttribute("propertyType") PropertyType propertyType, HttpServletRequest httpServletRequest){
 
             assignmentImp.createAssignment(assignment.getDescription(),assignment.getStreetName(),assignment.getStreetNumber(),assignment.getCity(),assignment.getZip(),
