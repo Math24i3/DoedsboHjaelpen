@@ -28,12 +28,12 @@
             </div>
             <div class="form-group">
                 <div class="">
-                    <input type="text" name="streetName" placeholder="Gade" class="form-control" />
+                    <input type="text" name="street_name" placeholder="Gade" class="form-control" />
                 </div>
             </div>
             <div class="form-group">
                 <div class="">
-                    <input type="text" name="streetNumber" placeholder="Hus nummer" class="form-control" />
+                    <input type="text" name="street_number" placeholder="Hus nummer" class="form-control" />
                 </div>
             </div>
             <div class="form-group">
@@ -53,8 +53,19 @@
             </div>
             <div class="form-group">
                 <div class="">
-                    <input type="date" id="date" name="assignmentDate" placeholder="Dato" class="form-control" />
+                    <input type="date" id="date" name="assignment_Date" placeholder="Dato" class="form-control" />
                 </div>
+            </div>
+
+            <div class="drpdwn-field" th:object="${propertyType}">
+                <select class="form-control" id="room_number" name="room_number">
+                    <option disabled>Vælg type bolig</option>
+                    <option th:each="propertyType : ${propertyTypes}"
+                            th:value="${pro}"
+                            th:text="'Værelse: ' +${room.room_number}+'/ Type: '+${room.room_type}+ '/ Pris: '+${room.price}">
+
+                    </option>
+                </select>
             </div>
 
             <div class="form-group">

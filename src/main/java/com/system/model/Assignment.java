@@ -1,5 +1,7 @@
 package com.system.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.Set;
@@ -31,6 +33,7 @@ public class Assignment {
     @Column(name = "floor")
     private String floor;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "assignment_date")
     private Date assignment_date;
 

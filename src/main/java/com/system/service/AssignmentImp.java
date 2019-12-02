@@ -23,9 +23,10 @@ public class AssignmentImp {
 
 
 
-    public void createAssignment(Assignment ass, String property){
+    public void createAssignment(Assignment ass, String property, String date){
 
         PropertyType propertyType = propertyTypeRepository.findByType(property);
+        ass.setAssignment_date(date);
         ass.setPropertyTypes(new HashSet<PropertyType>(Arrays.asList(propertyType)));
         assignmentRepository.saveAndFlush(ass);
     }

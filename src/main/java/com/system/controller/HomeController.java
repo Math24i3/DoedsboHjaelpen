@@ -51,7 +51,7 @@ public class HomeController {
                 1, 1, 1, 1, 1, 1,
                 1, 1, 1, 1, 1, 1);
 
-        assignmentImp.createAssignment(assignment, "Lejlighed");
+        //assignmentImp.createAssignment(assignment, "Lejlighed");
 
         TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
 
@@ -109,13 +109,9 @@ public class HomeController {
     }
 
        @RequestMapping (value = "/saveAssignment", method = RequestMethod.POST)
-    public ModelAndView postAssignmentFormPage(@ModelAttribute("Assignment") Assignment assignment, @ModelAttribute("propertyType") PropertyType propertyType, HttpServletRequest httpServletRequest){
-
-           // assignmentImp.createAssignment(assignment.getDescription(),assignment.getStreet_name(),assignment.getStreet_number(),assignment.getCity(),assignment.getZip(),
-             //       assignment.getFloor(),assignment.getAssignment_date(),assignment.getStove(),assignment.getFridge(),assignment.getWashing_machine(),assignment.getDish_washer(),assignment.getCarpets(),assignment.getCarpet_tape(),
-             //      assignment.getBolts_and_screws(),assignment.getCurtains(),assignment.getCurtainrod(),assignment.getBlinds(),assignment.getLamps(),assignment.getPaintings(),assignment.getDocuments(),assignment.getKeys(),assignment.getCellar_and_loft(),
-               //     assignment.getCleaning_service(),assignment.getAccessibility_tools(),assignment.getReturn_keys(),propertyType.getType());
-
+    public ModelAndView postAssignmentFormPage(@ModelAttribute("assignment_Date") String date, @ModelAttribute Assignment assignment, @ModelAttribute("property") String property, HttpServletRequest httpServletRequest){
+           System.out.println(date);
+            assignmentImp.createAssignment(assignment, property, date);
             return new ModelAndView("redirect:/home");
         }
 
