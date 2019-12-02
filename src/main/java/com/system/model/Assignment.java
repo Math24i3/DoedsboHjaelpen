@@ -35,7 +35,7 @@ public class Assignment {
     private Date assignmentDate;
 
 
-    @OneToOne(mappedBy = "idassignments", cascade = CascadeType.ALL,
+    @OneToOne(mappedBy = "assignment", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY, optional = false)
     private AssignmentTasks assignmentTasks;
 
