@@ -46,10 +46,15 @@ public class HomeController {
         PropertyType propertyType = propertyTypeRepository.findByType("Hus");
         Assignment assignment = new Assignment("dfd", "df",
                 2, "dfd", 2, "sdfs",
-                "2015-11-11", new HashSet<PropertyType>(Arrays.asList(propertyType)), 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1);
+                "2015-11-11", 1,
+                1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1, 1,
+                1, 1, 1, 1, 1, 1);
+
+        assignmentImp.createAssignment(assignment, "Lejlighed");
+
         TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
 
-        assignmentImp.createAssignment(assignment);
 
     model.addAttribute("user", user.getName());
     model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
