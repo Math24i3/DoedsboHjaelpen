@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>opslagstavle</title>
+    <link rel="stylesheet"type="text/css" href="stylesheet.css">
+    <link rel="stylesheet" href="../static/stylesheet.css">
+
+
+</head>
+
+
+<body>
+
+<div class="header-box">
+
+    <img src="https://affald-genbrug.dk/wp-content/uploads/2019/10/D%C3%B8dsbo-Hj%C3%A6lpen.png?fbclid=IwAR023WBxvvV23keLoryC4z8cWV82Ypbd-U-jCiJh0OgGy0Qn8DcdEeku6tY" height="126" width="614"/>
+
+    <div class="header-nav-bar">
+        <a  type="submit" class="btn-active" name="opgave-oversigt" style="border-top-left-radius: 4px; border-bottom-left-radius: 4px" th:href="@{'/home'}">Opgaveoversigt</a>
+
+        <a  name="opslagstavle" th:href="@{'/bulletin'}">Opslagstavle</a>
+
+        <a  type="submit" name="ansatte" th:href="@{'/employees'}">Ansatte</a>
+
+        <form method="post" th:action="@{/logout}">
+            <button type="submit" class= "logout-btn" name="log-ud" >Log ud</button>
+        </form>
+    </div>
+</div>
+<div class="username-container">
+    <span th:text="${timeMessage}">Hej</span>
+    <span th:text="${user}">Navn</span>
+</div>
+
+
+
+</body>
+</html>
