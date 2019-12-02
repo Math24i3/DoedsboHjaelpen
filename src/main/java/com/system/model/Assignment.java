@@ -36,6 +36,7 @@ public class Assignment {
 
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "assignment_task", joinColumns = @JoinColumn(name = "idassignments"))
     private AssignmentTasks assignmentTasks;
 
    @ManyToMany(cascade = CascadeType.ALL)
