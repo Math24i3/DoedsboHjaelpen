@@ -26,7 +26,7 @@ public class AssignmentImp {
 
     @Autowired
     AssignmentTasksRepository assignmentTasksRepository;
-/*
+
     public void createAssignment(String description, String streetName, int streetNumber, String city,
                                  int zip, String floor, String date, int stove, int fridge,
                                  int washingMashine, int dishWasher, int carpets,
@@ -36,25 +36,13 @@ public class AssignmentImp {
                                  int accessibilityTools, int returnKeys, String type){
 
         PropertyType propertyType = propertyTypeRepository.findByType(type);
-        AssignmentTasks assignmentTasks = new AssignmentTasks(stove, fridge, washingMashine, dishWasher, carpets, carpetTape, boltsAndScrews,
-                curtains, curtainrod, blinds, lamps, paintings, documents, keys, cellarAndLoft, cleaningService, accessibilityTools, returnKeys);
-
-        Assignment assignment = new Assignment(description, streetName, streetNumber, city, zip, floor, date, assignmentTasks,
+        Assignment assignment = new Assignment(description, streetName, streetNumber, city, zip, floor, date, stove, fridge, washingMashine, dishWasher,
+                carpets, carpetTape, boltsAndScrews, curtains, curtainrod, blinds, lamps, paintings, documents, keys, cellarAndLoft, cleaningService, accessibilityTools, returnKeys,
                 new HashSet<PropertyType>(Arrays.asList(propertyType)));
 
         assignmentRepository.save(assignment);
     }
-*/
-    public void createAssignment(String description, String streetName, int streetNumber, String city,
-                                 int zip, String floor, String date, int stove, String type){
 
-        PropertyType propertyType = propertyTypeRepository.findByType(type);
-        AssignmentTasks assignmentTasks = new AssignmentTasks(stove);
 
-        Assignment assignment = new Assignment(description, streetName, streetNumber, city, zip, floor, date, assignmentTasks,
-                new HashSet<PropertyType>(Arrays.asList(propertyType)));
-
-        assignmentRepository.save(assignment);
-    }
 }
 

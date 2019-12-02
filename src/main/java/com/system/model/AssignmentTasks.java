@@ -71,7 +71,7 @@ public class AssignmentTasks {
 */
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idassignments")
+    @JoinColumn(name = "idassignments", referencedColumnName = "idassignments")
     Assignment assignment;
 
 

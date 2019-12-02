@@ -94,14 +94,22 @@ public class Assignment {
    @JoinTable(name = "assignments_property", joinColumns = @JoinColumn(name = "idassignments"), inverseJoinColumns = @JoinColumn(name = "idproperty_type"))
     private Set<PropertyType> propertyTypes;
 
-    public Assignment(String description, String streetName, int streetNumber, String city, int zip, String floor, Date assignmentDate, int stove, int fridge, int washingMachine, int dishWasher, int carpets, int carpetTape, int boltsAndScrews, int curtains, int curtainrod, int blinds, int lamps, int paintings, int documents, int keys, int cellarAndLoft, int cleaningService, int accessibilityTools, int returnKeys, AssignmentTasks assignmentTasks, Set<PropertyType> propertyTypes) {
+    public Assignment(String description, String streetName,
+                      int streetNumber, String city, int zip,
+                      String floor, String assignmentDate, int stove,
+                      int fridge, int washingMachine, int dishWasher,
+                      int carpets, int carpetTape, int boltsAndScrews,
+                      int curtains, int curtainrod, int blinds,
+                      int lamps, int paintings, int documents,
+                      int keys, int cellarAndLoft, int cleaningService,
+                      int accessibilityTools, int returnKeys, Set<PropertyType> propertyTypes) {
         this.description = description;
         this.streetName = streetName;
         this.streetNumber = streetNumber;
         this.city = city;
         this.zip = zip;
         this.floor = floor;
-        this.assignmentDate = assignmentDate;
+        this.assignmentDate = Date.valueOf(assignmentDate);
         this.stove = stove;
         this.fridge = fridge;
         this.washingMachine = washingMachine;
