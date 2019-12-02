@@ -117,8 +117,7 @@ public class HomeController {
 
     @RequestMapping (value = "/noticeFormPage", method = RequestMethod.POST)
     public ModelAndView postNoticeFormPage (@ModelAttribute("notice") Notice notice, @ModelAttribute("user") User user1, Authentication authentication, HttpServletRequest httpServletRequest){
-    User user = userServiceImp.currentUser(authentication.getName());
-
+        User user = userServiceImp.currentUser(authentication.getName());
     noticeServiceImp.createNotice(user, String.valueOf(notice.getDate()), notice.getMessage());
     return new ModelAndView("redirect:/home");
     }
