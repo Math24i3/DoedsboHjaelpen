@@ -43,7 +43,7 @@ public class Assignment {
     @Column(name = "fridge")
     private Integer fridge;
 
-    @Column (name = "washing_mashine")
+    @Column (name = "washing_machine")
     private Integer washing_machine;
 
     @Column (name = "dish_washer")

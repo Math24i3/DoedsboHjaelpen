@@ -1,182 +1,171 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">>
 <head>
-    <title>Registration Form</title>
-    <!-- link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" /-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Opret opgave</title>
 
+
+
+    <link rel="stylesheet"type="text/css" href="stylesheet.css">
+    <link rel="stylesheet" href="../static/stylesheet.css">
     <meta charset="utf-8"/>
 
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
-<body style="background-color: #ededed;">
-<div style="background-color: #337ab7; height: 50px;"></div>
-<div class="container-fluid" style="margin-top: 30px;">
+<body>
 
-    <div class="row col-lg-4 col-lg-offset-4" style="margin-top: 40px; background-color: #fff; padding: 20px; border: solid 1px #ddd;">
-        <form  th:action="@{/saveAssignment}" th:object="${'assignment'}" method="post" class="form-signin">
-            <h3 class="form-signin-heading">Opret opgave</h3>
-            <div class="form-group">
-                <div class="">
-                    <input type="text" name="description" placeholder="Beskrivelse" class="form-control" />
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="">
-                    <input type="text" name="street_name" placeholder="Gade" class="form-control" />
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="">
-                    <input type="text" name="street_number" placeholder="Hus nummer" class="form-control" />
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="">
-                    <input type="text" name="city" placeholder="By" class="form-control" />
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="">
-                    <input type="number" name="zip" maxlength="4" placeholder="Postnummer" class="form-control" />
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="">
-                    <input type="text" name="floor" placeholder="Etage og side" class="form-control" />
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="">
-                    <input type="date" id="date" name="assignment_Date" placeholder="Dato" class="form-control" />
-                </div>
+<div class="header-box">
+
+    <img src="https://affald-genbrug.dk/wp-content/uploads/2019/10/D%C3%B8dsbo-Hj%C3%A6lpen.png?fbclid=IwAR023WBxvvV23keLoryC4z8cWV82Ypbd-U-jCiJh0OgGy0Qn8DcdEeku6tY" height="126" width="614"/>
+
+    <div class="header-nav-bar">
+        <a  type="submit" name="opgave-oversigt" th:href="@{'/home'}" style="border-top-left-radius: 4px; border-bottom-left-radius: 4px">Opgaveoversigt</a>
+
+        <a  name="opslagstavle" th:href="@{'/bulletin'}">Opslagstavle</a>
+
+        <a  type="submit" name="ansatte" th:href="@{'/employees'}">Ansatte</a>
+
+        <form method="post" th:action="@{/logout}">
+            <button type="submit" class= "logout-btn" name="log-ud" >Log ud</button>
+        </form>
+    </div>
+</div>
+
+<h2 style="margin-left: 30px">Opret opgave/rydning</h2>
+<div class="form-container">
+    <form  th:action="@{/saveAssignment}" th:object="${'assignment'}" method="post" class="form-signin">
+        <div class="form-group" style="border-right: 1px solid #275888; border-bottom: 1px solid #275888">
+
+            <h3>Addresseoplysninger:</h3>
+
+            <div class="" >
+                <input type="text" name="street_name" placeholder="Gade" class="form-look-text" />
             </div>
 
-            <div class="drpdwn-field" th:object="${propertyType}">
-                <select class="form-control" id="id" name="property">
+            <div class="">
+                <input type="number" name="street_number" placeholder="Hus nummer" class="form-look-text" style="width: 120px" />
+            </div>
+
+            <div class="">
+                <input type="text" name="floor" placeholder="Etage og side" class="form-look-text" style="width: 120px" />
+            </div>
+
+            <div class="">
+                <input type="text" name="city" placeholder="By" class="form-look-text" />
+            </div>
+
+            <div class="" style="border-bottom: 1px solid #275888; padding-bottom: 20px">
+                <input type="number" name="zip" maxlength="4" placeholder="Postnummer" class="form-look-text" style="width: 120px"/>
+            </div>
+
+
+
+            <p style="margin-top: 10px">Dato for besigtigelse</p>
+            <div class="" style="border-bottom: 1px solid #275888; padding-bottom: 20px">
+                <input type="date" id="date" name="assignment_Date" placeholder="Dato for besigtigelse" class="form-look-calender" />
+            </div>
+            <p>Vælg boligtype</p>
+            <div  th:object="${propertyType}" style="border-bottom: 1px solid #275888; padding-bottom: 20px">
+                <select class="form-look-drpdwn" id="id" name="property">
                     <option disabled>Vælg type bolig</option>
                     <option th:each="propertyType : ${propertyTypes}"
                             th:value="${propertyType.type}"
                             th:text="'Type: ' +${propertyType.type}">
-
                     </option>
                 </select>
+            </div >
+            <p>Beskrivelse af opgaven</p>
+            <div class=""  style=" padding-bottom: 20px">
+                <textarea type="text" name="description" placeholder="Beskrivelse af opgaven" style="height: 50px; width: 350px" class="form-look-text"></textarea>
             </div>
 
-            <div class="form-group">
+        </div>
+
+        <div class="form-group">
                 <div class="">
                     <input type="checkbox" name="stove" th:default="0" value="1"/> Komfur<br>
                 </div>
-            </div>
-            <div class="form-group">
+
                 <div class="">
                     <input type="checkbox" name="fridge" th:default="0" value="1"/> Køleskab/Fryser<br>
                 </div>
-            </div>
-            <div class="form-group">
+
                 <div class="">
-                    <input type="checkbox" name="washingMachine" th:default="0" value="1"> Vaskinemaskine<br>
+                    <input type="checkbox" name="washing_machine" th:default="0" value="1"> Vaskinemaskine<br>
                 </div>
-            </div>
-            <div class="form-group">
+
                 <div class="">
-                    <input type="checkbox" name="dishWasher" th:default="0" value="1"> Opvaskemaskine<br>
+                    <input type="checkbox" name="dish_washer" th:default="0" value="1"> Opvaskemaskine<br>
                 </div>
-            </div>
-            <div class="form-group">
+
                 <div class="">
                     <input type="checkbox" name="carpets" th:default="0" value="1"/> Tæpper<br>
                 </div>
-            </div>
-            <div class="form-group">
+
                 <div class="">
-                    <input type="checkbox" name="carpetTape" th:default="0" value="1"/> Tæppetape<br>
+                    <input type="checkbox" name="carpet_tape" th:default="0" value="1"/> Tæppetape<br>
                 </div>
-            </div>
-            <div class="form-group">
+
                 <div class="">
-                    <input type="checkbox" name="boltsAndScrews" th:default="0" value="1"/> Søm og skruer<br>
+                    <input type="checkbox" name="bolts_and_screws" th:default="0" value="1"/> Søm og skruer<br>
                 </div>
-            </div>
-            <div class="form-group">
+
                 <div class="">
                     <input type="checkbox" name="curtains" th:default="0" value="1"/> Gardiner<br>
                 </div>
-            </div>
-            <div class="form-group">
+
                 <div class="">
                     <input type="checkbox" name="curtainrod" th:default="0" value="1"/> Gardinstænger<br>
                 </div>
-            </div>
-            <div class="form-group">
+
                 <div class="">
                     <input type="checkbox" name="blinds" th:default="0" value="1"/> Persienner<br>
                 </div>
-            </div>
-            <div class="form-group">
+
                 <div class="">
                     <input type="checkbox" name="carpets" th:default="0" value="1"/> Tæpper<br>
                 </div>
-            </div>
-            <div class="form-group">
+
                 <div class="">
                     <input type="checkbox" name="lamps" th:default="0" value="1"/> Lamper<br>
                 </div>
-            </div>
-            <div class="form-group">
+
                 <div class="">
                     <input type="checkbox" name="paintings" th:default="0" value="1"/> Malerier<br>
                 </div>
-            </div>
-            <div class="form-group">
+
                 <div class="">
                     <input type="checkbox" name="documents" th:default="0" value="1"/> Dokumenter<br>
                 </div>
-            </div>
-            <div class="form-group">
+
                 <div class="">
                     <input type="checkbox" name="keys" th:default="0" value="1"/> Nøgler<br>
                 </div>
-            </div>
-            <div class="form-group">
+
                 <div class="">
-                    <input type="checkbox" name="cellarAndLoft" th:default="0" value="1"/> Kælder/Loftrum<br>
+                    <input type="checkbox" name="cellar_and_loft" th:default="0" value="1"/> Kælder/Loftrum<br>
                 </div>
-            </div>
-            <div class="form-group">
+
                 <div class="">
-                    <input type="checkbox" name="cleaningService" th:default="0" value="1"/> Tilkøb af hovedrengøring<br>
+                    <input type="checkbox" name="cleaning_service" th:default="0" value="1"/> Tilkøb af hovedrengøring<br>
                 </div>
-            </div>
-            <div class="form-group">
+
                 <div class="">
-                    <input type="checkbox" name="accessibilityTools" th:default="0" value="1"/> Hjælpemidler gemmes<br>
+                    <input type="checkbox" name="accessibility_tools" th:default="0" value="1"/> Hjælpemidler gemmes<br>
                 </div>
-            </div>
-            <div class="form-group">
+
                 <div class="">
-                    <input type="checkbox" name="returnKeys" th:default="0" value="1"/> Aflever nøgler tilbage<br>
+                    <input type="checkbox" name="return_keys" th:default="0" value="1"/> Aflever nøgler tilbage<br>
                 </div>
             </div>
 
-            <div class="form-group">
+            <div>
                 <div class="">
                     <button type="submit" class="btn btn-primary btn-block">Opret opgave</button>
                 </div>
             </div>
 
-
-
         </form>
     </div>
 </div>
-
-
 <script>$('#date').datepicker({ dateFormat: 'yy-mm-dd' }).val();</script>
 
 </body>
