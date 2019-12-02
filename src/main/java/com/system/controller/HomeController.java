@@ -9,7 +9,6 @@ import com.system.service.AssignmentImp;
 import com.system.service.NoticeServiceImp;
 import com.system.service.UserServiceImp;
 import com.system.tools.TimeMessageGenerator;
-import org.hibernate.validator.constraints.pl.REGON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.security.core.Authentication;
@@ -60,7 +59,21 @@ public class HomeController {
 
             return modelAndView;
     }
-//alper
+
+    @RequestMapping(value = {"/bulletinEmployee"}, method = RequestMethod.GET)
+    public ModelAndView bulletinBoardEmployee() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("bulletinEmployee");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = {"/employeesEmployee"}, method = RequestMethod.GET)
+    public ModelAndView employeesEmployee() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("employeesEmployee");
+        return modelAndView;
+    }
+
 
     @RequestMapping(value = {"/bulletin"}, method = RequestMethod.GET)
     public ModelAndView bulletinBoard() {
@@ -72,7 +85,7 @@ public class HomeController {
     @RequestMapping(value = {"/employees"}, method = RequestMethod.GET)
     public ModelAndView employees() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("Employees");
+        modelAndView.setViewName("employees");
         return modelAndView;
     }
 
