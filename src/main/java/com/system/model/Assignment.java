@@ -89,10 +89,6 @@ public class Assignment {
     private Integer return_keys;
 
 
-
-
-
-
    @ManyToMany(cascade = CascadeType.ALL)
    @JoinTable(name = "assignments_property", joinColumns = @JoinColumn(name = "idassignments"), inverseJoinColumns = @JoinColumn(name = "idproperty_type"))
     private Set<PropertyType> propertyTypes;
@@ -100,11 +96,9 @@ public class Assignment {
     public Assignment() {
     }
 
-
     public Assignment(String description, String street_name,
                       Integer street_number, String city,
                       Integer zip, String floor, String assignment_date,
-                      Set<PropertyType> propertyTypes,
                       int stove, int fridge, int washing_machine,
                       int dish_washer, int carpets, int carpet_tape,
                       int bolts_and_screws, int curtains, int curtainrod,
@@ -118,7 +112,6 @@ public class Assignment {
         this.zip = zip;
         this.floor = floor;
         this.assignment_date = Date.valueOf(assignment_date);
-        this.propertyTypes = propertyTypes;
         this.stove = stove;
         this.fridge = fridge;
         this.washing_machine = washing_machine;
@@ -137,8 +130,6 @@ public class Assignment {
         this.accessibility_tools = accessibility_tools;
         this.return_keys = return_keys;
         this.keys = keys;
-
-
     }
 
     public Integer getId() {
