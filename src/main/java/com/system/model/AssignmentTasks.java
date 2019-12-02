@@ -68,7 +68,6 @@ public class AssignmentTasks {
 
     @Column (name = "returnKeys")
     private int returnKeys;
-*/
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idassignments", referencedColumnName = "idassignments")
