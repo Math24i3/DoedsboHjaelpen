@@ -19,7 +19,7 @@
 <div class="container-fluid" style="margin-top: 30px;">
 
     <div class="row col-lg-4 col-lg-offset-4" style="margin-top: 40px; background-color: #fff; padding: 20px; border: solid 1px #ddd;">
-        <form  th:action="@{/save}" method="post" class="form-signin">
+        <form  th:action="@{/saveAssignment}" th:object="${'assignment'}" method="post" class="form-signin">
             <h3 class="form-signin-heading">Opret opgave</h3>
             <div class="form-group">
                 <div class="">

@@ -94,6 +94,7 @@ public class HomeController {
                     assignment.getFloor(),assignment.getAssignmentDate(),assignment.getStove(),assignment.getFridge(),assignment.getWashingMachine(),assignment.getDishWasher(),assignment.getCarpets(),assignment.getCarpetTape(),
                     assignment.getBoltsAndScrews(),assignment.getCurtains(),assignment.getCurtainrod(),assignment.getBlinds(),assignment.getLamps(),assignment.getPaintings(),assignment.getDocuments(),assignment.getKeys(),assignment.getCellarAndLoft(),
                     assignment.getCleaningService(),assignment.getAccessibilityTools(),assignment.getReturnKeys(),propertyType.getType());
+
             return new ModelAndView("redirect:/home");
         }
 }
