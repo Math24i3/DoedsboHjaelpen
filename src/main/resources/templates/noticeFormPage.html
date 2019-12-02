@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Notice form</title>
+    <!-- link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" /-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <meta charset="utf-8"/>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="../static/stylesheet.css">
+</head>
+<body style="background-color: #ededed;">
+<div style="background-color: #337ab7; height: 50px;"></div>
+<div class="container-fluid" style="margin-top: 30px;">
+
+    <div class="row col-lg-4 col-lg-offset-4" style="margin-top: 40px; background-color: #fff; padding: 20px; border: solid 1px #ddd;">
+
+        <form autocomplete="off" action="#" th:action="@{/assignmentFormPage}" th:object="${'assignment'}" id="noticeForm" method="post" class="form-signin" role="form">
+
+            <h3 class="form-signin-heading">Opret note</h3>
+            <div class="form-group">
+                <div class="">
+                    <input type="text" name="auth_user_id" placeholder="Brugernavn" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="">
+                    <input type="date" name="date" placeholder="Dato" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <textarea rows="8" id="textArea" cols="72.3" name="message" form="noticeForm">
+
+                </textarea>
+            </div>
+
+            <div class="form-group">
+                <div class="">
+                    <button type="sumbit" class="btn btn-primary btn-block">Opret note</button>
+                </div>
+            </div>
+
+
+
+        </form>
+    </div>
+</div>
+
+
+<script>$('#date').datepicker({ dateFormat: 'yy-mm-dd' }).val();</script>
+
+</body>
+</html>

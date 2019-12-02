@@ -28,6 +28,12 @@ img{
     box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
 
 }
+
+#textArea{
+    width: 100%;
+    height: 100px;
+}
+
 .header-nav-bar a {
     font-size: 18px;
     color: #3e4da4;
