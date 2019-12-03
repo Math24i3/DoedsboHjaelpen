@@ -28,14 +28,14 @@ public class NoticeServiceImp {
 
     public List<Notice> fetchAll(){
         List<Notice> notices = noticeRepository.findAll();
-
+        List<User> users = userRepository.findAll();
        for (Notice n: notices
             ) {
-           User user = userRepository.findById(n.getUser());
-           n.setMessageOwner(user.getName());
-           System.out.println(user.getName());
-
-
+           for (User u: users
+                ) {
+               if (u.getId() == n.getUser())
+               n.setMessageOwner(u.getName());
+           }
         }
 
         return notices;
