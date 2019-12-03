@@ -32,6 +32,17 @@
 
 </div>
 
+<table>
+    <th:block th:each="notice : ${notices}">
+        <tr>
+            <td th:text="${notice.user}">...</td>
+            <td th:text="${notice.date}">...</td>
+            <td th:text="${notice.message}">...</td>
+        </tr>
+
+    </th:block>
+</table>
+
 <div>
     <a href="/noticeFormPage" class="createButton">Opret opslag</a>
 </div>

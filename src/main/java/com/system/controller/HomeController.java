@@ -19,6 +19,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -78,8 +79,9 @@ public class HomeController {
 
     @RequestMapping(value = {"/bulletin"}, method = RequestMethod.GET)
     public ModelAndView bulletinBoard() {
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndView = new ModelAndView("list");
         modelAndView.setViewName("bulletin");
+        modelAndView.addObject("notices", noticeServiceImp.fetchAll());
         return modelAndView;
     }
 
