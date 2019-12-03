@@ -62,6 +62,22 @@ public class HomeController {
         return modelAndView;
     }
 
+    @RequestMapping(value = {"/homeEmployee"}, method = RequestMethod.GET)
+    public ModelAndView homeEmployee(Model model, Authentication authentication) {
+        User user = userServiceImp.currentUser(authentication.getName());
+        TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
+
+
+        model.addAttribute("user", user.getName());
+        model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("homeEmployee");
+
+        return modelAndView;
+    }
+
+
+
     @RequestMapping(value = {"/bulletinEmployee"}, method = RequestMethod.GET)
     public ModelAndView bulletinBoardEmployee() {
         ModelAndView modelAndView = new ModelAndView("list");
