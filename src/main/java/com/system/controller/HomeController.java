@@ -116,14 +116,11 @@ public class HomeController {
         }
 
     @RequestMapping (value = "/noticeFormPage", method = RequestMethod.POST)
-    public ModelAndView postNoticeFormPage (Authentication authentication, @ModelAttribute("date") String date, @ModelAttribute("message") String message){
+    public ModelAndView postNoticeFormPage (Authentication authentication, @ModelAttribute("message") String message){
 
         User user = userServiceImp.currentUser(authentication.getName());
-    noticeServiceImp.createNotice(user, date, message);
-        System.out.println(user.getName());
-        System.out.println(date);
-        System.out.println(message);
-    return new ModelAndView("redirect:/home");
+    noticeServiceImp.createNotice(user, String.valueOf(java.time.LocalDate.now()), message);
+        return new ModelAndView("redirect:/home");
 
     }
 
