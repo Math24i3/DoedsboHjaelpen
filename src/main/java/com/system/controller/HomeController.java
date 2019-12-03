@@ -88,7 +88,7 @@ public class HomeController {
         return modelAndView;
     }
 
-    @RequestMapping(value = {"/assignmentFormPage"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/createAssignment"}, method = RequestMethod.GET)
     public ModelAndView assignmentFormPage(Model model) {
         List<PropertyType> propertyTypes = propertyTypeImp.fetchAll();
         model.addAttribute("propertyTypes", propertyTypes);
