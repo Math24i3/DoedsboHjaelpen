@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -24,6 +25,7 @@ public class NoticeServiceImp {
         Notice notice = new Notice();
         notice.setUser(user.getId());
         notice.setDate(date);
+
         notice.setMessage(message);
         noticeRepository.save(notice);
 

@@ -1,6 +1,5 @@
 body{
     font-family: Helvetica;
-    overflow:hidden;
 }
 
 img{
@@ -166,33 +165,43 @@ a #left-btn{
 }
 
 .form-look-text{
-    margin-top: 10px;
+    margin-top: 5px;
     border: none;
-    height: 25px;
+    height: 20px;
     border-radius: 2px;
     font-size: 16px;
 }
 
 .form-look-calender{
-    margin-top: -10px;
+    margin-top: -5px;
     border: none;
     border-radius: 2px;
-    font-size: 16px;
-    height: 30px;
+    font-size: 13px;
+    height: 20px;
 }
 
 .form-look-drpdwn{
-    margin-top: -10px;
-    height: 30px;
+    margin-top: -5px;
+    height: 20px;
     width: 200px;
     border-radius: 3px;
 }
 
 .form-container{
     background-color: #337ab7;
-    position: absolute;
-    height: 100%;
+    width: 700px;
     border-radius: 5px;
-    margin: 20px;
+    margin: 0 auto;
+    margin-top: -50px;
+    height: 600px;
+}
 
+.input-checkbox{
+
+}
+
+.checkbox-categories{
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #275888;
 }
