@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -108,14 +109,22 @@ public class HomeController {
     @RequestMapping (value = "/saveAssignment", method = RequestMethod.POST)
     public ModelAndView postAssignmentFormPage(@ModelAttribute("assignment_Date") String date, @ModelAttribute Assignment assignment, @ModelAttribute("property") String property){
             assignmentImp.createAssignment(assignment, property, date);
+
+
+
             return new ModelAndView("redirect:/home");
         }
 
     @RequestMapping (value = "/noticeFormPage", method = RequestMethod.POST)
-    public ModelAndView postNoticeFormPage (@ModelAttribute("notice") Notice notice, @ModelAttribute("user") User user1, Authentication authentication, HttpServletRequest httpServletRequest){
+    public ModelAndView postNoticeFormPage (Authentication authentication, @ModelAttribute("date") String date, @ModelAttribute("message") String message){
+
         User user = userServiceImp.currentUser(authentication.getName());
-    noticeServiceImp.createNotice(user, String.valueOf(notice.getDate()), notice.getMessage());
+    noticeServiceImp.createNotice(user, date, message);
+        System.out.println(user.getName());
+        System.out.println(date);
+        System.out.println(message);
     return new ModelAndView("redirect:/home");
+
     }
 
 }
