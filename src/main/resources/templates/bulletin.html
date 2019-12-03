@@ -35,7 +35,7 @@
 <table>
     <th:block th:each="notice : ${notices}">
         <tr>
-            <td th:text="${notice.user}">...</td>
+            <td th:text="${notice.messageOwner}">...</td>
             <td th:text="${notice.date}">...</td>
             <td th:text="${notice.message}">...</td>
         </tr>

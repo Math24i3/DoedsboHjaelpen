@@ -3,6 +3,7 @@ package com.system.service;
 import com.system.model.Notice;
 import com.system.model.User;
 import com.system.repository.NoticeRepository;
+import com.system.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +17,19 @@ public class NoticeServiceImp {
     @Autowired
     NoticeRepository noticeRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     public List<Notice> fetchAll(){
         List<Notice> notices = noticeRepository.findAll();
+
+       for (Notice n: notices
+            ) {
+           User user = userRepository.findById(n.getUser());
+           n.setMessageOwner(user.getName());
+           System.out.println(user.getName());
+        }
+
         return notices;
     }
 

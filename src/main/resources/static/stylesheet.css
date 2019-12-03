@@ -43,7 +43,6 @@ img{
     text-align: center;
     line-height: 45px;
     vertical-align: middle;
-    font-weight: 100;
     transition: 0.5s;
     margin-right: -5px;
     border: none;
@@ -188,6 +187,7 @@ a #left-btn{
 }
 
 .form-container{
+    font-family: Helvetica;
     background-color: #337ab7;
     width: 700px;
     border-radius: 5px;
@@ -197,11 +197,35 @@ a #left-btn{
 }
 
 .input-checkbox{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+
 
 }
-
-.checkbox-categories{
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #275888;
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
+
+/* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Crea

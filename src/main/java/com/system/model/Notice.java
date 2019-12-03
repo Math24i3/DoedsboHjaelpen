@@ -23,6 +23,18 @@ public class Notice {
     @Column(name = "message")
     private String message;
 
+
+    @Transient
+    private String messageOwner;
+
+    public String getMessageOwner() {
+        return messageOwner;
+    }
+
+    public void setMessageOwner(String messageOwner) {
+        this.messageOwner = messageOwner;
+    }
+
     public int getId() {
         return id;
     }
