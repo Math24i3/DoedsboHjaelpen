@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>Opret opgave</title>
     <link rel="stylesheet"type="text/css" href="stylesheet.css">
@@ -21,11 +21,11 @@
         <a  type="submit" name="ansatte" th:href="@{'/employees'}">Ansatte</a>
 
         <form method="post" th:action="@{/logout}">
-            <button type="submit" class= "logout-btn" name="log-ud" >Log ud</button>
+            <button type="submit" class= "logout-btn" name="log-ud">Log ud</button>
         </form>
     </div>
 </div>
-
+<div style="background-color: #bdffcc; border-radius: 4px">
 <h2 style="margin-left: 30px">Opret opgave/rydning</h2>
 <div class="form-container">
     <form  th:action="@{/saveAssignment}" th:object="${'assignment'}" method="post" class="form-signin">
@@ -55,11 +55,11 @@
 
 
 
-            <p style="margin-top: 10px">Dato for besigtigelse</p>
+            <p style="margin-top: 10px; font-weight: 800;">Dato for besigtigelse</p>
             <div  style="border-bottom: 1px solid #275888; padding-bottom: 20px">
                 <input type="date" id="date" name="assignment_Date" placeholder="Dato for besigtigelse" class="form-look-calender" />
             </div>
-            <p>Vælg boligtype</p>
+            <p style="font-weight: 800;">Vælg boligtype</p>
             <div  th:object="${propertyType}" style="border-bottom: 1px solid #275888; padding-bottom: 20px">
                 <select class="form-look-drpdwn" id="id" name="property">
                     <option disabled>Vælg type bolig</option>
@@ -69,7 +69,7 @@
                     </option>
                 </select>
             </div >
-            <p>Beskrivelse/tilføjelse til opgaven</p>
+            <p style="font-weight: 800;">Beskrivelse/tilføjelse til opgaven</p>
             <div style=" padding-bottom: 20px">
                 <textarea type="text" name="description" placeholder="Beskrivelse af opgaven" style="height: 50px; width: 350px" class="form-look-text"></textarea>
             </div>
