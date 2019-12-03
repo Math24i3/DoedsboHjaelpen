@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashSet;
@@ -109,10 +110,8 @@ public class HomeController {
     @RequestMapping (value = "/saveAssignment", method = RequestMethod.POST)
     public ModelAndView postAssignmentFormPage(@ModelAttribute("assignment_Date") String date, @ModelAttribute Assignment assignment, @ModelAttribute("property") String property){
             assignmentImp.createAssignment(assignment, property, date);
-
-
-
             return new ModelAndView("redirect:/home");
+
         }
 
     @RequestMapping (value = "/noticeFormPage", method = RequestMethod.POST)
