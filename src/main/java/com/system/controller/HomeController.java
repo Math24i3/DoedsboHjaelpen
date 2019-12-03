@@ -81,7 +81,7 @@ public class HomeController {
     @RequestMapping(value = {"/bulletinEmployee"}, method = RequestMethod.GET)
     public ModelAndView bulletinBoardEmployee() {
         ModelAndView modelAndView = new ModelAndView("list");
-        modelAndView.setViewName("bulletin");
+        modelAndView.setViewName("bulletinEmployee");
         modelAndView.addObject("notices", noticeServiceImp.fetchAll());
         return modelAndView;
     }
