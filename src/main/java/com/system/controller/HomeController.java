@@ -24,10 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.ZonedDateTime;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class HomeController {
@@ -52,8 +49,19 @@ public class HomeController {
     public ModelAndView home(Model model, Authentication authentication) {
         User user = userServiceImp.currentUser(authentication.getName());
         TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
+        List<Assignment> assignments = assignmentImp.getAssignment();
+
+        List<String> addressLinks = new ArrayList<>();
+
+        for (Assignment a: assignments) {
+            String link = "https://www.google.dk/maps/place/"+ a.getStreet_name()+"+" + a.getStreet_number()+",+" + a.getZip()+"+"+ a.getCity() +"/";
+            addressLinks.add(link);
+
+        }
 
 
+    model.addAttribute("addressLinks", addressLinks);
+    model.addAttribute("assignments", assignments);
     model.addAttribute("user", user.getName());
     model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
     ModelAndView modelAndView = new ModelAndView();

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 
 @Service
@@ -29,6 +30,17 @@ public class AssignmentImp {
         ass.setAssignment_date(date);
         ass.setPropertyTypes(new HashSet<PropertyType>(Arrays.asList(propertyType)));
         assignmentRepository.saveAndFlush(ass);
+    }
+
+    public List<Assignment> getAssignment(){
+        List<Assignment> assignments = assignmentRepository.findAll();
+
+        for (Assignment a: assignments) {
+            a.setAddressLink("https://www.google.dk/maps/place/"+ a.getStreet_name()+"+" + a.getStreet_number()+",+" + a.getZip()+"+"+ a.getCity() +"/");
+
+        }
+        return assignments;
+
     }
 
 

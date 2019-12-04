@@ -34,10 +34,48 @@
 </div>
 
 <div>
-
     <a th:href="@{'/createAssignment'}" class="createButton">Opret opslag</a>
+</div>
+
+<table id="table" class="assignment-table">
+    <thead>
+    <tr class="fields" >
+        <th hidden>Id</th>
+        <th>Adresse</th>
+        <th>Besigtigelses dato</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr class="fields-data" th:each="assignment: ${assignments}">
+
+        <td hidden th:text="${assignment.id}"/>
+
+        <td id="as-addr">
+            <a target="_blank" th:href="${assignment.addressLink}" th:text="${assignment.street_name} + ' ' + ${assignment.street_number} + ', ' + ${assignment.zip} + ' ' + ${assignment.city}">
+        </td>
+
+        <td  id="as-date" th:text="${assignment.assignment_date}"/>
+
+        <td id="as-action">
+            <a th:href="@{'/viewAssignment/'+${assignment.id}}"/>
+            <button class="view-button">Se mere</button>
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+</div>
 
 </div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+
+
+    /*]]>*/
+</script>
 
 </body>
 </html>

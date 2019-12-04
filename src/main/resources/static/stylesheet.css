@@ -153,6 +153,27 @@ a #left-btn{
     top:1px;
 }
 
+.assignment-table{
+    border: 1px solid black;
+    font-size: 15px;
+}
+
+.assignment-table td  {
+    border: 1px solid green;
+}
+
+#as-addr{
+    width: 300px;
+}
+
+#as-date{
+    width: 50px;
+}
+
+#as-action{
+    text-align: center;
+}
+
 .form-group{
     font-family: Helvetica;
     float: left;

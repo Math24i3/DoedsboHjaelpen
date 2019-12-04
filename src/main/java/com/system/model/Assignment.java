@@ -91,8 +91,12 @@ public class Assignment {
     @Column (name = "return_key")
     private Integer return_keys;
 
+    @Transient
+    private String addressLink;
 
-   @ManyToMany(cascade = CascadeType.ALL)
+
+
+    @ManyToMany(cascade = CascadeType.ALL)
    @JoinTable(name = "assignments_property", joinColumns = @JoinColumn(name = "idassignments"), inverseJoinColumns = @JoinColumn(name = "idproperty_type"))
     private Set<PropertyType> propertyTypes;
 
@@ -347,6 +351,13 @@ public class Assignment {
         this.assignment_date = Date.valueOf(assignment_date);
     }
 
+    public String getAddressLink() {
+        return addressLink;
+    }
+
+    public void setAddressLink(String addressLink) {
+        this.addressLink = addressLink;
+    }
 
     public Set<PropertyType> getPropertyTypes() {
         return propertyTypes;
@@ -354,5 +365,19 @@ public class Assignment {
 
     public void setPropertyTypes(Set<PropertyType> propertyTypes) {
         this.propertyTypes = propertyTypes;
+    }
+
+    @Override
+    public String toString() {
+        return "Assignment{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", street_name='" + street_name + '\'' +
+                ", street_number=" + street_number +
+                ", city='" + city + '\'' +
+                ", zip=" + zip +
+                ", floor='" + floor + '\'' +
+                ", assignment_date=" + assignment_date +
+                '}' + propertyTypes;
     }
 }
