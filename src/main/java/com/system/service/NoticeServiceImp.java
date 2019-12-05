@@ -43,4 +43,6 @@ public class NoticeServiceImp {
 
 
     }
+
+    public void deleteNotice ()
 }

@@ -74,13 +74,23 @@ public class HomeController {
     public ModelAndView homeEmployee(Model model, Authentication authentication) {
         User user = userServiceImp.currentUser(authentication.getName());
         TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
+        List<Assignment> assignments = assignmentImp.getAssignment();
+
+        List<String> addressLinks = new ArrayList<>();
+
+        for (Assignment a: assignments) {
+            String link = "https://www.google.dk/maps/place/"+ a.getStreet_name()+"+" + a.getStreet_number()+",+" + a.getZip()+"+"+ a.getCity() +"/";
+            addressLinks.add(link);
+
+        }
 
 
+        model.addAttribute("addressLinks", addressLinks);
+        model.addAttribute("assignments", assignments);
         model.addAttribute("user", user.getName());
         model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("homeEmployee");
-
+        modelAndView.setViewName("home");
         return modelAndView;
     }
 
@@ -114,6 +124,7 @@ public class HomeController {
     public ModelAndView employees() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("employees");
+
         return modelAndView;
     }
 
@@ -146,7 +157,7 @@ public class HomeController {
 
         User user = userServiceImp.currentUser(authentication.getName());
     noticeServiceImp.createNotice(user, String.valueOf(java.time.LocalDate.now()), message);
-        return new ModelAndView("redirect:/home");
+        return new ModelAndView("redirect:/");
 
     }
 
