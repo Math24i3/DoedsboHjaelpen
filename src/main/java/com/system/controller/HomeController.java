@@ -140,7 +140,6 @@ public class HomeController {
 
 
     //EMPLOYEES
-
     @RequestMapping(value = {"/employees"}, method = RequestMethod.GET)
     public ModelAndView employees() {
         ModelAndView modelAndView = new ModelAndView();
