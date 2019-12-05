@@ -38,7 +38,11 @@
             <td th:text="${notice.messageOwner}">...</td>
             <td th:text="${notice.date}">...</td>
             <td th:text="${notice.message}">...</td>
+            <a th:href="@{'/deleteNotice/'+${notice.id}}"/>
+            <button> Udført!</button>
+
         </tr>
+
 
     </th:block>
 </table>

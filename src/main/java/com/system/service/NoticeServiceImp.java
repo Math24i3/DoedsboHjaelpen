@@ -44,5 +44,7 @@ public class NoticeServiceImp {
 
     }
 
-    public void deleteNotice ()
+    public void deleteNotice (int id){
+        noticeRepository.deleteById(id);
+    }
 }

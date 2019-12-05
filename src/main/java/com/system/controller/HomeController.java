@@ -16,10 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.security.core.Authentication;
 
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -44,6 +41,8 @@ public class HomeController {
     @Autowired
     PropertyTypeImp propertyTypeImp;
 
+
+    //HOME and Create assignment
 
     @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
     public ModelAndView home(Model model, Authentication authentication) {
@@ -70,6 +69,22 @@ public class HomeController {
         return modelAndView;
     }
 
+    @RequestMapping(value = {"/createAssignment"}, method = RequestMethod.GET)
+    public ModelAndView assignmentFormPage(Model model) {
+        List<PropertyType> propertyTypes = propertyTypeImp.fetchAll();
+        model.addAttribute("propertyTypes", propertyTypes);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("assignmentFormPage");
+        return modelAndView;
+    }
+
+    @RequestMapping (value = "/saveAssignment", method = RequestMethod.POST)
+    public ModelAndView postAssignmentFormPage(@ModelAttribute("assignment_Date") String date, @ModelAttribute Assignment assignment, @ModelAttribute("property") String property){
+        assignmentImp.createAssignment(assignment, property, date);
+        return new ModelAndView("redirect:/home");
+
+    }
+
     @RequestMapping(value = {"/homeEmployee"}, method = RequestMethod.GET)
     public ModelAndView homeEmployee(Model model, Authentication authentication) {
         User user = userServiceImp.currentUser(authentication.getName());
@@ -94,23 +109,7 @@ public class HomeController {
         return modelAndView;
     }
 
-
-
-    @RequestMapping(value = {"/bulletinEmployee"}, method = RequestMethod.GET)
-    public ModelAndView bulletinBoardEmployee() {
-        ModelAndView modelAndView = new ModelAndView("list");
-        modelAndView.setViewName("bulletinEmployee");
-        modelAndView.addObject("notices", noticeServiceImp.fetchAll());
-        return modelAndView;
-    }
-
-    @RequestMapping(value = {"/employeesEmployee"}, method = RequestMethod.GET)
-    public ModelAndView employeesEmployee() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("employeesEmployee");
-        return modelAndView;
-    }
-
+//BULLETIN
 
     @RequestMapping(value = {"/bulletin"}, method = RequestMethod.GET)
     public ModelAndView bulletinBoard() {
@@ -120,20 +119,17 @@ public class HomeController {
         return modelAndView;
     }
 
-    @RequestMapping(value = {"/employees"}, method = RequestMethod.GET)
-    public ModelAndView employees() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("employees");
-
-        return modelAndView;
+    @GetMapping("/deleteNotice/{id}")
+    public String deleteNotice(@PathVariable ("id") int id) {
+        noticeServiceImp.deleteNotice(id);
+        return ("redirect:/bulletin");
     }
 
-    @RequestMapping(value = {"/createAssignment"}, method = RequestMethod.GET)
-    public ModelAndView assignmentFormPage(Model model) {
-        List<PropertyType> propertyTypes = propertyTypeImp.fetchAll();
-        model.addAttribute("propertyTypes", propertyTypes);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("assignmentFormPage");
+    @RequestMapping(value = {"/bulletinEmployee"}, method = RequestMethod.GET)
+    public ModelAndView bulletinBoardEmployee() {
+        ModelAndView modelAndView = new ModelAndView("list");
+        modelAndView.setViewName("bulletinEmployee");
+        modelAndView.addObject("notices", noticeServiceImp.fetchAll());
         return modelAndView;
     }
 
@@ -145,20 +141,35 @@ public class HomeController {
         return modelAndView;
     }
 
-    @RequestMapping (value = "/saveAssignment", method = RequestMethod.POST)
-    public ModelAndView postAssignmentFormPage(@ModelAttribute("assignment_Date") String date, @ModelAttribute Assignment assignment, @ModelAttribute("property") String property){
-            assignmentImp.createAssignment(assignment, property, date);
-            return new ModelAndView("redirect:/home");
 
-        }
 
     @RequestMapping (value = "/noticeFormPage", method = RequestMethod.POST)
     public ModelAndView postNoticeFormPage (Authentication authentication, @ModelAttribute("message") String message){
 
         User user = userServiceImp.currentUser(authentication.getName());
-    noticeServiceImp.createNotice(user, String.valueOf(java.time.LocalDate.now()), message);
+        noticeServiceImp.createNotice(user, String.valueOf(java.time.LocalDate.now()), message);
         return new ModelAndView("redirect:/");
 
     }
+
+
+    //EMPLOYEES
+
+    @RequestMapping(value = {"/employees"}, method = RequestMethod.GET)
+    public ModelAndView employees() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("employees");
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = {"/employeesEmployee"}, method = RequestMethod.GET)
+    public ModelAndView employeesEmployee() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("employeesEmployee");
+        return modelAndView;
+    }
+
+
 
 }
