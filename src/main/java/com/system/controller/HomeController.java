@@ -49,16 +49,6 @@ public class HomeController {
         User user = userServiceImp.currentUser(authentication.getName());
         List<Assignment> assignments = assignmentImp.getAssignment();
 
-        List<String> addressLinks = new ArrayList<>();
-
-        for (Assignment a: assignments) {
-            String link = "https://www.google.dk/maps/place/"+ a.getStreet_name()+"+" + a.getStreet_number()+",+" + a.getZip()+"+"+ a.getCity() +"/";
-            addressLinks.add(link);
-
-        }
-
-
-    model.addAttribute("addressLinks", addressLinks);
     model.addAttribute("assignments", assignments);
     model.addAttribute("user", user.getName());
     model.addAttribute("timeMessage", new TimeMessageGenerator().timeOfTheDay());
@@ -90,16 +80,6 @@ public class HomeController {
         TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
         List<Assignment> assignments = assignmentImp.getAssignment();
 
-        List<String> addressLinks = new ArrayList<>();
-
-        for (Assignment a: assignments) {
-            String link = "https://www.google.dk/maps/place/"+ a.getStreet_name()+"+" + a.getStreet_number()+",+" + a.getZip()+"+"+ a.getCity() +"/";
-            addressLinks.add(link);
-
-        }
-
-
-        model.addAttribute("addressLinks", addressLinks);
         model.addAttribute("assignments", assignments);
         model.addAttribute("user", user.getName());
         model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
