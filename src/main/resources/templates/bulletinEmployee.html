@@ -5,6 +5,7 @@
     <title>ansatte</title>
     <link rel="stylesheet"type="text/css" href="stylesheet.css">
 
+    <link rel="stylesheet" href="../static/stylesheet.css">
 
 </head>
 
@@ -35,8 +36,11 @@
 <table>
     <th:block th:each="notice : ${notices}">
         <tr>
-            <td th:text="${notice.user}">...</td>
+            Oprettet af:
+            <td th:text="${notice.messageOwner}">...</td>
+            Dato:
             <td th:text="${notice.date}">...</td>
+            Note:
             <td th:text="${notice.message}">...</td>
         </tr>
 
