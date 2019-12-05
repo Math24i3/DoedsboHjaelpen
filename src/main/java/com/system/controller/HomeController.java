@@ -84,7 +84,7 @@ public class HomeController {
         model.addAttribute("user", user.getName());
         model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("home");
+        modelAndView.setViewName("homeEmployee");
         return modelAndView;
     }
 
