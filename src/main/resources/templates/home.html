@@ -33,13 +33,14 @@
     <span th:text="${user}">Navn</span>
 </div>
 
-<div>
-    <a th:href="@{'/createAssignment'}" class="createButton">Opret Opgave</a>
-</div>
+
 
 
 <div id="assignment-table-header">
-    <h2>Opgaver</h2>
+    <div id="create-assignment-button">
+        <a th:href="@{'/createAssignment'}" class="createButton">Opret Opgave</a>
+    </div>
+    <h2>Opgaver og Rydninger</h2>
 
 <table class="blueTable">
     <thead>
