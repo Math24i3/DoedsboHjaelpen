@@ -1,10 +1,7 @@
 package com.system.controller;
 
 
-import com.system.model.Assignment;
-import com.system.model.Notice;
-import com.system.model.PropertyType;
-import com.system.model.User;
+import com.system.model.*;
 import com.system.repository.PropertyTypeRepository;
 import com.system.service.AssignmentImp;
 import com.system.service.NoticeServiceImp;
@@ -12,6 +9,7 @@ import com.system.service.PropertyTypeImp;
 import com.system.service.UserServiceImp;
 import com.system.tools.TimeMessageGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.security.core.Authentication;
 
@@ -129,16 +127,29 @@ public class HomeController {
 
 
     @RequestMapping (value = "/noticeFormPage", method = RequestMethod.POST)
-    public ModelAndView postNoticeFormPage (Authentication authentication, @ModelAttribute("message") String message){
+    public ModelAndView postNoticeFormPage (Authentication authentication, Role role, @ModelAttribute("message") String message) {
 
         User user = userServiceImp.currentUser(authentication.getName());
         noticeServiceImp.createNotice(user, String.valueOf(java.time.LocalDate.now()), message);
 
-        return new ModelAndView("redirect:/");
+        boolean checkAuth = false;
+        for (GrantedAuthority x : authentication.getAuthorities()) {
+            if (x.getAuthority().equals("ADMIN_USER")) {
+                checkAuth = true;
+                break;
+            }
+
+        }
+
+        if (checkAuth) {
+            return new ModelAndView("redirect:/bulletin");
+        } else  {
+            return new ModelAndView("redirect:/bulletinEmployee");
+        }
+
+
 
     }
-
-
     //EMPLOYEES
 
     @RequestMapping(value = {"/employees"}, method = RequestMethod.GET)
