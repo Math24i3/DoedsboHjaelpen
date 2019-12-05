@@ -104,6 +104,12 @@ public class HomeController {
         return ("redirect:/bulletin");
     }
 
+    @GetMapping("/deleteNoticeEmployee/{id}")
+    public String deleteNoticeEmployee(@PathVariable ("id") int id) {
+        noticeServiceImp.deleteNotice(id);
+        return ("redirect:/bulletinEmployee");
+    }
+
     @RequestMapping(value = {"/bulletinEmployee"}, method = RequestMethod.GET)
     public ModelAndView bulletinBoardEmployee() {
         ModelAndView modelAndView = new ModelAndView("list");
@@ -127,6 +133,7 @@ public class HomeController {
 
         User user = userServiceImp.currentUser(authentication.getName());
         noticeServiceImp.createNotice(user, String.valueOf(java.time.LocalDate.now()), message);
+
         return new ModelAndView("redirect:/");
 
     }

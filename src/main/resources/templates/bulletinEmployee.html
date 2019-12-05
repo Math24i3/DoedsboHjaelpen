@@ -36,13 +36,10 @@
 <table>
     <th:block th:each="notice : ${notices}">
         <tr>
-            Oprettet af:
             <td th:text="${notice.messageOwner}">...</td>
-            Dato:
             <td th:text="${notice.date}">...</td>
-            Note:
             <td th:text="${notice.message}">...</td>
-            <td><a th:href="@{'/deleteNotice/'+${notice.id}}"/>
+            <td><a th:href="@{'/deleteNoticeEmployee/'+${notice.id}}"/>
             <button> Udført!</button></td>
         </tr>
 
