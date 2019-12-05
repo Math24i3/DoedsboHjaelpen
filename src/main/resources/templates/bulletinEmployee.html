@@ -38,6 +38,8 @@
             <td th:text="${notice.user}">...</td>
             <td th:text="${notice.date}">...</td>
             <td th:text="${notice.message}">...</td>
+            <td><a th:href="@{'/deleteNotice/'+${notice.id}}"/>
+            <button> Udført!</button></td>
         </tr>
 
     </th:block>
