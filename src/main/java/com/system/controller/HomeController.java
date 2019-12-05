@@ -47,7 +47,6 @@ public class HomeController {
     @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
     public ModelAndView home(Model model, Authentication authentication) {
         User user = userServiceImp.currentUser(authentication.getName());
-       // TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
         List<Assignment> assignments = assignmentImp.getAssignment();
 
         List<String> addressLinks = new ArrayList<>();
@@ -62,7 +61,6 @@ public class HomeController {
     model.addAttribute("addressLinks", addressLinks);
     model.addAttribute("assignments", assignments);
     model.addAttribute("user", user.getName());
-    //model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
     model.addAttribute("timeMessage", new TimeMessageGenerator().timeOfTheDay());
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.setViewName("home");
