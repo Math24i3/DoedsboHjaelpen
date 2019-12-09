@@ -2,9 +2,54 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>ansatte</title>
+    <title>Noter</title>
     <link rel="stylesheet"type="text/css" href="stylesheet.css">
+    <link rel="stylesheet" href="../static/stylesheet.css">
 
+    <style>
+       *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            font-family:arial,sans-serif;
+            font-size:100%;
+            margin:3em;
+            color:#fff;
+        }
+        h2,p{
+            font-size:100%;
+            font-weight:normal;
+        }
+        table,tr{
+            list-style:none;
+        }
+        table{
+            overflow:hidden;
+            padding:3em;
+        }
+        table tr td{
+            height: 50px;
+            text-align: center;
+            text-decoration:none;
+            color:#000;
+            background:#ffc;
+            display:block;
+            height: 12em;
+            width: 12em;
+            padding:1em;
+        }
+        table tr{
+            margin:1em;
+            float:left;
+        }
+        #td-admin, #td-dato, #td-button{
+            height: 1em;
+        }
+        #td-message, #td-dato{
+            border-top: 1px solid black;
+        }
+    </style>
 
 </head>
 
@@ -33,18 +78,17 @@
 </div>
 
 <table>
-    <th:block th:each="notice : ${notices}">
-        <tr>
-            <td th:text="${notice.messageOwner}">...</td>
-            <td th:text="${notice.date}">...</td>
-            <td th:text="${notice.message}">...</td>
-            <td><a th:href="@{'/deleteNotice/'+${notice.id}}"/>
-            <button> Udført!</button></td>
 
-        </tr>
-
-
+  <th:block th:each="notice : ${notices}">
+    <tr>
+            <td id="td-admin" th:text="${notice.messageOwner}">...</td>
+            <td id="td-dato" th:text="${notice.date}">...</td>
+            <td id="td-message" th:text="${notice.message}">...</td>
+            <td id="td-button"><a th:href="@{'/deleteNotice/'+${notice.id}}"/>
+                <button class="udførtButton"> Udført!</button></td>
+    </tr>
     </th:block>
+
 </table>
 
 <div>
