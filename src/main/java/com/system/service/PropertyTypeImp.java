@@ -16,8 +16,7 @@ public class PropertyTypeImp {
 
 
     public List<PropertyType> fetchAll(){
-        List<PropertyType> listOfPropertyTypes = propertyTypeRepository.findAll();
 
-        return listOfPropertyTypes;
+        return propertyTypeRepository.findAll();
     }
 }

@@ -153,19 +153,20 @@ public class HomeController {
     //EMPLOYEES
     @RequestMapping(value = {"/employees"}, method = RequestMethod.GET)
     public ModelAndView employees() {
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndView = new ModelAndView("list");
         modelAndView.setViewName("employees");
+        modelAndView.addObject("users",userServiceImp.fetchAll());
 
         return modelAndView;
     }
 
     @RequestMapping(value = {"/employeesEmployee"}, method = RequestMethod.GET)
     public ModelAndView employeesEmployee() {
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndView = new ModelAndView("list");
         modelAndView.setViewName("employeesEmployee");
+        modelAndView.addObject("users",userServiceImp.fetchAll());
         return modelAndView;
     }
-
 
 
 }

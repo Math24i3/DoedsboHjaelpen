@@ -31,6 +31,22 @@
 
 </div>
 
+<div>
+<table>
+
+    <th:block th:each="user : ${users}">
+        <tr>
+            <td th:text="${user.name}">...</td>
+            <td th:text="${user.lastName}">...</td>
+            <td th:text="${user.email}">...</td>
+
+        </tr>
+    </th:block>
+
+</table>
+
+</div>
+
 
 <div id="create-employee-button">
     <a th:href="@{'/register'}" class="createButton">Opret ansat</a>

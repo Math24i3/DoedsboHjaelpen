@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 
 
 @Service
@@ -46,8 +47,13 @@ public class UserServiceImp implements UserService {
 
     public User currentUser(String email){
 
-        User user = userRepository.findByEmail(email);
-        return user;
+        return userRepository.findByEmail(email);
+    }
+
+    public List<User> fetchAll(){
+
+        return userRepository.findAll();
+
     }
 
 
