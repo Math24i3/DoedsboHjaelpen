@@ -45,8 +45,10 @@ public class HomeController {
     @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
     public ModelAndView home(Model model, Authentication authentication) {
         User user = userServiceImp.currentUser(authentication.getName());
-        List<Assignment> assignments = assignmentImp.getAssignment();
-
+        List<Assignment> assignments = assignmentImp.getAssignments();
+        for (GrantedAuthority e: authentication.getAuthorities()) {
+            System.out.println(e.getAuthority());
+        }
     model.addAttribute("assignments", assignments);
     model.addAttribute("user", user.getName());
     model.addAttribute("timeMessage", new TimeMessageGenerator().timeOfTheDay());
@@ -72,11 +74,21 @@ public class HomeController {
 
     }
 
+   @RequestMapping(value = "/assignment/{id}", method = RequestMethod.GET)
+   public ModelAndView showAssignment(@PathVariable("id") Integer id, Model model){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("assignment");
+        Assignment assignment = assignmentImp.getAssignmentById(id);
+       System.out.println(assignment);
+       model.addAttribute("assignment", assignment);
+        return modelAndView;
+   }
+
     @RequestMapping(value = {"/homeEmployee"}, method = RequestMethod.GET)
     public ModelAndView homeEmployee(Model model, Authentication authentication) {
         User user = userServiceImp.currentUser(authentication.getName());
         TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
-        List<Assignment> assignments = assignmentImp.getAssignment();
+        List<Assignment> assignments = assignmentImp.getAssignments();
 
         model.addAttribute("assignments", assignments);
         model.addAttribute("user", user.getName());

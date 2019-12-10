@@ -367,6 +367,9 @@ public class Assignment {
         this.propertyTypes = propertyTypes;
     }
 
+
+
+
     @Override
     public String toString() {
         return "Assignment{" +

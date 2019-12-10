@@ -3,6 +3,7 @@ package com.system.service;
 import com.system.model.Assignment;
 
 import com.system.model.PropertyType;
+import com.system.model.Role;
 import com.system.repository.AssignmentRepository;
 import com.system.repository.PropertyTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +33,7 @@ public class AssignmentImp {
         assignmentRepository.saveAndFlush(ass);
     }
 
-    public List<Assignment> getAssignment(){
+    public List<Assignment> getAssignments(){
         List<Assignment> assignments = assignmentRepository.findAll();
 
         for (Assignment a: assignments) {
@@ -41,6 +42,11 @@ public class AssignmentImp {
         }
         return assignments;
 
+    }
+
+    public Assignment getAssignmentById(int id){
+        Assignment assignment = assignmentRepository.getAssignmentById(id);
+        return assignment;
     }
 
 
