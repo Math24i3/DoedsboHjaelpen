@@ -31,5 +31,21 @@
 
 </div>
 
+<div>
+    <table>
+
+        <th:block th:each="user : ${users}">
+            <tr>
+                <td th:text="${user.name}">...</td>
+                <td th:text="${user.lastName}">...</td>
+                <td th:text="${user.email}">...</td>
+
+            </tr>
+        </th:block>
+
+    </table>
+
+</div>
+
 </body>
 </html>
