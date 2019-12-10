@@ -2,15 +2,13 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <title>Opret opgave</title>
-    <link rel="stylesheet"type="text/css" href="stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
     <link rel="stylesheet" href="../static/stylesheet.css">
     <meta charset="utf-8"/>
 
 </head>
 <body>
-
 <div class="header-box">
-
     <img src="https://affald-genbrug.dk/wp-content/uploads/2019/10/D%C3%B8dsbo-Hj%C3%A6lpen.png?fbclid=IwAR023WBxvvV23keLoryC4z8cWV82Ypbd-U-jCiJh0OgGy0Qn8DcdEeku6tY" height="126" width="614"/>
 
     <div class="header-nav-bar">
@@ -30,9 +28,7 @@
 <div class="form-container">
     <form  th:action="@{/saveAssignment}" th:object="${'assignment'}" method="post" class="form-signin">
         <div class="form-group" style="border-right: 1px solid #275888; border-bottom: 1px solid #275888">
-
             <h3>Addresseoplysninger:</h3>
-
             <div class="" >
                 <input type="text" name="street_name" placeholder="Gade" class="form-look-text" />
             </div>
