@@ -30,11 +30,11 @@
         <div class="form-group" style="border-right: 1px solid #275888; border-bottom: 1px solid #275888">
             <h3>Addresseoplysninger:</h3>
             <div class="" >
-                <input type="text" name="street_name" placeholder="Gade" class="form-look-text" />
+                <input type="text" name="street_name" placeholder="Gade" class="form-look-text" required/>
             </div>
 
             <div class="">
-                <input type="number" name="street_number" placeholder="Hus nummer" class="form-look-text" style="width: 120px" />
+                <input type="number" name="street_number" placeholder="Hus nummer" class="form-look-text" style="width: 120px" required/>
             </div>
 
             <div class="">
@@ -42,21 +42,21 @@
             </div>
 
             <div class="">
-                <input type="text" name="city" placeholder="By" class="form-look-text" />
+                <input type="text" name="city" placeholder="By" class="form-look-text" required/>
             </div>
 
             <div class="" style="border-bottom: 1px solid #275888; padding-bottom: 20px">
-                <input type="number" name="zip" maxlength="4" placeholder="Postnummer" class="form-look-text" style="width: 120px"/>
+                <input type="number" name="zip" maxlength="4" placeholder="Postnummer" class="form-look-text" style="width: 120px" required/>
             </div>
 
 
 
             <p style="margin-top: 10px; font-weight: 800;">Dato for besigtigelse</p>
             <div  style="border-bottom: 1px solid #275888; padding-bottom: 20px">
-                <input type="date" id="date" name="assignment_Date" placeholder="Dato for besigtigelse" class="form-look-calender" />
+                <input type="date" id="date" name="assignment_Date" placeholder="Dato for besigtigelse" class="form-look-calender" required />
             </div>
             <p style="font-weight: 800;">Vælg boligtype</p>
-            <div  th:object="${propertyType}" style="border-bottom: 1px solid #275888; padding-bottom: 20px">
+            <div  th:object="${propertyType}" style="border-bottom: 1px solid #275888; padding-bottom: 20px" >
                 <select class="form-look-drpdwn" id="id" name="property">
                     <option disabled>Vælg type bolig</option>
                     <option th:each="propertyType : ${propertyTypes}"
