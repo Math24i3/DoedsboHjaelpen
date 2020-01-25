@@ -8,6 +8,8 @@ import com.system.service.NoticeServiceImp;
 import com.system.service.PropertyTypeImp;
 import com.system.service.UserServiceImp;
 import com.system.tools.TimeMessageGenerator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
@@ -39,9 +41,11 @@ public class HomeController {
     @Autowired
     PropertyTypeImp propertyTypeImp;
 
+    private static final Logger logger =
+            LoggerFactory.getLogger(HomeController.class);
+
 
     //HOME and Create assignment
-
     @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
     public ModelAndView home(Model model, Authentication authentication) {
         User user = userServiceImp.currentUser(authentication.getName());
@@ -55,6 +59,20 @@ public class HomeController {
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.setViewName("home");
 
+        return modelAndView;
+    }
+
+    @RequestMapping(value = {"/homeEmployee"}, method = RequestMethod.GET)
+    public ModelAndView homeEmployee(Model model, Authentication authentication) {
+        User user = userServiceImp.currentUser(authentication.getName());
+        TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
+        List<Assignment> assignments = assignmentImp.getAssignments();
+
+        model.addAttribute("assignments", assignments);
+        model.addAttribute("user", user.getName());
+        model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("homeEmployee");
         return modelAndView;
     }
 
@@ -84,19 +102,7 @@ public class HomeController {
         return modelAndView;
    }
 
-    @RequestMapping(value = {"/homeEmployee"}, method = RequestMethod.GET)
-    public ModelAndView homeEmployee(Model model, Authentication authentication) {
-        User user = userServiceImp.currentUser(authentication.getName());
-        TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
-        List<Assignment> assignments = assignmentImp.getAssignments();
 
-        model.addAttribute("assignments", assignments);
-        model.addAttribute("user", user.getName());
-        model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("homeEmployee");
-        return modelAndView;
-    }
 
 //BULLETIN
 

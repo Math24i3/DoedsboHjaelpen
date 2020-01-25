@@ -8,10 +8,7 @@
 
 
 </head>
-
-
 <body>
-
 <div class="header-box">
 
     <a th:href="@{'/home'}"> <img src="https://affald-genbrug.dk/wp-content/uploads/2019/10/D%C3%B8dsbo-Hj%C3%A6lpen.png?fbclid=IwAR023WBxvvV23keLoryC4z8cWV82Ypbd-U-jCiJh0OgGy0Qn8DcdEeku6tY" height="126" width="614"/></a>
@@ -32,9 +29,6 @@
     <span th:text="${timeMessage}">Hej</span>
     <span th:text="${user}">Navn</span>
 </div>
-
-
-
 
 <div id="assignment-table-header">
     <div id="create-assignment-button">
@@ -57,7 +51,7 @@
         <td hidden th:text="${assignment.id}"/>
 
         <td id="as-addr">
-            <a target="_blank" th:href="${assignment.addressLink}" th:text="${assignment.street_name} + ' ' + ${assignment.street_number} + ', ' + ${assignment.zip} + ' ' + ${assignment.city}">
+            <a target="_blank" th:href="${assignment.addressLink}" th:text="${assignment.street_name} + ' ' + ${assignment.street_number} + ', ' + ${assignment.zip} + ' ' + ${assignment.city}"/>
         </td>
 
         <td style="color: black;" id="as-date" th:text="${assignment.assignment_date}"/>
@@ -70,9 +64,6 @@
     </tr>
     </tbody>
 </table>
-</div>
-</div>
-
 </div>
 
 <script th:inline="javascript">

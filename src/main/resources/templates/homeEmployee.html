@@ -32,6 +32,41 @@
     <span th:text="${user}">Navn</span>
 </div>
 
+<div id="assignment-table-header">
+
+    <h2>Opgaver og Rydninger</h2>
+
+    <table class="blueTable">
+        <thead>
+        <tr class="fields" >
+            <th hidden>Id</th>
+            <th>Adresse</th>
+            <th>Dato</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="assignment: ${assignments}">
+
+            <td hidden th:text="${assignment.id}"/>
+
+            <td id="as-addr">
+                <a target="_blank" th:href="${assignment.addressLink}" th:text="${assignment.street_name} + ' ' + ${assignment.street_number} + ', ' + ${assignment.zip} + ' ' + ${assignment.city}"/>
+            </td>
+
+            <td style="color: black;" id="as-date" th:text="${assignment.assignment_date}"/>
+
+            <td id="as-action">
+                <a th:href="@{'/assignment/'+${assignment.id}}"/>
+                <button class="view-button">Se mere</button>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
 
 
 </body>
