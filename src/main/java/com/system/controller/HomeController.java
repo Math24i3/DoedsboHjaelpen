@@ -41,10 +41,6 @@ public class HomeController {
     @Autowired
     PropertyTypeImp propertyTypeImp;
 
-    private static final Logger logger =
-            LoggerFactory.getLogger(HomeController.class);
-
-
     //HOME and Create assignment
     @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
     public ModelAndView home(Model model, Authentication authentication) {

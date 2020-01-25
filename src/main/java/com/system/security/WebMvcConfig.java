@@ -22,41 +22,4 @@ public class WebMvcConfig implements WebMvcConfigurer {
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         return bCryptPasswordEncoder;
     }
-
-    @Bean
-    public DeviceResolverHandlerInterceptor
-    deviceResolverHandlerInterceptor() {
-        return new DeviceResolverHandlerInterceptor();
-    }
-
-    @Bean
-    public DeviceHandlerMethodArgumentResolver
-    deviceHandlerMethodArgumentResolver() {
-        return new DeviceHandlerMethodArgumentResolver();
-    }
-
-    @Override
-    public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(deviceResolverHandlerInterceptor());
-    }
-
-    @Override
-    public void addArgumentResolvers(
-            List<HandlerMethodArgumentResolver> argumentResolvers) {
-        argumentResolvers.add(deviceHandlerMethodArgumentResolver());
-    }
-
-
-    @Bean
-    public SitePreferenceHandlerInterceptor
-    sitePreferenceHandlerInterceptor() {
-        return new SitePreferenceHandlerInterceptor();
-    }
-
-    @Bean
-    public SitePreferenceHandlerMethodArgumentResolver
-    sitePreferenceHandlerMethodArgumentResolver() {
-        return new SitePreferenceHandlerMethodArgumentResolver();
-    }
-
 }
