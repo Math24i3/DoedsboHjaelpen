@@ -49,6 +49,9 @@ public class Assignment {
     @Column (name = "dish_washer")
     private Integer dish_washer;
 
+    @Column(name = "description_appliances")
+    private String description_appliances;
+
     @Column(name = "carpets")
     private Integer carpets;
 
@@ -57,6 +60,9 @@ public class Assignment {
 
     @Column (name = "bolts_and_screws")
     private Integer bolts_and_screws;
+
+    @Column(name = "description_div")
+    private String description_div;
 
     @Column (name = "curtains")
     private Integer curtains;
@@ -70,6 +76,9 @@ public class Assignment {
     @Column (name = "lamp")
     private Integer lamps;
 
+    @Column(name = "description_curtains")
+    private String description_curtains;
+
     @Column (name = "paintings")
     private Integer paintings;
 
@@ -78,6 +87,9 @@ public class Assignment {
 
     @Column (name = "keys_customer")
     private Integer keys;
+
+    @Column(name = "description_personal")
+    private String description_personal;
 
     @Column (name = "cellar_and_loft")
     private Integer cellar_and_loft;
@@ -90,6 +102,9 @@ public class Assignment {
 
     @Column (name = "return_key")
     private Integer return_keys;
+
+    @Column(name = "description_important")
+    private String description_important;
 
     @Transient
     private String addressLink;
@@ -368,7 +383,45 @@ public class Assignment {
     }
 
 
+    public String getDescription_appliances() {
+        return description_appliances;
+    }
 
+    public void setDescription_appliances(String description_appliances) {
+        this.description_appliances = description_appliances;
+    }
+
+    public String getDescription_div() {
+        return description_div;
+    }
+
+    public void setDescription_div(String description_div) {
+        this.description_div = description_div;
+    }
+
+    public String getDescription_curtains() {
+        return description_curtains;
+    }
+
+    public void setDescription_curtains(String description_curtains) {
+        this.description_curtains = description_curtains;
+    }
+
+    public String getDescription_personal() {
+        return description_personal;
+    }
+
+    public void setDescription_personal(String description_personal) {
+        this.description_personal = description_personal;
+    }
+
+    public String getDescription_important() {
+        return description_important;
+    }
+
+    public void setDescription_important(String description_important) {
+        this.description_important = description_important;
+    }
 
     @Override
     public String toString() {

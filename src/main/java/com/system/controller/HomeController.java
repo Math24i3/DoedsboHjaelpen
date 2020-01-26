@@ -9,10 +9,7 @@ import com.system.service.NoticeServiceImp;
 import com.system.service.PropertyTypeImp;
 import com.system.service.UserServiceImp;
 import com.system.tools.TimeMessageGenerator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.security.core.Authentication;
@@ -20,10 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.View;
 
-import javax.servlet.http.HttpServletRequest;
-import java.time.ZonedDateTime;
 import java.util.*;
 
 @Controller
@@ -159,7 +153,7 @@ public class HomeController {
     }
 
 
-
+    //Get mapping for home page employee
     @RequestMapping(value = {"/homeEmployee"}, method = RequestMethod.GET)
     public ModelAndView homeEmployee(Model model, Authentication authentication) {
         User user = userServiceImp.currentUser(authentication.getName());

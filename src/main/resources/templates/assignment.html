@@ -77,14 +77,8 @@
             margin: 20px;
             height: 100px;
         }
-        .header-nav-bar .btn-active{
-            background-color: #22cd59;
-            color: white;
-            transition: 0.5s;
-        }
-        .btn-active:hover{
-            background-color: #46e593;
-        }
+
+
         .header-nav-bar .logout-btn{
             color: white;
             background-color: #3e4da4;
@@ -101,7 +95,8 @@
         .form-container{
             font-family: Helvetica;
             background-color: #337ab7;
-            width: 700px;
+            width: 1000px;
+            min-width: 1050px;
             border-radius: 5px;
             margin: 0 auto;
             margin-top: -40px;
@@ -110,18 +105,7 @@
         .input-checkbox{
             cursor: pointer;
         }
-        .container {
-            display: block;
-            position: relative;
-            padding-left: 35px;
-            margin-bottom: 12px;
-            cursor: pointer;
-            font-size: 22px;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
+
         /* Hide the browser's default checkbox */
         .container input {
             position: absolute;
@@ -130,17 +114,7 @@
             height: 0;
             width: 0;
         }
-        #assignment-table-header{
-            color: white;
-            background-color: #3e4da4;
-            text-align: center;
-            width: 720px;
-            float: right;
-            margin-right: 20px;
-            margin-top: 20px;
-            border-radius: 4px;
-            height: 65px;
-        }
+
         .form-group{
             font-family: Helvetica;
             float: left;
@@ -167,91 +141,144 @@
     </div>
 </div>
 <div style="background-color: #bdffcc; border-radius: 4px">
-    <h2 style="margin-left: 30px">Oversigt over af rydning:</h2>
+    <h2 style="margin-left: 30px">Oversigt over rydning:</h2>
     <div class="form-container">
-            <div class="form-group" style="border-right: 1px solid #275888; border-bottom: 1px solid #275888">
-                <h3>Addresseoplysninger:</h3>
-                <p>Addresse</p>
-                <div class="" >
-                    <input type="text" name="street_name" th:value="${assignment.street_name} + ' ' + ${assignment.street_number} + ', ' + ${assignment.floor}" disabled class="form-look-text" />
-                </div>
+        <div class="form-group" style="border-right: 1px solid #275888; border-bottom: 1px solid #275888">
 
-                <p>By</p>
-                <div class="">
-                    <input type="text" name="city" th:value="${assignment.city}" disabled class="form-look-text" />
-                </div>
-                <p>Postnummer</p>
-                <div class="" style="border-bottom: 1px solid #275888; padding-bottom: 5px">
-                    <input type="number" name="zip" th:value="${assignment.zip}" disabled class="form-look-text" style="width: 120px"/>
-                </div>
-                <p>Dato for besigtigelse</p>
-                <div class="" style="border-bottom: 1px solid #275888; padding-bottom: 10px">
-                    <input type="text" name="date" id="date" th:value="${assignment.assignment_date}" disabled class="form-look-text" style="margin-top: 5px; font-weight: 800;"/>
-                </div>
-                <p>boligtype</p>
-                <div class="" style="border-bottom: 1px solid #275888; padding-bottom: 20px">
-                    <input type="text" name="property" th:value="${assignment.propertyTypes}" disabled class="form-look-text" style="border-bottom: 1px solid #275888; padding-bottom: 5px"/>
-                </div>
+            <h3>Addresseoplysninger:</h3>
+            <p>Addresse</p>
+            <div class="">
+                <input type="text" name="street_name"
+                       th:value="${assignment.street_name} + ' ' + ${assignment.street_number} + ', ' + ${assignment.floor}"
+                       disabled class="form-look-text" style="width: 300px" required/>
+            </div>
 
+            <p>By</p>
+            <div class="">
+                <input type="text" name="city" th:value="${assignment.city}" disabled class="form-look-text"/>
+            </div>
+            <p>Postnummer</p>
+            <div class="" style="border-bottom: 1px solid #275888; padding-bottom: 5px">
+                <input type="number" name="zip" th:value="${assignment.zip}" disabled class="form-look-text"
+                       style="width: 120px"/>
+            </div>
 
-                <p>Beskrivelse/tilføjelse til opgaven</p>
-                <div style=" padding-bottom: 5px; margin-bottom: 5px">
-                    <textarea type="text" name="description" th:value="${assignment.description}" disabled style="height: 50px; width: 350px" class="form-look-text"></textarea>
+            <p>Data for opgaven/rydning</p>
+            <div class="" style="border-bottom: 1px solid #275888; padding-bottom: 10px">
+                <input type="text" name="date" id="date" th:value="${assignment.assignment_date}" disabled
+                       class="form-look-text" style="margin-top: 5px; font-weight: 800;"/>
+            </div>
+            <p>boligtype</p>
+            <div class="" style="border-bottom: 1px solid #275888; padding-bottom: 20px">
+                <input type="text" name="property" th:value="${assignment.propertyTypes}" disabled
+                       class="form-look-text" style="border-bottom: 1px solid #275888; padding-bottom: 5px"/>
+            </div>
+            <p>Beskrivelse/tilføjelse til opgaven</p>
+            <div style=" padding-bottom: 5px; margin-bottom: 5px">
+                <textarea type="text" name="description" th:field="${assignment.description}" disabled
+                          style="height: 50px; width: 350px" class="form-look-text"></textarea>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+
+            <div class="checkbox-categories">
+                <p style="margin-bottom: 0px; font-weight: 800">Hårde hvidevare</p>
+
+                <input class="input-checkbox" type="checkbox" name="stove" th:checked="${assignment.stove}" disabled/>
+                Komfur<br>
+
+                <input class="input-checkbox" type="checkbox" name="fridge" th:checked="${assignment.fridge}" disabled/>
+                Køleskab/Fryser<br>
+
+                <input class="input-checkbox" type="checkbox" name="washing_machine"
+                       th:checked="${assignment.washing_machine}" disabled> Vaskinemaskine<br>
+
+                <input class="input-checkbox" type="checkbox" name="dish_washer" th:checked="${assignment.dish_washer}"
+                       disabled> Opvaskemaskine<br>
+
+                <div style="margin-bottom: 0px">
+                    <textarea type="text" name="description_appliances" th:field="${assignment.description_appliances}"
+                              disabled style="width: 250px; height: 40px" class="form-look-text"></textarea>
                 </div>
 
             </div>
+            <div class="checkbox-categories">
+                <p style="margin-bottom: 0px; font-weight: 800">Diverse</p>
+                <input class="input-checkbox" type="checkbox" name="carpets" th:checked="${assignment.carpets}"
+                       disabled/> Tæpper<br>
 
-            <div class="form-group">
+                <input class="input-checkbox" type="checkbox" name="carpet_tape" th:checked="${assignment.carpet_tape}"
+                       disabled/> Tæppetape<br>
 
-                <div class="checkbox-categories">
-                    <p style="margin-bottom: 0px; font-weight: 800">Hårde hvidevarer</p>
+                <input class="input-checkbox" type="checkbox" name="bolts_and_screws"
+                       th:checked="${assignment.bolts_and_screws}" disabled/> Søm og skruer<br>
 
-                    <input class="input-checkbox" type="checkbox" name="stove" th:checked="${assignment.stove}" disabled/> Komfur<br>
-
-                    <input class="input-checkbox" type="checkbox" name="fridge" th:checked="${assignment.fridge}" disabled/> Køleskab/Fryser<br>
-
-                    <input class="input-checkbox" type="checkbox" name="washing_machine" th:checked="${assignment.washing_machine}" disabled> Vaskinemaskine<br>
-
-                    <input class="input-checkbox" type="checkbox" name="dish_washer" th:checked="${assignment.dish_washer}" disabled> Opvaskemaskine<br>
-                </div>
-                <div class="checkbox-categories">
-                    <p style="margin-bottom: 0px; font-weight: 800">Diverse</p>
-                    <input class="input-checkbox" type="checkbox" name="carpets" th:checked="${assignment.carpets}" disabled/> Tæpper<br>
-
-                    <input class="input-checkbox" type="checkbox" name="carpet_tape" th:checked="${assignment.carpet_tape}" disabled/> Tæppetape<br>
-
-                    <input class="input-checkbox" type="checkbox" name="bolts_and_screws" th:checked="${assignment.bolts_and_screws}" disabled/> Søm og skruer<br>
-                </div>
-                <div class="checkbox-categories">
-                    <p style="margin-bottom: 0px; font-weight: 800">Ophæng</p>
-                    <input class="input-checkbox" type="checkbox" name="curtains" th:checked="${assignment.curtains}" disabled/> Gardiner<br>
-
-                    <input class="input-checkbox" type="checkbox" name="curtainrod" th:checked="${assignment.curtainrod}" disabled/> Gardinstænger<br>
-
-                    <input class="input-checkbox" type="checkbox" name="blinds" th:checked="${assignment.blinds}" disabled/> Persienner<br>
-
-                    <input class="input-checkbox" type="checkbox" name="lamps" th:checked="${assignment.lamps}" disabled/> Lamper<br>
-                </div>
-                <div class="checkbox-categories">
-                    <p style="margin-bottom: 0px; font-weight: 800">Personlige ejendele</p>
-                    <input class="input-checkbox" type="checkbox" name="paintings" th:checked="${assignment.paintings}" disabled/> Malerier<br>
-
-                    <input class="input-checkbox" type="checkbox" name="documents" th:checked="${assignment.documents}" disabled/> Dokumenter<br>
-
-                    <input class="input-checkbox" type="checkbox" name="keys" th:checked="${assignment.keys}" disabled/> Nøgler<br>
-                </div>
-                <div class="checkbox-categories">
-                    <p style="margin-bottom: 0px; font-weight: 800">Vigtigt</p>
-                    <input class="input-checkbox" type="checkbox" name="cellar_and_loft" th:checked="${assignment.cellar_and_loft}" disabled/> Kælder/Loftrum<br>
-
-                    <input class="input-checkbox" type="checkbox" name="cleaning_service" th:checked="${assignment.cleaning_service}" disabled/> Tilkøb af hovedrengøring<br>
-
-                    <input class="input-checkbox" type="checkbox" name="accessibility_tools" th:checked="${assignment.accessibility_tools}" disabled/> Hjælpemidler gemmes<br>
-
-                    <input class="input-checkbox" type="checkbox" name="return_keys" th:checked="${assignment.return_keys}" disabled/> Aflever nøgler tilbage<br>
+                <div style="margin-bottom: 0px">
+                    <textarea type="text" name="description_div" th:field="${assignment.description_div}" disabled
+                              style="width: 250px; height: 40px" class="form-look-text"></textarea>
                 </div>
             </div>
-    </div>
+            <div class="checkbox-categories">
+                <p style="margin-bottom: 0px; font-weight: 800">Ophæng</p>
+                <input class="input-checkbox" type="checkbox" name="curtains" th:checked="${assignment.curtains}"
+                       disabled/> Gardiner<br>
+
+                <input class="input-checkbox" type="checkbox" name="curtainrod" th:checked="${assignment.curtainrod}"
+                       disabled/> Gardinstænger<br>
+
+                <input class="input-checkbox" type="checkbox" name="blinds" th:checked="${assignment.blinds}" disabled/>
+                Persienner<br>
+
+                <input class="input-checkbox" type="checkbox" name="lamps" th:checked="${assignment.lamps}" disabled/>
+                Lamper<br>
+
+                <div style="margin-bottom: 0px">
+                    <textarea type="text" name="description_curtains" th:field="${assignment.description_curtains}"
+                              disabled style="width: 250px; height: 40px" class="form-look-text"></textarea>
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <div class="checkbox-categories">
+                <p style="margin-bottom: 0px; font-weight: 800">Vigtigt</p>
+                <input class="input-checkbox" type="checkbox" name="cellar_and_loft"
+                       th:checked="${assignment.cellar_and_loft}" disabled/> Kælder/Loftrum<br>
+
+                <input class="input-checkbox" type="checkbox" name="cleaning_service"
+                       th:checked="${assignment.cleaning_service}" disabled/> Tilkøb af hovedrengøring<br>
+
+                <input class="input-checkbox" type="checkbox" name="accessibility_tools"
+                       th:checked="${assignment.accessibility_tools}" disabled/> Hjælpemidler gemmes<br>
+
+                <input class="input-checkbox" type="checkbox" name="return_keys" th:checked="${assignment.return_keys}"
+                       disabled/> Aflever nøgler tilbage<br>
+
+                <div style="margin-bottom: 0px">
+                    <textarea type="text" name="description_important" th:field="${assignment.description_important}"
+                              disabled style="width: 250px; height: 40px" class="form-look-text"></textarea>
+                </div>
+            </div>
+
+            <div class="checkbox-categories">
+                <p style="margin-bottom: 0px; font-weight: 800">Personlige ejendele</p>
+                <input class="input-checkbox" type="checkbox" name="paintings" th:checked="${assignment.paintings}"
+                       disabled/> Billeder<br>
+
+                <input class="input-checkbox" type="checkbox" name="documents" th:checked="${assignment.documents}"
+                       disabled/> Dokumenter<br>
+
+                <input class="input-checkbox" type="checkbox" name="keys" th:checked="${assignment.keys}" disabled/>
+                Fundne nøgler gemmes<br>
+
+                <div style="margin-bottom: 0px">
+                    <textarea type="text" name="description_personal" th:field="${assignment.description_personal}"
+                              disabled style="width: 250px; height: 40px" class="form-look-text"></textarea>
+                </div>
+            </div>
+        </div>
 </div>
 <script>
     //$('#date').datepicker({ dateFormat: 'yy-mm-dd' }).getTimezoneOffset().val();

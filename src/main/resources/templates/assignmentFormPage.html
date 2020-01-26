@@ -24,59 +24,67 @@
     </div>
 </div>
 <div style="background-color: #bdffcc; border-radius: 4px">
-<h2 style="margin-left: 30px">Opret opgave/rydning</h2>
-<div class="form-container">
-    <form  th:action="@{/saveAssignment}" th:object="${'assignment'}" method="post" class="form-signin">
-        <div class="form-group" style="border-right: 1px solid #275888; border-bottom: 1px solid #275888">
-            <h3>Addresseoplysninger:</h3>
-            <div class="" >
-                <input type="text" name="street_name" placeholder="Gade" class="form-look-text" required/>
+    <div>
+        <h2 style="margin-left: 30px">Opret opgave/rydning</h2>
+    </div>
+
+    <div class="form-container">
+        <form th:action="@{/saveAssignment}" th:object="${'assignment'}" method="post" class="form-signin">
+            <div class="form-group" style="border-right: 1px solid #275888; border-bottom: 1px solid #275888">
+
+                <h3>Addresseoplysninger:</h3>
+                <div class="">
+                    <input type="text" name="street_name" placeholder="Gade" class="form-look-text" required/>
+                </div>
+
+                <div class="">
+                    <input type="number" name="street_number" placeholder="Hus nummer" class="form-look-text"
+                           style="width: 120px" required/>
+                </div>
+
+                <div class="">
+                    <input type="text" name="floor" placeholder="Etage og side" class="form-look-text"
+                           style="width: 120px"/>
+                </div>
+
+                <div class="">
+                    <input type="number" name="zip" maxlength="4" placeholder="Postnummer" class="form-look-text"
+                           style="width: 120px" required/>
+                </div>
+
+                <div class="" style="border-bottom: 1px solid #275888; padding-bottom: 20px">
+                    <input type="text" name="city" placeholder="By" class="form-look-text" required/>
+                </div>
+
+
+                <p style="margin-top: 10px; font-weight: 800;">Dato for opgaven/rydningen</p>
+                <div style="border-bottom: 1px solid #275888; padding-bottom: 20px">
+                    <input type="date" id="date" name="assignment_Date" placeholder="Dato for besigtigelse"
+                           class="form-look-calender" required/>
+                </div>
+
+                <p style="font-weight: 800;">Vælg boligtype</p>
+                <div th:object="${propertyType}" style="border-bottom: 1px solid #275888; padding-bottom: 20px">
+                    <select class="form-look-drpdwn" id="id" name="property">
+                        <option disabled>Vælg type bolig</option>
+                        <option th:each="propertyType : ${propertyTypes}"
+                                th:value="${propertyType.type}"
+                                th:text="'Type: ' +${propertyType.type}">
+                        </option>
+                    </select>
+                </div>
+                <p style="font-weight: 800;">Beskrivelse/tilføjelse til opgaven</p>
+                <div style=" padding-bottom: 20px">
+                    <textarea type="text" name="description" placeholder="Beskrivelse af opgaven"
+                              style="height: 50px; width: 350px" class="form-look-text"></textarea>
+                </div>
+
             </div>
 
-            <div class="">
-                <input type="number" name="street_number" placeholder="Hus nummer" class="form-look-text" style="width: 120px" required/>
-            </div>
+            <div class="form-group">
 
-            <div class="">
-                <input type="text" name="floor" placeholder="Etage og side" class="form-look-text" style="width: 120px" />
-            </div>
-
-            <div class="" >
-                <input type="number" name="zip" maxlength="4" placeholder="Postnummer" class="form-look-text" style="width: 120px" required/>
-            </div>
-
-            <div class="" style="border-bottom: 1px solid #275888; padding-bottom: 20px">
-                <input type="text" name="city" placeholder="By" class="form-look-text" required/>
-            </div>
-
-
-
-            <p style="margin-top: 10px; font-weight: 800;">Dato for besigtigelse</p>
-            <div  style="border-bottom: 1px solid #275888; padding-bottom: 20px">
-                <input type="date" id="date" name="assignment_Date" placeholder="Dato for besigtigelse" class="form-look-calender" required />
-            </div>
-
-            <p style="font-weight: 800;">Vælg boligtype</p>
-            <div  th:object="${propertyType}" style="border-bottom: 1px solid #275888; padding-bottom: 20px" >
-                <select class="form-look-drpdwn" id="id" name="property">
-                    <option disabled>Vælg type bolig</option>
-                    <option th:each="propertyType : ${propertyTypes}"
-                            th:value="${propertyType.type}"
-                            th:text="'Type: ' +${propertyType.type}">
-                    </option>
-                </select>
-            </div >
-            <p style="font-weight: 800;">Beskrivelse/tilføjelse til opgaven</p>
-            <div style=" padding-bottom: 20px">
-                <textarea type="text" name="description" placeholder="Beskrivelse af opgaven" style="height: 50px; width: 350px" class="form-look-text"></textarea>
-            </div>
-
-        </div>
-
-        <div class="form-group">
-
-            <div class="checkbox-categories">
-                    <p style="margin-bottom: 0px; font-weight: 800">Hårde hvidevarer</p>
+                <div class="checkbox-categories">
+                    <p style="margin-bottom: 0px; font-weight: 800">Hårde hvidevare</p>
 
                     <input class="input-checkbox" type="checkbox" name="stove" th:default="0" value="1"/> Komfur<br>
 
@@ -85,35 +93,56 @@
                     <input class="input-checkbox" type="checkbox" name="washing_machine" th:default="0" value="1"> Vaskinemaskine<br>
 
                     <input class="input-checkbox" type="checkbox" name="dish_washer" th:default="0" value="1"> Opvaskemaskine<br>
-            </div>
-            <div class="checkbox-categories">
-                <p style="margin-bottom: 0px; font-weight: 800">Diverse</p>
+
+                    <div style="margin-bottom: 0px">
+                        <textarea type="text" name="description_appliances" placeholder="Andet til hvidevare"
+                                  style="width: 250px; height: 40px" class="form-look-text"></textarea>
+                    </div>
+
+                </div>
+                <div class="checkbox-categories">
+                    <p style="margin-bottom: 0px; font-weight: 800">Diverse</p>
                     <input class="input-checkbox" type="checkbox" name="carpets" th:default="0" value="1"/> Tæpper<br>
 
-                    <input class="input-checkbox" type="checkbox" name="carpet_tape" th:default="0" value="1"/> Tæppetape<br>
+                    <input class="input-checkbox" type="checkbox" name="carpet_tape" th:default="0" value="1"/>
+                    Tæppetape<br>
 
-                    <input class="input-checkbox" type="checkbox" name="bolts_and_screws" th:default="0" value="1"/> Søm og skruer<br>
-            </div>
-            <div class="checkbox-categories">
-                <p style="margin-bottom: 0px; font-weight: 800">Ophæng</p>
-                    <input class="input-checkbox" type="checkbox" name="curtains" th:default="0" value="1"/> Gardiner<br>
+                    <input class="input-checkbox" type="checkbox" name="bolts_and_screws" th:default="0" value="1"/> Søm
+                    og skruer<br>
 
-                    <input class="input-checkbox" type="checkbox" name="curtainrod" th:default="0" value="1"/> Gardinstænger<br>
+                    <div style="margin-bottom: 0px">
+                        <textarea type="text" name="description_div" placeholder="Andet til diverse"
+                                  style="width: 250px; height: 40px" class="form-look-text"></textarea>
+                    </div>
+                </div>
+                <div class="checkbox-categories">
+                    <p style="margin-bottom: 0px; font-weight: 800">Ophæng</p>
+                    <input class="input-checkbox" type="checkbox" name="curtains" th:default="0" value="1"/>
+                    Gardiner<br>
 
-                    <input class="input-checkbox" type="checkbox" name="blinds" th:default="0" value="1"/> Persienner<br>
+                    <input class="input-checkbox" type="checkbox" name="curtainrod" th:default="0" value="1"/>
+                    Gardinstænger<br>
+
+                    <input class="input-checkbox" type="checkbox" name="blinds" th:default="0" value="1"/>
+                    Persienner<br>
 
                     <input class="input-checkbox" type="checkbox" name="lamps" th:default="0" value="1"/> Lamper<br>
-            </div>
-            <div class="checkbox-categories">
-                <p style="margin-bottom: 0px; font-weight: 800">Personlige ejendele</p>
-                    <input class="input-checkbox" type="checkbox" name="paintings" th:default="0" value="1"/> Malerier<br>
 
-                    <input class="input-checkbox" type="checkbox" name="documents" th:default="0" value="1"/> Dokumenter<br>
+                    <div style="margin-bottom: 0px">
+                        <textarea type="text" name="description_curtains" placeholder="Andet til ophæng"
+                                  style="width: 250px; height: 40px" class="form-look-text"></textarea>
+                    </div>
+                </div>
 
-                    <input class="input-checkbox" type="checkbox" name="keys" th:default="0" value="1"/> Nøgler<br>
+
+                <div>
+                    <button type="submit" class="btn btn-primary btn-block">Opret opgave</button>
+                </div>
+
             </div>
-            <div class="checkbox-categories">
-                <p style="margin-bottom: 0px; font-weight: 800">Vigtigt</p>
+            <div class="form-group">
+                <div class="checkbox-categories">
+                    <p style="margin-bottom: 0px; font-weight: 800">Vigtigt</p>
                     <input class="input-checkbox" type="checkbox" name="cellar_and_loft" th:default="0" value="1"/> Kælder/Loftrum<br>
 
                     <input class="input-checkbox" type="checkbox" name="cleaning_service" th:default="0" value="1"/> Tilkøb af hovedrengøring<br>
@@ -121,15 +150,31 @@
                     <input class="input-checkbox" type="checkbox" name="accessibility_tools" th:default="0" value="1"/> Hjælpemidler gemmes<br>
 
                     <input class="input-checkbox" type="checkbox" name="return_keys" th:default="0" value="1"/> Aflever nøgler tilbage<br>
-            </div>
 
-            <div>
-                <div >
-                    <button type="submit" class="btn btn-primary btn-block">Opret opgave</button>
+                    <div style="margin-bottom: 0px">
+                        <textarea type="text" name="description_important" placeholder="Andet til vigtigt"
+                                  style="width: 250px; height: 40px" class="form-look-text"></textarea>
+                    </div>
+                </div>
+
+                <div class="checkbox-categories">
+                    <p style="margin-bottom: 0px; font-weight: 800">Personlige ejendele</p>
+                    <input class="input-checkbox" type="checkbox" name="paintings" th:default="0" value="1"/>
+                    Billeder<br>
+
+                    <input class="input-checkbox" type="checkbox" name="documents" th:default="0" value="1"/> Dokumenter<br>
+
+                    <input class="input-checkbox" type="checkbox" name="keys" th:default="0" value="1"/>Fundne nøgler
+                    gemmes<br>
+
+                    <div style="margin-bottom: 0px">
+                        <textarea type="text" name="description_personal" placeholder="Andet til personligt"
+                                  style="width: 250px; height: 40px" class="form-look-text"></textarea>
+                    </div>
                 </div>
             </div>
-        </div>
         </form>
+
     </div>
 </div>
 <script>

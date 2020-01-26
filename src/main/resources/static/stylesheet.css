@@ -173,7 +173,7 @@ a #left-btn{
 .form-group{
     font-family: Helvetica;
     float: left;
-    margin-left: 20px;
+    margin-left: 10px;
     padding-right: 30px;
      margin-top: 20px;
 
@@ -206,7 +206,8 @@ a #left-btn{
 .form-container{
     font-family: Helvetica;
     background-color: #337ab7;
-    width: 900px;
+    width: 1000px;
+    min-width: 1050px;
     border-radius: 5px;
     margin: 0 auto;
     margin-top: -40px;
