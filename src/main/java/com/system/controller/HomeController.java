@@ -2,6 +2,7 @@ package com.system.controller;
 
 
 import com.system.model.*;
+import com.system.repository.AssignmentRepository;
 import com.system.repository.PropertyTypeRepository;
 import com.system.service.AssignmentImp;
 import com.system.service.NoticeServiceImp;
@@ -11,6 +12,7 @@ import com.system.tools.TimeMessageGenerator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.security.core.Authentication;
@@ -18,6 +20,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.ZonedDateTime;
@@ -41,6 +44,9 @@ public class HomeController {
     @Autowired
     PropertyTypeImp propertyTypeImp;
 
+    @Autowired
+    AssignmentRepository assignmentRepository;
+
     //HOME and Create assignment
     @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
     public ModelAndView home(Model model, Authentication authentication) {
@@ -59,19 +65,7 @@ public class HomeController {
         //
     }
 
-    @RequestMapping(value = {"/homeEmployee"}, method = RequestMethod.GET)
-    public ModelAndView homeEmployee(Model model, Authentication authentication) {
-        User user = userServiceImp.currentUser(authentication.getName());
-        TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
-        List<Assignment> assignments = assignmentImp.getAssignments();
 
-        model.addAttribute("assignments", assignments);
-        model.addAttribute("user", user.getName());
-        model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("homeEmployee");
-        return modelAndView;
-    }
 
     @RequestMapping(value = {"/createAssignment"}, method = RequestMethod.GET)
     public ModelAndView assignmentFormPage(Model model) {
@@ -90,7 +84,7 @@ public class HomeController {
     }
 
    @RequestMapping(value = "/assignment/{id}", method = RequestMethod.GET)
-   public ModelAndView showAssignment(@PathVariable("id") Integer id, Model model){
+   public ModelAndView showAssignment(@PathVariable("id") String id, Model model){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("assignment");
         Assignment assignment = assignmentImp.getAssignmentById(id);
@@ -99,10 +93,18 @@ public class HomeController {
         return modelAndView;
    }
 
+   @GetMapping("deleteAssignment/{id}")
+   public String deleteAssignment(@PathVariable("id") int id){
+        boolean deleted = assignmentImp.deleteAssignmentById(id);
 
+        if(deleted){
+            return "redirect:/home";
+        }else {
+            return "redirect:/home";
+        }
+   }
 
 //BULLETIN
-
     @RequestMapping(value = {"/bulletin"}, method = RequestMethod.GET)
     public ModelAndView bulletinBoard() {
         ModelAndView modelAndView = new ModelAndView("list");
@@ -111,35 +113,20 @@ public class HomeController {
         return modelAndView;
     }
 
+//Delete notice
     @GetMapping("/deleteNotice/{id}")
     public String deleteNotice(@PathVariable ("id") int id) {
         noticeServiceImp.deleteNotice(id);
         return ("redirect:/bulletin");
     }
 
-    @GetMapping("/deleteNoticeEmployee/{id}")
-    public String deleteNoticeEmployee(@PathVariable ("id") int id) {
-        noticeServiceImp.deleteNotice(id);
-        return ("redirect:/bulletinEmployee");
-    }
-
-    @RequestMapping(value = {"/bulletinEmployee"}, method = RequestMethod.GET)
-    public ModelAndView bulletinBoardEmployee() {
-        ModelAndView modelAndView = new ModelAndView("list");
-        modelAndView.setViewName("bulletinEmployee");
-        modelAndView.addObject("notices", noticeServiceImp.fetchAll());
-        return modelAndView;
-    }
-
-
+   //notice form
     @RequestMapping(value = {"/noticeFormPage"}, method = RequestMethod.GET)
     public ModelAndView noticeFormpage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("noticeFormPage");
         return modelAndView;
     }
-
-
 
     @RequestMapping (value = "/noticeFormPage", method = RequestMethod.POST)
     public ModelAndView postNoticeFormPage (Authentication authentication, Role role, @ModelAttribute("message") String message) {
@@ -153,25 +140,52 @@ public class HomeController {
                 checkAuth = true;
                 break;
             }
-
         }
-
         if (checkAuth) {
             return new ModelAndView("redirect:/bulletin");
         } else  {
             return new ModelAndView("redirect:/bulletinEmployee");
         }
-
-
-
     }
-    //EMPLOYEES
+
+    //EMPLOYEES Page
     @RequestMapping(value = {"/employees"}, method = RequestMethod.GET)
     public ModelAndView employees() {
         ModelAndView modelAndView = new ModelAndView("list");
         modelAndView.setViewName("employees");
         modelAndView.addObject("users",userServiceImp.fetchAll());
 
+        return modelAndView;
+    }
+
+
+
+    @RequestMapping(value = {"/homeEmployee"}, method = RequestMethod.GET)
+    public ModelAndView homeEmployee(Model model, Authentication authentication) {
+        User user = userServiceImp.currentUser(authentication.getName());
+        TimeMessageGenerator timeMessageGenerator = new TimeMessageGenerator();
+        List<Assignment> assignments = assignmentImp.getAssignments();
+
+        model.addAttribute("assignments", assignments);
+        model.addAttribute("user", user.getName());
+        model.addAttribute("timeMessage", timeMessageGenerator.timeOfTheDay());
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("homeEmployee");
+        return modelAndView;
+    }
+
+    @GetMapping("/deleteNoticeEmployee/{id}")
+    public String deleteNoticeEmployee(@PathVariable("id") int id) {
+        noticeServiceImp.deleteNotice(id);
+        return ("redirect:/bulletinEmployee");
+    }
+
+
+    @RequestMapping(value = {"/bulletinEmployee"}, method = RequestMethod.GET)
+    public ModelAndView bulletinBoardEmployee() {
+        ModelAndView modelAndView = new ModelAndView("list");
+        modelAndView.setViewName("bulletinEmployee");
+        modelAndView.addObject("notices", noticeServiceImp.fetchAll());
         return modelAndView;
     }
 
@@ -182,6 +196,16 @@ public class HomeController {
         modelAndView.addObject("users",userServiceImp.fetchAll());
         return modelAndView;
     }
+
+    @RequestMapping(value = "/assignmentEmp/{id}",method = RequestMethod.GET)
+    public ModelAndView showAssignmentEmp(@PathVariable("id") String id, Model model){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("assignmentEmployee");
+        Assignment assignment = assignmentImp.getAssignmentById(id);
+        model.addAttribute("assignment", assignment);
+        return modelAndView;
+    }
+
 
 
 }

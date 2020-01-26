@@ -36,7 +36,7 @@
     </div>
     <h2>Opgaver og Rydninger</h2>
 
-<table class="blueTable">
+<table class="blueTable" id="results">
     <thead>
     <tr class="fields" >
         <th hidden>Id</th>
@@ -58,7 +58,11 @@
 
         <td id="as-action">
             <a th:href="@{'/assignment/'+${assignment.id}}"/>
-            <button class="view-button">Se mere</button>
+            <button class="view-button" style="border-radius: 3px; width: 120px; height: 30px;">Se mere</button>
+
+            <a th:href="@{'/deleteAssignment/'+${assignment.id}}" onclick="return confirm('Er du sikker på, at du ønsker at fjerne opgaven rydningen?');">
+            <button class="view-button" style="background-color: #ff5a58; border-radius: 3px; width: 120px; height: 30px;">Fjern opgave</button>
+            </a>
         </td>
 
     </tr>
@@ -67,11 +71,20 @@
 </div>
 
 <script th:inline="javascript">
-    /*<![CDATA[*/
 
+    function sortByDate() {
+        var tbody = document.querySelector("#results tbody");
+        // get trs as array for ease of use
+        var rows = [].slice.call(tbody.querySelectorAll("tr"));
 
+        rows.sort(function(a,b) {
+            return convertDate(a.cells[0].innerHTML) - convertDate(b.cells[0].innerHTML);
+        });
 
-    /*]]>*/
+        rows.forEach(function(v) {
+            tbody.appendChild(v); // note that .appendChild() *moves* elements
+        });
+    }
 </script>
 
 </body>

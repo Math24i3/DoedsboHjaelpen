@@ -41,12 +41,12 @@
                 <input type="text" name="floor" placeholder="Etage og side" class="form-look-text" style="width: 120px" />
             </div>
 
-            <div class="">
-                <input type="text" name="city" placeholder="By" class="form-look-text" required/>
+            <div class="" >
+                <input type="number" name="zip" maxlength="4" placeholder="Postnummer" class="form-look-text" style="width: 120px" required/>
             </div>
 
             <div class="" style="border-bottom: 1px solid #275888; padding-bottom: 20px">
-                <input type="number" name="zip" maxlength="4" placeholder="Postnummer" class="form-look-text" style="width: 120px" required/>
+                <input type="text" name="city" placeholder="By" class="form-look-text" required/>
             </div>
 
 
@@ -55,6 +55,7 @@
             <div  style="border-bottom: 1px solid #275888; padding-bottom: 20px">
                 <input type="date" id="date" name="assignment_Date" placeholder="Dato for besigtigelse" class="form-look-calender" required />
             </div>
+
             <p style="font-weight: 800;">Vælg boligtype</p>
             <div  th:object="${propertyType}" style="border-bottom: 1px solid #275888; padding-bottom: 20px" >
                 <select class="form-look-drpdwn" id="id" name="property">
@@ -135,6 +136,8 @@
     //$('#date').datepicker({ dateFormat: 'yy-mm-dd' }).getTimezoneOffset().val();
    var todaysDate = moment().tz.setDefault("Europe/Berlin");
    $('#date').datepicker({ format: 'yyyy M d', startDate: todaysDate });
+
+    document.getElementById('date').value = new Date().toDateInputValue();
 </script>
 
 </body>

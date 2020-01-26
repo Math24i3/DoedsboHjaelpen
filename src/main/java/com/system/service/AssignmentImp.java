@@ -7,6 +7,7 @@ import com.system.model.Role;
 import com.system.repository.AssignmentRepository;
 import com.system.repository.PropertyTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -22,6 +23,9 @@ public class AssignmentImp {
 
     @Autowired
     PropertyTypeRepository propertyTypeRepository;
+
+    @Autowired
+    JdbcTemplate template;
 
 
 
@@ -44,10 +48,20 @@ public class AssignmentImp {
 
     }
 
-    public Assignment getAssignmentById(int id){
-        Assignment assignment = assignmentRepository.getAssignmentById(id);
+    public Assignment getAssignmentById(String id){
+        int finalID = Integer.valueOf(id);
+        Assignment assignment = assignmentRepository.getAssignmentById(finalID);
         return assignment;
     }
+
+    public boolean deleteAssignmentById(int id){
+        String sql = "DELETE FROM assignments WHERE assignments.idassignments = ?;";
+
+        return template.update(sql, id) + template.update(sql, id) > 0;
+
+    }
+
+
 
 
 

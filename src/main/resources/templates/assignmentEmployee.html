@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <meta charset="UTF-8"/>
     <title>Titsdfdsfle</title>
-    <meta charset="utf-8"/>
+
 
     <style>
         body{
@@ -30,7 +31,9 @@
             -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
             -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
             box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+
         }
+
         .header-nav-bar a {
             font-size: 18px;
             color: #3e4da4;
@@ -47,6 +50,7 @@
             background-color: white;
             text-decoration: none;
         }
+
         .header-nav-bar button{
 
             font-size: 18px;
@@ -67,7 +71,9 @@
         a:hover{
             background-color: #dddddd;
             cursor: pointer;
+
         }
+
         a #left-btn{
             border-bottom-left-radius: 3px; border-top-left-radius: 3px
         }
@@ -85,6 +91,7 @@
         .btn-active:hover{
             background-color: #46e593;
         }
+
         .header-nav-bar .logout-btn{
             color: white;
             background-color: #3e4da4;
@@ -93,11 +100,13 @@
             border-top-right-radius: 4px;
             transition: 0.5s;
         }
+
         .logout-btn:hover{
             color: black;
             background-color: #6980ca;
             cursor: pointer;
         }
+
         .form-container{
             font-family: Helvetica;
             background-color: #337ab7;
@@ -107,6 +116,7 @@
             margin-top: -40px;
             height: 600px;
         }
+
         .input-checkbox{
             cursor: pointer;
         }
@@ -122,6 +132,7 @@
             -ms-user-select: none;
             user-select: none;
         }
+
         /* Hide the browser's default checkbox */
         .container input {
             position: absolute;
@@ -130,6 +141,7 @@
             height: 0;
             width: 0;
         }
+
         #assignment-table-header{
             color: white;
             background-color: #3e4da4;
@@ -140,6 +152,7 @@
             margin-top: 20px;
             border-radius: 4px;
             height: 65px;
+
         }
         .form-group{
             font-family: Helvetica;
@@ -147,19 +160,23 @@
             margin-left: 20px;
             padding-right: 30px;
             margin-top: 20px;
+
+
         }
     </style>
+
+
 </head>
 <body>
 <div class="header-box">
     <img src="https://affald-genbrug.dk/wp-content/uploads/2019/10/D%C3%B8dsbo-Hj%C3%A6lpen.png?fbclid=IwAR023WBxvvV23keLoryC4z8cWV82Ypbd-U-jCiJh0OgGy0Qn8DcdEeku6tY" height="126" width="614"/>
 
     <div class="header-nav-bar">
-        <a  type="submit" name="opgave-oversigt" th:href="@{'/home'}" style="border-top-left-radius: 4px; border-bottom-left-radius: 4px">Opgaveoversigt</a>
+        <a  type="submit" name="opgave-oversigt" th:href="@{'/homeEmployee'}" style="border-top-left-radius: 4px; border-bottom-left-radius: 4px">Opgaveoversigt</a>
 
-        <a  name="opslagstavle" th:href="@{'/bulletin'}">Opslagstavle</a>
+        <a  name="opslagstavle" th:href="@{'/bulletinEmployee'}">Opslagstavle</a>
 
-        <a  type="submit" name="ansatte" th:href="@{'/employees'}">Ansatte</a>
+        <a  type="submit" name="ansatte" th:href="@{'/employeesEmployee'}">Ansatte</a>
 
         <form method="post" th:action="@{/logout}">
             <button type="submit" class= "logout-btn" name="log-ud">Log ud</button>
@@ -167,7 +184,7 @@
     </div>
 </div>
 <div style="background-color: #bdffcc; border-radius: 4px">
-    <h2 style="margin-left: 30px">Oversigt over af rydning:</h2>
+    <h2 style="margin-left: 30px">Oversigt over rydning:</h2>
     <div class="form-container">
             <div class="form-group" style="border-right: 1px solid #275888; border-bottom: 1px solid #275888">
                 <h3>Addresseoplysninger:</h3>
