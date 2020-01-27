@@ -41,7 +41,7 @@ public class AssignmentImp {
         List<Assignment> assignments = assignmentRepository.findAll();
 
         for (Assignment a: assignments) {
-            a.setAddressLink("https://www.google.dk/maps/place/"+ a.getStreet_name()+"+" + a.getStreet_number()+",+" + a.getZip()+"+"+ a.getCity() +"/");
+            a.setAddressLink("https://www.google.com/maps/dir/?api=1&destination=" + a.getStreet_name() + "+" + a.getStreet_number() + ",+" + a.getZip() + "+" + a.getCity() + "/");
 
         }
         return assignments;
@@ -60,9 +60,6 @@ public class AssignmentImp {
         return template.update(sql, id) + template.update(sql, id) > 0;
 
     }
-
-
-
 
 
 }

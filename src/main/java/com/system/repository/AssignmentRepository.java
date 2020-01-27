@@ -7,7 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface AssignmentRepository extends JpaRepository<Assignment, Integer> {
 
 
-    public Assignment getAssignmentById(int id);
+    Assignment getAssignmentById(int id);
+
+
 
 
 

@@ -118,6 +118,15 @@ public class Assignment {
     public Assignment() {
     }
 
+    public String getProperty() {
+        String property = "";
+        for (PropertyType p : propertyTypes
+        ) {
+            property = p.getType();
+        }
+        return property;
+    }
+
     public Assignment(String description, String street_name,
                       Integer street_number, String city,
                       Integer zip, String floor, String assignment_date,

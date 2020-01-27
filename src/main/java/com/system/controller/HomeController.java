@@ -200,6 +200,32 @@ public class HomeController {
         return modelAndView;
     }
 
+    @RequestMapping(value = "/assignmentUpdate/{id}", method = RequestMethod.GET)
+    public ModelAndView updateAssignment(@PathVariable("id") String id, Model model) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("updateAssignment");
+
+        List<PropertyType> propertyTypes = propertyTypeImp.fetchAll();
+        model.addAttribute("propertyTypes", propertyTypes);
+
+
+        Assignment assignment = assignmentImp.getAssignmentById(id);
+        model.addAttribute("assignment", assignment);
+
+        model.addAttribute("pre_property", assignment.getProperty());
+
+
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/updateAssignment", method = RequestMethod.POST)
+    public ModelAndView updateAssignment(@ModelAttribute("assignment_Date") String date, @ModelAttribute Assignment assignment, @ModelAttribute("property") String property) {
+
+        assignmentImp.createAssignment(assignment, property, date);
+        return new ModelAndView("redirect:/home");
+
+    }
+
 
 
 }

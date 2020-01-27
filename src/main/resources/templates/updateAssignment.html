@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Opret opgave</title>
+    <meta charset="utf-8"/>
+
+    <style>
+        body {
+            font-family: Helvetica;
+        }
+
+        img {
+            float: left;
+            width: 300px;
+            height: 60px;
+            padding-top: 20px;
+        }
+
+        .header-box {
+            min-width: 1100px;
+        }
+
+        .header-nav-bar {
+            float: right;
+            border-radius: 4px;
+            height: 50px;
+            width: 720px;
+            margin-top: 30px;
+            margin-right: 5px;
+            -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.75);
+            box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.75);
+        }
+
+        .header-nav-bar a {
+            font-size: 18px;
+            color: #3e4da4;
+            font-weight: 200;
+            height: 50px;
+            display: inline-block;
+            width: 200px;
+            text-align: center;
+            line-height: 45px;
+            vertical-align: middle;
+            transition: 0.5s;
+            margin-right: -5px;
+            border: none;
+            background-color: white;
+            text-decoration: none;
+        }
+
+        .header-nav-bar button {
+
+            font-size: 18px;
+            height: 50px;
+            display: inline-block;
+
+            text-align: center;
+            line-height: 45px;
+            vertical-align: middle;
+            font-weight: 100;
+            transition: 0.5s;
+            margin-right: -5px;
+            border: none;
+        }
+
+        .header-nav-bar form {
+            float: right;
+        }
+
+        a:hover {
+            background-color: #dddddd;
+            cursor: pointer;
+        }
+
+        a #left-btn {
+            border-bottom-left-radius: 3px;
+            border-top-left-radius: 3px
+        }
+
+        .header-box {
+            border-bottom: 2px solid #4d5c9a;;
+            padding-top: 20px;
+            margin: 20px;
+            height: 100px;
+        }
+
+
+        .header-nav-bar .logout-btn {
+            color: white;
+            background-color: #3e4da4;
+            width: 120px;
+            border-bottom-right-radius: 4px;
+            border-top-right-radius: 4px;
+            transition: 0.5s;
+        }
+
+        .logout-btn:hover {
+            color: black;
+            background-color: #6980ca;
+            cursor: pointer;
+        }
+
+        .form-container {
+            font-family: Helvetica;
+            background-color: #337ab7;
+            width: 1000px;
+            min-width: 1050px;
+            border-radius: 5px;
+            margin: 0 auto;
+            margin-top: -40px;
+            height: 600px;
+        }
+
+        .input-checkbox {
+            cursor: pointer;
+        }
+
+        /* Hide the browser's default checkbox */
+        .container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .form-group {
+            font-family: Helvetica;
+            float: left;
+            margin-left: 20px;
+            padding-right: 30px;
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="header-box">
+    <img src="https://affald-genbrug.dk/wp-content/uploads/2019/10/D%C3%B8dsbo-Hj%C3%A6lpen.png?fbclid=IwAR023WBxvvV23keLoryC4z8cWV82Ypbd-U-jCiJh0OgGy0Qn8DcdEeku6tY"
+         height="126" width="614"/>
+
+    <div class="header-nav-bar">
+        <a type="submit" name="opgave-oversigt" th:href="@{'/home'}"
+           style="border-top-left-radius: 4px; border-bottom-left-radius: 4px">Opgaveoversigt</a>
+
+        <a name="opslagstavle" th:href="@{'/bulletin'}">Opslagstavle</a>
+
+        <a type="submit" name="ansatte" th:href="@{'/employees'}">Ansatte</a>
+
+        <form method="post" th:action="@{/logout}">
+            <button type="submit" class="logout-btn" name="log-ud">Log ud</button>
+        </form>
+    </div>
+</div>
+<div style="margin-top: 50px; height: 800px">
+
+    <div class="form-container">
+        <form th:action="@{/updateAssignment}" th:object="${'assignment'}" method="post" class="form-signin">
+            <div class="form-group" style="border-right: 1px solid #275888; border-bottom: 1px solid #275888">
+
+                <h3>Addresseoplysninger:</h3>
+                <input type="text" name="id" th:value="${assignment.id}" class="form-look-text" hidden/>
+
+                <div class="" style="margin-bottom: 10px">
+                    <input type="text" name="street_name" th:value="${assignment.street_name}" class="form-look-text"
+                           required/>
+                </div>
+
+                <div class="" style="margin-bottom: 10px">
+                    <input type="number" name="street_number" th:value="${assignment.street_number}"
+                           class="form-look-text"
+                           style="width: 120px" required/>
+                </div>
+
+                <div class="" style="margin-bottom: 10px">
+                    <input type="text" name="floor" th:value="${assignment.floor}" class="form-look-text"
+                           style="width: 120px"/>
+                </div>
+
+                <div class="" style="margin-bottom: 10px">
+                    <input type="number" name="zip" maxlength="4" th:value="${assignment.zip}" class="form-look-text"
+                           style="width: 120px" required/>
+                </div>
+
+                <div class="" style="border-bottom: 1px solid #275888; padding-bottom: 20px">
+                    <input type="text" name="city" th:value="${assignment.city}" class="form-look-text" required/>
+                </div>
+
+
+                <p style="margin-top: 10px; font-weight: 800;">Dato for opgaven/rydningen</p>
+                <div style="border-bottom: 1px solid #275888; padding-bottom: 20px">
+                    <input type="date" id="date" name="assignment_Date" th:value="${assignment.assignment_date}"
+                           class="form-look-calender" required/>
+                </div>
+
+                <p style="font-weight: 800;">Vælg boligtype</p>
+                <div th:object="${propertyType}" style="border-bottom: 1px solid #275888; padding-bottom: 20px">
+                    <select class="form-look-drpdwn" id="id" name="property">
+                        <option th:value="${pre_property}" th:text="'Type: ' +${pre_property}">>
+                        </option>
+                        <option th:each="propertyType : ${propertyTypes}"
+                                th:value="${propertyType.type}"
+                                th:text="'Type: ' +${propertyType.type}">
+                        </option>
+                    </select>
+                </div>
+                <p style="font-weight: 800;">Beskrivelse/tilføjelse til opgaven</p>
+                <div style=" padding-bottom: 20px">
+                    <textarea type="text" name="description" th:field="${assignment.description}"
+                              style="height: 50px; width: 350px" class="form-look-text"></textarea>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <div class="checkbox-categories">
+                    <p style="margin-bottom: 0px; font-weight: 800">Hårde hvidevare</p>
+
+                    <input class="input-checkbox" type="checkbox" name="stove" value="1"
+                           th:checked="${assignment.stove}"/> Komfur<br>
+
+                    <input class="input-checkbox" type="checkbox" name="fridge" value="1"
+                           th:checked="${assignment.fridge}"/> Køleskab/Fryser<br>
+
+                    <input class="input-checkbox" type="checkbox" name="washing_machine" value="1"
+                           th:checked="${assignment.washing_machine}"> Vaskinemaskine<br>
+
+                    <input class="input-checkbox" type="checkbox" name="dish_washer" value="1"
+                           th:checked="${assignment.dish_washer}"> Opvaskemaskine<br>
+
+                    <div style="margin-bottom: 0px">
+                        <textarea type="text" name="description_appliances"
+                                  th:field="${assignment.description_appliances}"
+                                  style="width: 250px; height: 40px" class="form-look-text"></textarea>
+                    </div>
+
+                </div>
+                <div class="checkbox-categories">
+                    <p style="margin-bottom: 0px; font-weight: 800">Diverse</p>
+                    <input class="input-checkbox" type="checkbox" name="carpets" value="1"
+                           th:checked="${assignment.carpets}"/> Tæpper<br>
+
+                    <input class="input-checkbox" type="checkbox" name="carpet_tape" value="1"
+                           th:checked="${assignment.carpet_tape}"/>
+                    Tæppetape<br>
+
+                    <input class="input-checkbox" type="checkbox" name="bolts_and_screws" value="1"
+                           th:checked="${assignment.bolts_and_screws}"/> Søm
+                    og skruer<br>
+
+                    <div style="margin-bottom: 0px">
+                        <textarea type="text" name="description_div" th:field="${assignment.description_div}"
+                                  style="width: 250px; height: 40px" class="form-look-text"></textarea>
+                    </div>
+                </div>
+                <div class="checkbox-categories">
+                    <p style="margin-bottom: 0px; font-weight: 800">Ophæng</p>
+                    <input class="input-checkbox" type="checkbox" name="curtains" value="1"
+                           th:checked="${assignment.curtains}"/>
+                    Gardiner<br>
+
+                    <input class="input-checkbox" type="checkbox" name="curtainrod" value="1"
+                           th:checked="${assignment.curtainrod}"/>
+                    Gardinstænger<br>
+
+                    <input class="input-checkbox" type="checkbox" name="blinds" value="1"
+                           th:checked="${assignment.blinds}"/>
+                    Persienner<br>
+
+                    <input class="input-checkbox" type="checkbox" name="lamps" value="1"
+                           th:checked="${assignment.lamps}"/> Lamper<br>
+
+                    <div style="margin-bottom: 0px">
+                        <textarea type="text" name="description_curtains" th:field="${assignment.description_curtains}"
+                                  style="width: 250px; height: 40px" class="form-look-text"></textarea>
+                    </div>
+                </div>
+
+
+                <div>
+                    <button type="submit" class="btn btn-primary btn-block">Opdater opgaven</button>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="checkbox-categories">
+                    <p style="margin-bottom: 0px; font-weight: 800">Vigtigt</p>
+                    <input class="input-checkbox" type="checkbox" name="cellar_and_loft" value="1"
+                           th:checked="${assignment.cellar_and_loft}"/> Kælder/Loftrum<br>
+
+                    <input class="input-checkbox" type="checkbox" name="cleaning_service" value="1"
+                           th:checked="${assignment.cleaning_service}"/> Tilkøb af hovedrengøring<br>
+
+                    <input class="input-checkbox" type="checkbox" name="accessibility_tools" value="1"
+                           th:checked="${assignment.accessibility_tools}"/> Hjælpemidler gemmes<br>
+
+                    <input class="input-checkbox" type="checkbox" name="return_keys" value="1"
+                           th:checked="${assignment.return_keys}"/> Aflever nøgler tilbage<br>
+
+                    <div style="margin-bottom: 0px">
+                        <textarea type="text" name="description_important"
+                                  th:field="${assignment.description_important}"
+                                  style="width: 250px; height: 40px" class="form-look-text"></textarea>
+                    </div>
+                </div>
+
+                <div class="checkbox-categories">
+                    <p style="margin-bottom: 0px; font-weight: 800">Personlige ejendele</p>
+                    <input class="input-checkbox" type="checkbox" name="paintings" value="1"
+                           th:checked="${assignment.paintings}"/>
+                    Billeder<br>
+
+                    <input class="input-checkbox" type="checkbox" name="documents" value="1"
+                           th:checked="${assignment.documents}"/> Dokumenter<br>
+
+                    <input class="input-checkbox" type="checkbox" name="keys" value="1"
+                           th:checked="${assignment.keys}"/>Fundne nøgler
+                    gemmes<br>
+
+                    <div style="margin-bottom: 0px">
+                        <textarea type="text" name="description_personal" th:field="${assignment.description_personal}"
+                                  style="width: 250px; height: 40px" class="form-look-text"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+
+</body>
+</html>
