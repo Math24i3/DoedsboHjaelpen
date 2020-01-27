@@ -6,6 +6,7 @@ import com.system.model.PropertyType;
 import com.system.model.Role;
 import com.system.repository.AssignmentRepository;
 import com.system.repository.PropertyTypeRepository;
+import com.system.tools.Toolbox;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -39,9 +40,10 @@ public class AssignmentImp {
 
     public List<Assignment> getAssignments(){
         List<Assignment> assignments = assignmentRepository.findAll();
+        Toolbox toolbox = new Toolbox();
 
         for (Assignment a: assignments) {
-            a.setAddressLink("https://www.google.com/maps/dir/?api=1&destination=" + a.getStreet_name() + "+" + a.getStreet_number() + ",+" + a.getZip() + "+" + a.getCity() + "/");
+            a.setAddressLink("https://www.google.com/maps/dir/?api=1&destination=" + toolbox.replaceWhiteSpace(a.getStreet_name(), '+') + "+" + a.getStreet_number() + ",+" + a.getZip() + "+" + a.getCity() + "/");
 
         }
         return assignments;
