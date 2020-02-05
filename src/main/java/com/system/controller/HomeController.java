@@ -4,10 +4,7 @@ package com.system.controller;
 import com.system.model.*;
 import com.system.repository.AssignmentRepository;
 import com.system.repository.PropertyTypeRepository;
-import com.system.service.AssignmentImp;
-import com.system.service.NoticeServiceImp;
-import com.system.service.PropertyTypeImp;
-import com.system.service.UserServiceImp;
+import com.system.service.*;
 import com.system.tools.TimeMessageGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -18,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.IOException;
 import java.util.*;
 
 @Controller
@@ -41,6 +39,9 @@ public class HomeController {
     @Autowired
     AssignmentRepository assignmentRepository;
 
+    @Autowired
+    DBFileStorageService dbFileStorageService;
+
     //HOME and Create assignment
     @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
     public ModelAndView home(Model model, Authentication authentication) {
@@ -54,6 +55,12 @@ public class HomeController {
     model.addAttribute("timeMessage", new TimeMessageGenerator().timeOfTheDay());
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.setViewName("home");
+
+        try {
+            dbFileStorageService.storeImageFromPath("C:\\Users\\Bruger\\Documents\\Datamatiker\\Eksamen - Design - 3.semester\\Program\\src\\main\\resources\\static\\Dødsbo-Hjælpen-2.png");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return modelAndView;
         //
