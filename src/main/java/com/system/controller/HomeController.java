@@ -3,6 +3,7 @@ package com.system.controller;
 
 import com.system.model.*;
 import com.system.repository.AssignmentRepository;
+import com.system.repository.DBFileRepository;
 import com.system.repository.PropertyTypeRepository;
 import com.system.service.*;
 import com.system.tools.TimeMessageGenerator;
@@ -42,25 +43,25 @@ public class HomeController {
     @Autowired
     DBFileStorageService dbFileStorageService;
 
+    @Autowired
+    DBFileRepository dbFileRepository;
+
     //HOME and Create assignment
     @RequestMapping(value = {"/home"}, method = RequestMethod.GET)
     public ModelAndView home(Model model, Authentication authentication) {
         User user = userServiceImp.currentUser(authentication.getName());
         List<Assignment> assignments = assignmentImp.getAssignments();
+        List<DBFile> files = dbFileRepository.findAll();
         for (GrantedAuthority e: authentication.getAuthorities()) {
             System.out.println(e.getAuthority());
         }
-    model.addAttribute("assignments", assignments);
-    model.addAttribute("user", user.getName());
-    model.addAttribute("timeMessage", new TimeMessageGenerator().timeOfTheDay());
-    ModelAndView modelAndView = new ModelAndView();
-    modelAndView.setViewName("home");
+        model.addAttribute("assignments", assignments);
+        model.addAttribute("files", files);
 
-        try {
-            dbFileStorageService.storeImageFromPath("C:\\Users\\Bruger\\Documents\\Datamatiker\\Eksamen - Design - 3.semester\\Program\\src\\main\\resources\\static\\Dødsbo-Hjælpen-2.png");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        model.addAttribute("user", user.getName());
+        model.addAttribute("timeMessage", new TimeMessageGenerator().timeOfTheDay());
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("home");
 
         return modelAndView;
         //

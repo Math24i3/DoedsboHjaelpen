@@ -17,42 +17,27 @@ public class DBFileStorageService {
     @Autowired
     private DBFileRepository dbFileRepository;
 
-    public DBFile storeImage(MultipartFile file) {
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+    public void saveFile(String address, MultipartFile file) {
 
-
-        DBFile dbFile = null;
         try {
-            dbFile = new DBFile(fileName, file.getContentType(), file.getBytes());
+            DBFile dbFile = new DBFile();
+
+            Byte[] byteObjects = new Byte[file.getBytes().length];
+
+            int i = 0;
+
+            for (byte b : file.getBytes()) {
+                byteObjects[i++] = b;
+            }
+
+            dbFile.setData(byteObjects);
+            dbFile.setName(file.getOriginalFilename());
+            dbFile.setAddress(address);
+
+            dbFileRepository.save(dbFile);
         } catch (IOException e) {
+            //todo handle better
             e.printStackTrace();
         }
-
-
-        return dbFileRepository.save(dbFile);
-
-    }
-
-    public DBFile storeImageFromPath(String path) throws IOException {
-
-
-        File fileFromPath = new File(path);
-
-        FileInputStream fis = new FileInputStream(fileFromPath);
-
-        String filename = fileFromPath.getName();
-
-
-        byte[] data = new byte[(int) fileFromPath.length()];
-
-        fis.read(data);
-        fis.close();
-
-        DBFile dbFile = new DBFile(filename, data);
-
-        System.out.println(data);
-
-        return dbFileRepository.save(dbFile);
-
     }
 }

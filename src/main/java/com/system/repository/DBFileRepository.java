@@ -7,5 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DBFileRepository extends JpaRepository<DBFile, String> {
 
+    DBFile getDBFileById(String id);
+
 
 }

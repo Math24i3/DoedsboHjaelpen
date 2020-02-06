@@ -32,6 +32,7 @@
 <div id="assignment-table-header">
     <div id="create-assignment-button">
         <a th:href="@{'/createAssignment'}" class="createButton">Opret Opgave</a>
+        <a th:href="@{'/saveImage'}" class="createButton">Tilføj opgave som billede</a>
     </div>
     <h2>Opgaver og Rydninger</h2>
 
@@ -71,6 +72,22 @@
         </td>
 
     </tr>
+
+    <tr th:each="file: ${files}">
+
+        <td hidden th:text="${file.id}"/>
+
+        <td style="color: black;" th:text="${file.address}"/>
+
+        <td style="color: black;"/>
+
+        <td>
+            <a th:href="@{'/image/'+${file.id}}"/>
+            <button class="view-button" style="border-radius: 3px; width: 120px; height: 30px;">Se Billede</button>
+        </td>
+
+    </tr>
+
     </tbody>
 </table>
 </div>

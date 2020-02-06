@@ -3,7 +3,6 @@ package com.system.model;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.sql.Blob;
 
 @Entity
 @Table(name = "assigment_images")
@@ -17,18 +16,21 @@ public class DBFile {
 
     private String name;
 
-    private byte[] data;
+    private String address;
+    @Lob
+    private Byte[] data;
 
 
-    public DBFile(String name, String fileType, byte[] data) {
+    public DBFile(String name, String fileType, Byte[] data) {
         this.name = name;
         this.data = data;
     }
 
-    public DBFile(String name, byte[] data) {
+    public DBFile(String name, Byte[] data) {
         this.name = name;
         this.data = data;
     }
+
 
     public DBFile() {
     }
@@ -50,11 +52,19 @@ public class DBFile {
     }
 
 
-    public byte[] getData() {
+    public Byte[] getData() {
         return data;
     }
 
-    public void setData(byte[] data) {
+    public void setData(Byte[] data) {
         this.data = data;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
